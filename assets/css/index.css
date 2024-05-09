@@ -121,6 +121,10 @@ a {
     display: flex;
     align-items: center;
     gap: 20px; }
+    #header #logoSection .fa {
+      cursor: pointer;
+    }
+      
     #header #logoSection #logo {
       display: flex;
       align-items: center;
@@ -389,7 +393,12 @@ a {
         width: 100%; }
         #contentContainer #content .table .tableHead .column {
           flex-grow: 1;
-          font-size: 12px; }
+          font-size: 12px; 
+          
+        }
+        #contentContainer #content .table .tableHead .columnLogo {
+          display: flex;
+        }
       #contentContainer #content .table .tableBody .tableRow {
         display: flex;
         width: 100%;
