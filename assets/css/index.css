@@ -1,0 +1,528 @@
+.primary-color {
+  color: #1b73e8; }
+
+#labelPickerDialog .dialogContent {
+  padding-left: 0px;
+  padding-right: 0px; }
+
+#labelPickerDialog .label {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  cursor: pointer; }
+  #labelPickerDialog .label .iconSection {
+    color: #9e9e9e; }
+  #labelPickerDialog .label .text {
+    font-size: 14px;
+    flex-grow: 1; }
+  #labelPickerDialog .label:hover {
+    background-color: rgba(0, 0, 0, 0.05); }
+
+input {
+  width: 100%;
+  border: 0px;
+  outline: none;
+  border-bottom: 1px solid #ccc;
+  height: 30px; }
+  input:focus {
+    border-bottom: 2px solid #1b73e8; }
+
+body {
+  margin: 0px;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3c4043; }
+
+a {
+  text-decoration: none;
+  color: #1b73e8; }
+  a:hover {
+    color: #155ebd; }
+
+.button {
+  padding: 8px 22px;
+  border: 1px solid #ccc;
+  box-shadow: none;
+  outline: none;
+  border-radius: 5px;
+  color: #333;
+  cursor: pointer;
+  font-size: 12px;
+  background-color: transparent; }
+  .button:hover {
+    background-color: rgba(0, 0, 0, 0.01); }
+
+.primary-button {
+  background-color: #1b73e8;
+  color: #fff;
+  border-color: #1b73e8; }
+  .primary-button:hover {
+    background-color: transparent;
+    color: #1b73e8; }
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  background-color: darkslateblue;
+  color: #fff;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  background-size: cover;
+  background-position: center; }
+  .avatar.cameraIconButton {
+    background-color: #e0e0e0; }
+    .avatar.cameraIconButton .fa.fa-user {
+      font-size: 120px; }
+    .avatar.cameraIconButton.imagePicked .fa.fa-user {
+      display: none; }
+    .avatar.cameraIconButton button {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      margin: auto;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 0px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 22px; }
+      .avatar.cameraIconButton button input {
+        display: none; }
+      .avatar.cameraIconButton button label {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        cursor: pointer;
+        justify-content: center; }
+
+#header {
+  height: 50px;
+  display: flex;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #616161;
+  box-sizing: border-box; }
+  #header #logoSection {
+    flex-basis: 200px;
+    display: flex;
+    align-items: center;
+    gap: 20px; }
+    #header #logoSection #logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      cursor: pointer; }
+  #header #searchSection {
+    flex-grow: 1; }
+    #header #searchSection #searchContainer {
+      width: 50%;
+      padding-top: 7px;
+      position: relative; }
+      #header #searchSection #searchContainer button {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border: 0px;
+        height: calc(100% - 7px);
+        width: 40px;
+        color: #585858;
+        top: 7px;
+        cursor: pointer; }
+        #header #searchSection #searchContainer button.searchButton {
+          left: 0px; }
+        #header #searchSection #searchContainer button.clearSearchButton {
+          right: 0px;
+          display: none; }
+        #header #searchSection #searchContainer button div {
+          width: 29px;
+          height: 29px;
+          display: flex;
+          align-items: center;
+          justify-content: center; }
+        #header #searchSection #searchContainer button:hover div {
+          background-color: #e8e8e8;
+          border-radius: 50%; }
+      #header #searchSection #searchContainer input {
+        width: 100%;
+        height: 35px;
+        border: 0px;
+        background: #f3f3f3;
+        padding-left: 40px;
+        color: #5a5a5a;
+        outline: none;
+        box-sizing: border-box;
+        border-radius: 5px; }
+        #header #searchSection #searchContainer input:focus {
+          background: #fff;
+          box-shadow: 0px 0px 5px #ccc; }
+      #header #searchSection #searchContainer .suggestions {
+        border: 1px solid #ccc;
+        width: 100%;
+        min-height: 90px;
+        box-shadow: 2px 2px 5px #ccc;
+        box-sizing: border-box;
+        position: absolute;
+        display: none;
+        z-index: 1;
+        background-color: #fff; }
+        #header #searchSection #searchContainer .suggestions .suggestion {
+          display: flex;
+          gap: 10px;
+          padding: 0 13px;
+          font-size: 12px;
+          height: 30px;
+          align-items: center;
+          color: #333;
+          cursor: pointer; }
+          #header #searchSection #searchContainer .suggestions .suggestion .email {
+            color: #999999;
+            font-size: 11px; }
+          #header #searchSection #searchContainer .suggestions .suggestion:hover {
+            background-color: #f0f0f0; }
+          #header #searchSection #searchContainer .suggestions .suggestion .avatar {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: darkorange;
+            border-radius: 50%;
+            color: #fff; }
+      #header #searchSection #searchContainer.suggestionsVisible input {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px; }
+      #header #searchSection #searchContainer.suggestionsVisible button.clearSearchButton {
+        display: block; }
+      #header #searchSection #searchContainer.suggestionsVisible .suggestions {
+        display: block; }
+  #header #actionSection {
+    flex-basis: 100px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px; }
+    #header #actionSection img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      cursor: pointer; }
+      #header #actionSection img:hover {
+        border-color: #f0f0f0; }
+    #header #actionSection #logoutButton {
+      cursor: pointer;
+      font-size: 23px; }
+
+.dialog {
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh; }
+  .dialog.active {
+    display: flex; }
+  .dialog .dialogOverlay {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5); }
+  .dialog .dialogContentContainer {
+    min-width: 300px;
+    min-height: 200px;
+    background-color: #fff;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; }
+    .dialog .dialogContentContainer .dialogTitle {
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+      padding-left: 20px; }
+    .dialog .dialogContentContainer .dialogContent {
+      flex-grow: 1;
+      padding: 10px 20px; }
+    .dialog .dialogContentContainer .dialogFooter {
+      min-height: 30px;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      gap: 10px; }
+      .dialog .dialogContentContainer .dialogFooter button {
+        background-color: transparent;
+        color: #1b73e8;
+        border: 0px;
+        cursor: pointer; }
+
+#contentContainer {
+  display: flex;
+  flex-grow: 1; }
+  #contentContainer #sidebar {
+    min-width: 200px;
+    height: 100%; }
+    #contentContainer #sidebar .divider {
+      width: 100%;
+      border-top: 1px solid #ccc;
+      margin: 5px 0px; }
+    #contentContainer #sidebar #createContactBtn {
+      border-radius: 50px;
+      box-shadow: 0px 0px 5px #9c9c9c;
+      display: inline-flex;
+      height: 40px;
+      align-items: center;
+      font-size: 12px;
+      gap: 10px;
+      padding: 0 20px;
+      padding-left: 10px;
+      margin-left: 10px;
+      margin-top: 30px; }
+    #contentContainer #sidebar #links {
+      margin-top: 20px; }
+      #contentContainer #sidebar #links .link {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        cursor: pointer;
+        padding: 9px 25px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        justify-content: space-between; }
+        #contentContainer #sidebar #links .link .content {
+          display: flex;
+          gap: 20px; }
+          #contentContainer #sidebar #links .link .content .fa-chevron-up {
+            display: none; }
+        #contentContainer #sidebar #links .link .fa {
+          font-size: 12px;
+          color: #6e6e6e; }
+        #contentContainer #sidebar #links .link:hover {
+          background-color: #e4e4e4; }
+        #contentContainer #sidebar #links .link.active {
+          background-color: #e8f0fe; }
+          #contentContainer #sidebar #links .link.active,
+          #contentContainer #sidebar #links .link.active .fa {
+            color: #1967d2; }
+      #contentContainer #sidebar #links .dropdownSection .dropdownContent {
+        display: none; }
+        #contentContainer #sidebar #links .dropdownSection .dropdownContent .actions {
+          display: none;
+          gap: 5px; }
+        #contentContainer #sidebar #links .dropdownSection .dropdownContent .link:hover .actions {
+          display: flex; }
+          #contentContainer #sidebar #links .dropdownSection .dropdownContent .link:hover .actions .actionButton:hover .fa {
+            color: #3a3a3a; }
+      #contentContainer #sidebar #links .dropdownSection.active > .link:first-child {
+        background-color: #f1f3f4; }
+        #contentContainer #sidebar #links .dropdownSection.active > .link:first-child .fa-chevron-up {
+          display: block; }
+        #contentContainer #sidebar #links .dropdownSection.active > .link:first-child .fa-chevron-down {
+          display: none; }
+      #contentContainer #sidebar #links .dropdownSection.active .dropdownContent {
+        display: block; }
+  #contentContainer #content {
+    flex-grow: 1;
+    padding-left: 20px;
+    box-sizing: border-box; }
+    #contentContainer #content .table {
+      width: 96%; }
+      #contentContainer #content .table .tableHead {
+        border-bottom: 1px solid #cfcfcf;
+        color: #6e6e6e;
+        padding-bottom: 13px;
+        margin: 20px 0px; }
+        #contentContainer #content .table .tableHead.hide {
+          display: none; }
+      #contentContainer #content .table .actionsBar {
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        height: 50px;
+        align-items: center;
+        display: none; }
+        #contentContainer #content .table .actionsBar.active {
+          display: flex; }
+        #contentContainer #content .table .actionsBar .buttons {
+          display: flex;
+          gap: 10px;
+          padding-left: 5px; }
+          #contentContainer #content .table .actionsBar .buttons i {
+            cursor: pointer;
+            color: #1967d2; }
+        #contentContainer #content .table .actionsBar .rightSection {
+          display: flex;
+          gap: 5px;
+          font-size: 12px;
+          color: #1967d2; }
+      #contentContainer #content .table .column {
+        width: 25%; }
+        #contentContainer #content .table .column .fa {
+          font-size: 15px; }
+      #contentContainer #content .table .tableHead {
+        display: flex;
+        width: 100%; }
+        #contentContainer #content .table .tableHead .column {
+          flex-grow: 1;
+          font-size: 12px; }
+      #contentContainer #content .table .tableBody .tableRow {
+        display: flex;
+        width: 100%;
+        min-height: 48px;
+        cursor: pointer; }
+        #contentContainer #content .table .tableBody .tableRow .column {
+          flex-grow: 1;
+          font-size: 11px;
+          padding: 8px 0px;
+          display: flex;
+          align-items: center;
+          gap: 20px; }
+          #contentContainer #content .table .tableBody .tableRow .column .checkbox {
+            display: none;
+            width: 30px;
+            justify-content: center;
+            align-items: center; }
+            #contentContainer #content .table .tableBody .tableRow .column .checkbox input {
+              cursor: pointer; }
+        #contentContainer #content .table .tableBody .tableRow .actionButtons {
+          display: none; }
+        #contentContainer #content .table .tableBody .tableRow:hover, #contentContainer #content .table .tableBody .tableRow.selected {
+          background-color: #f1f1f1; }
+          #contentContainer #content .table .tableBody .tableRow:hover .checkbox, #contentContainer #content .table .tableBody .tableRow.selected .checkbox {
+            display: flex; }
+          #contentContainer #content .table .tableBody .tableRow:hover .avatar, #contentContainer #content .table .tableBody .tableRow.selected .avatar {
+            display: none; }
+        #contentContainer #content .table .tableBody .tableRow:hover .actionButtons {
+          display: block; }
+
+#contactPage #contactHeader,
+#contactEditorPage #contactEditorHeader {
+  display: flex;
+  padding-top: 20px;
+  padding-left: 40px;
+  gap: 30px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 30px; }
+  #contactPage #contactHeader .avatar,
+  #contactEditorPage #contactEditorHeader .avatar {
+    width: 150px;
+    height: 150px;
+    font-size: 64px; }
+  #contactPage #contactHeader .nameSection,
+  #contactEditorPage #contactEditorHeader .nameSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 17px;
+    min-width: 30vw; }
+    #contactPage #contactHeader .nameSection .name,
+    #contactEditorPage #contactEditorHeader .nameSection .name {
+      font-size: 28px; }
+    #contactPage #contactHeader .nameSection .labelsSection,
+    #contactEditorPage #contactEditorHeader .nameSection .labelsSection {
+      display: flex;
+      align-items: center;
+      gap: 10px; }
+      #contactPage #contactHeader .nameSection .labelsSection .labels,
+      #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labels {
+        display: flex;
+        gap: 7px; }
+        #contactPage #contactHeader .nameSection .labelsSection .labels .label,
+        #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labels .label {
+          font-size: 12px;
+          border: 1px solid #ccc;
+          padding: 5px 10px;
+          border-radius: 20px;
+          cursor: pointer; }
+          #contactPage #contactHeader .nameSection .labelsSection .labels .label:hover,
+          #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labels .label:hover {
+            background-color: rgba(235, 235, 235, 0.2); }
+      #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton,
+      #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton {
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        border: 1px solid #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1b73e8;
+        cursor: pointer; }
+        #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton:hover,
+        #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton:hover {
+          background-color: rgba(235, 235, 235, 0.2); }
+  #contactPage #contactHeader .actionSection,
+  #contactEditorPage #contactEditorHeader .actionSection {
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    gap: 10px; }
+
+/**
+*
+* Contacts Page
+*
+**/
+#contactPage #contactContentContainer {
+  padding-top: 30px; }
+  #contactPage #contactContentContainer .contactContent {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block; }
+    #contactPage #contactContentContainer .contactContent h6 {
+      margin-top: 0px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600; }
+    #contactPage #contactContentContainer .contactContent .field {
+      display: flex;
+      gap: 10px;
+      padding-bottom: 4px;
+      font-size: 13px; }
+
+#contactEditorPage #contactEditorContent {
+  width: 40vw;
+  padding-left: 50px;
+  padding-top: 20px; }
+  #contactEditorPage #contactEditorContent .row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%; }
+    #contactEditorPage #contactEditorContent .row .crossIconColumn {
+      width: 20px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      margin-left: -10px; }
+      #contactEditorPage #contactEditorContent .row .crossIconColumn .fa {
+        display: none; }
+    #contactEditorPage #contactEditorContent .row:hover .crossIconColumn .fa {
+      display: block; }
+    #contactEditorPage #contactEditorContent .row .inputColumn {
+      flex-grow: 1; }
+    #contactEditorPage #contactEditorContent .row input {
+      width: 100%; }
+    #contactEditorPage #contactEditorContent .row .fa {
+      color: #ccc; }

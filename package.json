@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "scss": "node-sass assets/sass -o assets/css",
+    "scss-w": "npm run scss & node-sass assets/sass -wo assets/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/a10762/Youtube/Courses/Contacts-Web-App-with-HTML5-CSS3-Javascript-Node.js-Express.js-and-MySQL/frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/a10762/Youtube/Courses/Contacts-Web-App-with-HTML5-CSS3-Javascript-Node.js-Express.js-and-MySQL/frontend/issues"
+  },
+  "homepage": "https://gitlab.com/a10762/Youtube/Courses/Contacts-Web-App-with-HTML5-CSS3-Javascript-Node.js-Express.js-and-MySQL/frontend#readme",
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  }
+}

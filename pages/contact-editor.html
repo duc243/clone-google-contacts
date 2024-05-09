@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Page</title>
+    <link
+      href="../assets/vendors/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/index.css" rel="stylesheet" />
+  </head>
+  <body id="contactEditorPage">
+    <div id="headerPlaceholder"></div>
+    <div id="contentContainer">
+      <div id="sideBarPlaceholder"></div>
+
+      <form id="content" action="javascript:void(0)" onsubmit="onFormSubmit(event)">
+        <div id="contactEditorHeader">
+          <div class="avatar cameraIconButton">
+            <i class="fa fa-user" aria-hidden="true"></i>
+
+            <button>
+              <input
+                type="file"
+                id="avatarFilePickerInput"
+                onchange="onFileChange(this.files)"
+              />
+              <label for="avatarFilePickerInput">
+                <i class="fa fa-camera" aria-hidden="true"></i>
+              </label>
+            </button>
+          </div>
+          <div class="nameSection">
+            <div class="name"></div>
+            <div class="labelsSection">
+              <div class="labels"></div>
+              <div
+                class="labelsPickerButton"
+                onclick="showDialog(document.querySelector('#labelPickerDialog'))"
+              >
+                <i class="fa fa-tag" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <div class="actionSection">
+            <button type="submit" class="editButton primary-button button">Save</button>
+          </div>
+        </div>
+        <div
+          id="contactEditorContent"
+          action="javascript:void(0)"
+          onsubmit="onFormSubmit(event)"
+        >
+          <div class="row">
+            <div class="iconColumn">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </div>
+            <div class="inputColumn">
+              <input name="fullName" type="text" placeholder="Full Name" />
+            </div>
+            <div
+              onclick="this.closest('.row').querySelector('input').value = ''"
+              class="crossIconColumn"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="iconColumn">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            </div>
+            <div class="inputColumn">
+              <input name="email" type="email" placeholder="Email" />
+            </div>
+            <div
+              onclick="this.closest('.row').querySelector('input').value = ''"
+              class="crossIconColumn"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="iconColumn">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </div>
+            <div class="inputColumn">
+              <input name="phone" type="text" placeholder="Phone" />
+            </div>
+            <div
+              onclick="this.closest('.row').querySelector('input').value = ''"
+              class="crossIconColumn"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="iconColumn">
+              <i class="fa fa-globe" aria-hidden="true"></i>
+            </div>
+            <div class="inputColumn">
+              <input name="website" type="text" placeholder="Website" />
+            </div>
+            <div
+              onclick="this.closest('.row').querySelector('input').value = ''"
+              class="crossIconColumn"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="dialog" id="labelPickerDialog">
+      <div
+        class="dialogOverlay"
+        onclick="closeDialog(this.closest('.dialog'))"
+      ></div>
+      <dive class="dialogContentContainer">
+        <div class="dialogTitle">Pick a label</div>
+        <div class="dialogContent">
+          <div class="label" onclick="closeDialog(this.closest('.dialog'))">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">Label 1</div>
+            <div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="label" onclick="closeDialog(this.closest('.dialog'))">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">Label 1</div>
+            <div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <div class="label" onclick="closeDialog(this.closest('.dialog'))">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">Label 1</div>
+            <div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+        <div class="dialogFooter">
+          <button>+ Create label</button>
+          <button>Apply</button>
+        </div>
+      </dive>
+    </div>
+
+    <script src="../assets/js/common.js"></script>
+
+    <script>
+
+        const params = new URLSearchParams(location.search);
+        contactId = params.get("id");
+      if(contactId){
+        loadContact();
+      }
+
+      function onFileChange(files) {
+        let file = files.length > 0 ? files[0] : null;
+        getBase64FromFile(file).then((base64) => {
+          let avatar = document.querySelector("#contactEditorHeader .avatar");
+
+          avatar.style.backgroundImage = `url(${base64})`;
+          avatar.classList.add("imagePicked");
+        });
+      }
+
+      async function onFormSubmit(e) {
+        let formElement = e.target;
+        let formData = new FormData(formElement);
+        let data = {
+          email: formData.get('email'),
+          fullName:formData.get('fullName'),
+          phone:formData.get('phone'),
+          website:formData.get('website'),
+        }
+
+       save(data, contactId?'update':'create');
+        
+        console.log(e);
+      }
+
+      async function save(data, action){
+        if(action =='update') data.id = contactId;
+
+        let response =  await fetch(`${backendBaseUrl}/${action}`, {
+          method:'POST',
+          headers:{
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        window.location = '/';  
+        
+      }
+
+
+
+   
+
+
+
+      async function loadContact(){
+          
+        let contact = await getContact(contactId);
+
+        let emailInput = document.querySelector(`[name="email"]`);
+        let fullNameInput = document.querySelector(`[name="fullName"]`);
+        let phoneInput = document.querySelector(`[name="phone"]`);
+        let websiteInput = document.querySelector(`[name="website"]`);
+
+
+        emailInput.value = contact.email;
+        fullNameInput.value = contact.fullName;
+        phoneInput.value = contact.phone;
+        websiteInput.value = contact.website;
+
+
+      }
+    </script>
+  </body>
+</html>

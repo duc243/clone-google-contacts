@@ -1,0 +1,71 @@
+<div id="sidebar">
+  <div
+    id="createContactBtn"
+    onclick="window.location = '/pages/contact-editor.html'"
+  >
+    <svg width="30" height="30" viewBox="0 0 36 36">
+      <path fill="#34A853" d="M16 16v14h4V20z"></path>
+      <path fill="#4285F4" d="M30 16H20l-4 4h14z"></path>
+      <path fill="#FBBC05" d="M6 16v4h10l4-4z"></path>
+      <path fill="#EA4335" d="M20 16V6h-4v14z"></path>
+      <path fill="none" d="M0 0h36v36H0z"></path>
+    </svg>
+    Create contact
+  </div>
+
+  <div id="links">
+    <div class="link active" onclick="window.location='/index.html'">
+      <div class="content">
+        <i class="fa fa-user-o" aria-hidden="true"></i> Contacts
+      </div>
+      <div class="counter">500</div>
+    </div>
+    <div class="divider"></div>
+    <div class="dropdownSection">
+      <div
+        class="link"
+        onclick="sidebarDropdownToggleClicked(event.currentTarget)"
+      >
+        <div class="content">
+          <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          <i class="fa fa-chevron-up" aria-hidden="true"></i>
+          Labels
+        </div>
+      </div>
+
+      <div class="dropdownContent">
+        <div id="linksContainer"></div>
+
+        <div class="link" onclick="showCreateLabelDialog()">
+          <div class="content">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+
+            Create Label
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+  </div>
+</div>
+
+<div id="labelEditorDialog" class="dialog">
+  <div class="dialogOverlay" onclick="hideCreateLabelDialog()"></div>
+  <form
+    action="javascript:void(0)"
+    onSubmit="onCreateLabelFormSubmit()"
+    class="dialogContentContainer"
+  >
+    <input type="hidden" name="id" />
+    <div class="dialogTitle">Create label</div>
+    <div class="dialogContent">
+      <input type="text" name="title" placeholder="Type the label" />
+    </div>
+    <div class="dialogFooter">
+      <button type="button" class="cancelBtn" onclick="hideCreateLabelDialog()">
+        Cancel
+      </button>
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</div>

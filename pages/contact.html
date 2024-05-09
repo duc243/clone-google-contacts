@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Page</title>
+    <link
+      href="../assets/vendors/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/css/index.css" rel="stylesheet" />
+  </head>
+  <body id="contactPage">
+    <div id="headerPlaceholder"></div>
+    <div id="contentContainer">
+      <div id="sideBarPlaceholder"></div>
+      <div id="preloader">Loading... Please wait...</div>
+      <div id="content" style="display: none">
+        <div id="contactHeader">
+          <div class="avatar">A</div>
+          <div class="nameSection">
+            <div class="name">Ayyaz Tech</div>
+            <div class="labelsSection">
+              <div class="labels"></div>
+              <div class="labelsPickerButton" onclick="showLabelPickerDialog()">
+                <i class="fa fa-tag" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <div class="actionSection">
+            <button
+              class="editButton primary-button button"
+              onClick="editClicked()"
+            >
+              Edit
+            </button>
+            <button onClick="deleteContact()" class="deleteButton button">
+              Delete
+            </button>
+          </div>
+        </div>
+        <div id="contactContentContainer">
+          <div class="contactContent">
+            <h6>Contact details</h6>
+            <div class="field">
+              <div class="iconContainer">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              </div>
+              <div class="value">
+                <a id="email" href="mailto:testing@ayyaztech.com"
+                  >testing@ayyaztech.com</a
+                >
+              </div>
+            </div>
+            <div class="field">
+              <div class="iconContainer">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </div>
+              <div class="value">
+                Phone: <span id="phoneNumber">+123456789</span>
+              </div>
+            </div>
+            <div class="field">
+              <div class="iconContainer">
+                <i class="fa fa-globe" aria-hidden="true"></i>
+              </div>
+              <div class="value">
+                Website: <span id="websiteUrl">https://www.ayyaztech.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dialog" id="labelPickerDialog">
+      <div
+        class="dialogOverlay"
+        onclick="closeDialog(this.closest('.dialog'))"
+      ></div>
+      <dive class="dialogContentContainer">
+        <div class="dialogTitle">Pick a label</div>
+        <div class="dialogContent"></div>
+        <div class="dialogFooter">
+          <button
+            onClick="closeDialog(this.closest('.dialog')); showCreateLabelDialog()"
+          >
+            + Create label
+          </button>
+        </div>
+      </dive>
+    </div>
+    <script src="../assets/js/common.js"></script>
+    <script>
+      let contactLabels;
+      let contactId;
+
+      loadContact();
+
+      function editClicked() {
+        window.location = `/pages/contact-editor.html?id=${contactId}`;
+      }
+
+      async function loadContact() {
+        const params = new URLSearchParams(location.search);
+        contactId = params.get("id");
+
+        let contact = await getContact(contactId);
+
+        renderLayout(contact);
+        await loadLabels();
+      }
+
+      async function loadLabels() {
+        contactLabels = await getContactLabels();
+
+        loadLabelsInLablesPickerDialog();
+
+        renderLabels(contactLabels);
+      }
+
+      async function getContactLabels() {
+        let response = await fetch(
+          `${backendBaseUrl}/contact-labels/${contactId}`
+        );
+        let contactLabels = await response.json();
+        return contactLabels;
+      }
+
+      function renderLabels(contactLabels) {
+        let labelsEl = document.querySelector(".labels");
+        let labelsHtml = ``;
+
+        contactLabels.forEach((label) => {
+          labelsHtml += `  <div class="label">${label.title}</div>`;
+        });
+
+        labelsEl.innerHTML = labelsHtml;
+      }
+
+      function renderLayout(contact) {
+        document.querySelector("#contactHeader .name").innerHTML =
+          contact.fullName;
+        document.querySelector("#contactHeader .avatar").innerHTML =
+          contact.fullName.charAt(0).toUpperCase();
+        document.querySelector("#websiteUrl").innerHTML = contact.website;
+        document.querySelector("#phoneNumber").innerHTML = contact.phone;
+        document.querySelector("#email").innerHTML = contact.email;
+
+        document.querySelector("#content").style.display = "block";
+        document.querySelector("#preloader").style.display = "none";
+      }
+
+      async function deleteContact() {
+        await deleteContacts([contactId]);
+        window.location = "/";
+      }
+
+      async function loadLabelsInLablesPickerDialog() {
+        let data = await getLabels();
+        renderLabelsInLabelsPickerDialog(data);
+      }
+
+      function renderLabelsInLabelsPickerDialog(labels) {
+        let labelsHtml = ``;
+        labels.forEach((label) => {
+          let isLabelSelected = isLabelInContactLabels(label, contactLabels);
+
+          labelsHtml += `<div class="label" onclick="toggleContactLabel(${
+            label.id
+          },  ${isLabelSelected})">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">${label.title}</div>
+            ${
+              isLabelSelected
+                ? `<div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>`
+                : ""
+            }
+          </div>`;
+        });
+
+        document.querySelector("#labelPickerDialog .dialogContent").innerHTML =
+          labelsHtml;
+      }
+
+      async function toggleContactLabel(labelId, isLabelSelected) {
+        ///closeDialog(this.closest('.dialog'))
+        if (isLabelSelected) {
+          await fetch(`${backendBaseUrl}/contact-labels`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ labelId, contactId }),
+          });
+        } else {
+          // if not selected
+          await fetch(`${backendBaseUrl}/contact-labels`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ labelId, contactId }),
+          });
+        }
+
+        await loadLabels();
+        await loadLabelsInLablesPickerDialog();
+      }
+
+      function isLabelInContactLabels(label, contactLabels) {
+        let foundItem = contactLabels.find(
+          (contactLabel) => contactLabel.labelId === label.id
+        );
+
+        if (foundItem) return true;
+        return false;
+      }
+
+      async function showLabelPickerDialog() {
+        await loadLabelsInLablesPickerDialog();
+        showDialog(document.querySelector("#labelPickerDialog"));
+      }
+    </script>
+  </body>
+</html>

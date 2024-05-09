@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacts App</title>
+    <link
+      href="assets/vendors/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link href="assets/css/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="headerPlaceholder"></div>
+    <div id="contentContainer">
+      <div id="sideBarPlaceholder"></div>
+
+      <div id="content">
+        <div class="table">
+          <div class="tableHead">
+            <div class="column">Name</div>
+            <div class="column">Email</div>
+            <div class="column">Phone Number</div>
+            <div class="column">Labels</div>
+            <div class="column" style="width: 40px"></div>
+          </div>
+
+          <div class="actionsBar">
+            <div class="buttons">
+              <i class="fa fa-tags" aria-hidden="true"></i>
+              <i
+                class="fa fa-trash"
+                onclick="deleteSelectedContacts()"
+                aria-hidden="true"
+              ></i>
+            </div>
+            <div class="rightSection">
+              <div class="numberOfSelectedContacts"></div>
+              selected
+            </div>
+          </div>
+
+          <div class="tableBody"></div>
+        </div>
+      </div>
+    </div>
+    <script src="assets/js/common.js"></script>
+    <script>
+      let contacts = [];
+      loadContacts();
+
+      async function loadContacts() {
+        let response = await fetch(`${backendBaseUrl}/contact`);
+        let data = await response.json();
+
+        contacts = data;
+        console.log(contacts);
+        renderContacts();
+      }
+
+      function getSelectedContacts() {
+        return contacts.filter((contact) => contact.selected);
+      }
+
+      async function deleteSelectedContacts(pSelectedContacts = undefined) {
+        let selectedContacts = pSelectedContacts
+          ? pSelectedContacts
+          : getSelectedContacts();
+        let selectedContactIds = selectedContacts.map((contact) => contact.id);
+        contacts = contacts.filter(
+          (contact) => !selectedContactIds.includes(contact.id)
+        );
+
+        selectedContacts = contacts.filter((contact) => contact.selected);
+
+        renderContacts();
+        selectedContacts = getSelectedContacts();
+        updateNumberOfSelectedContacts(selectedContacts.length);
+        showHideTableHead(selectedContacts);
+
+        await deleteContacts(selectedContactIds);
+      }
+
+      function onCheckboxChange(e) {
+        let selectedContactId = parseInt(e.currentTarget.value);
+        let selectedContact = contacts.find(
+          (contact) => contact.id === selectedContactId
+        );
+        if (e.currentTarget.checked) {
+          e.currentTarget.closest(".contactRow").classList.add("selected");
+
+          if (selectedContact) {
+            selectedContact.selected = true;
+          }
+        } else {
+          e.currentTarget.closest(".contactRow").classList.remove("selected");
+
+          if (selectedContact) {
+            selectedContact.selected = false;
+          }
+        }
+        let selectedContacts = contacts.filter((contact) => contact.selected);
+
+        showHideTableHead(selectedContacts);
+
+        updateNumberOfSelectedContacts(selectedContacts.length);
+      }
+
+      function showHideTableHead(selectedContacts) {
+        if (selectedContacts.length > 0) {
+          document.querySelector(".tableHead").classList.add("hide");
+          document.querySelector(".actionsBar").classList.add("active");
+        } else {
+          document.querySelector(".tableHead").classList.remove("hide");
+          document.querySelector(".actionsBar").classList.remove("active");
+        }
+      }
+
+      function updateNumberOfSelectedContacts(totalSelectedContacts) {
+        document.querySelector(".numberOfSelectedContacts").innerHTML =
+          totalSelectedContacts;
+      }
+
+      function renderContacts() {
+        let tableBody = document.querySelector(".tableBody");
+        let tableRowsHTML = ``;
+
+        contacts.forEach((contact) => {
+          tableRowsHTML += `<div onclick="window.location='/pages/contact.html?id=${
+            contact.id
+          }'" class="tableRow contactRow ${contact.selected ? "selected" : ""}">
+                    <div class="column">
+                      <div class="avatar">A</div>
+                      <div class="checkbox"  onClick="event.stopImmediatePropagation()">
+                        <input type="checkbox" ${
+                          contact.selected ? "checked" : ""
+                        } value="${
+            contact.id
+          }" onChange="onCheckboxChange(event)" />
+                      </div>
+                      ${contact.fullName}
+                    </div>
+                    <div class="column">${contact.email}</div>
+                    <div class="column">${contact.phone}</div>
+                    <div class="column">${
+                      !contact.lables ? "" : contact.lables.join(", ")
+                    }</div>
+                    <div class="column" style="width: 40px">
+                      <div class="actionButtons">
+                        <i class="fa fa-trash" onclick="deleteContact(${
+                          contact.id
+                        }, event)" aria-hidden="true"></i>
+
+                        <i class="fa fa-edit" onclick="editContact(${
+                          contact.id
+                        }, event)" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>`;
+        });
+
+        tableBody.innerHTML = tableRowsHTML;
+      }
+
+      function deleteContact(contactId, event) {
+        event.stopImmediatePropagation();
+        let contact = contacts.find((contact) => contact.id == contactId);
+        if (contact) {
+          deleteSelectedContacts([contact]);
+        }
+      }
+
+      function editContact(contactId, event) {
+        event.stopImmediatePropagation();
+        window.location = `/pages/contact-editor.html?id=${contactId}`;
+      }
+    </script>
+  </body>
+</html>
