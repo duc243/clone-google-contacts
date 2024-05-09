@@ -3,13 +3,9 @@
     id="createContactBtn"
     onclick="window.location = '/pages/contact-editor.html'"
   >
-    <svg width="30" height="30" viewBox="0 0 36 36">
-      <path fill="#34A853" d="M16 16v14h4V20z"></path>
-      <path fill="#4285F4" d="M30 16H20l-4 4h14z"></path>
-      <path fill="#FBBC05" d="M6 16v4h10l4-4z"></path>
-      <path fill="#EA4335" d="M20 16V6h-4v14z"></path>
-      <path fill="none" d="M0 0h36v36H0z"></path>
-    </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 256 256">
+            <path fill="currentColor" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8" />
+        </svg>
     Create contact
   </div>
 
@@ -20,7 +16,27 @@
       </div>
       <div class="counter">500</div>
     </div>
-    <div class="divider"></div>
+    <div class="link">
+      <div class="content">
+            <i class="fa fa-history" aria-hidden="true"></i>Fréquents
+        </div>
+    </div>
+    <div class="link" onclick="window.location='/pages/corbeille.html'">
+        <div class="content">
+            <i class="fa fa-trash" aria-hidden="true"></i>Corbeille
+        </div>
+    </div>
+    <div class="labels">
+        <div class="labelTitle">
+          Libellés
+           <div class="addLabel" onclick="showCreateLabelDialog()">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+            </div>
+        </div>
+    </div>
+  </div>
+   
+    <!--<div class="divider"></div>
     <div class="dropdownSection">
       <div
         class="link"
@@ -45,7 +61,7 @@
         </div>
       </div>
     </div>
-    <div class="divider"></div>
+    <div class="divider"></div>-->
   </div>
 </div>
 

@@ -288,6 +288,7 @@ a {
       margin: 5px 0px; }
     #contentContainer #sidebar #createContactBtn {
       border-radius: 50px;
+      background-color: #C2E7FE;
       box-shadow: 0px 0px 5px #9c9c9c;
       display: inline-flex;
       height: 40px;
@@ -305,9 +306,9 @@ a {
         align-items: center;
         font-size: 12px;
         cursor: pointer;
+        margin: 10px;
         padding: 9px 25px;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-radius: 20px;
         justify-content: space-between; }
         #contentContainer #sidebar #links .link .content {
           display: flex;
@@ -324,6 +325,11 @@ a {
           #contentContainer #sidebar #links .link.active,
           #contentContainer #sidebar #links .link.active .fa {
             color: #1967d2; }
+        #contentContainer #sidebar #links .labels {
+          margin: 20px 40px;}
+        #contentContainer #sidebar #links .labels .labelTitle {
+          display: flex;
+          justify-content: space-between; }
       #contentContainer #sidebar #links .dropdownSection .dropdownContent {
         display: none; }
         #contentContainer #sidebar #links .dropdownSection .dropdownContent .actions {
