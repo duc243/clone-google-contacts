@@ -101,6 +101,8 @@ window.addEventListener("load", () => {
 function onWindowLoad() {
   loadHeader();
   loadSidebar();
+  loadContent()
+
 }
 
 function loadHeader() {
@@ -118,6 +120,17 @@ function loadSidebar() {
     .then(async (htmlText) => {
       let sidebarPlaceholder = document.querySelector("#sideBarPlaceholder");
       sidebarPlaceholder.innerHTML = htmlText;
+
+      await loadLabelsInSidebar();
+    });
+}
+
+function loadContent() {
+  fetch("/common/content.html")
+    .then((r) => r.text())
+    .then(async (htmlText) => {
+      let contentPlaceholder = document.querySelector("#content");
+      contentPlaceholder.innerHTML = htmlText;
 
       await loadLabelsInSidebar();
     });
@@ -215,14 +228,15 @@ function editLabel(id, title) {
 
 
 async function loadContacts(){
-
-  tableBody()
+          
+  let tableBody = document.querySelector('.tableBody');
   tableBody.innerHTML = '';
 
   contacts.forEach(contact => {
   
     let contactRow = document.createElement('div');
-    contactRow.classList.add('tableRow');
+    contactRow.classList.add('row');
+
 
     contactRow.innerHTML =`
       <div class='column'>
@@ -232,6 +246,7 @@ async function loadContacts(){
         </div>
         ${contact.firstName} ${contact.lastName}
       </div>
+      <div class="column">${contact.firstName} ${contact.lastName}</div>
       <div class="column">${contact.email}</div>
       <div class="column">${contact.phone}</div>
       <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
