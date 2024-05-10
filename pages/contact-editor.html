@@ -240,6 +240,7 @@
         let formElement = e.target;
         let formData = new FormData(formElement);
         let data = {
+          id: crypto.randomUUID(),
           firstName: formData.get('firstName'),
           lastName: formData.get('lastName'),
           entreprise: formData.get('entreprise'),
@@ -258,33 +259,39 @@
         if(action =='update') data.id = contactId;
 
         contacts.push(data);
-        console.log(contacts);
-        console.log(data);
 
-        //window.location = '/';  
+        window.location = '/';  
         
       }
-   
 
 
-
-      async function loadContact(){
-          
-        let contact = await getContact(contactId);
-
-        let emailInput = document.querySelector(`[name="email"]`);
-        let fullNameInput = document.querySelector(`[name="fullName"]`);
-        let phoneInput = document.querySelector(`[name="phone"]`);
-        let websiteInput = document.querySelector(`[name="website"]`);
-
-
-        emailInput.value = contact.email;
-        fullNameInput.value = contact.fullName;
-        phoneInput.value = contact.phone;
-        websiteInput.value = contact.website;
-
-
+      function tableBody() {
+        let tableBody = document.querySelector('.tableBody');
+        console.log(tableBody);
       }
+      
+   
+      // Ajouter le gestionnaire d'événements à la soumission du formulaire
+      //document.getElementById('content').addEventListener('submit', onFormSubmit);
+
+      
+
+      // async function loadContact(){
+          
+      //   let contact = await getContact(contactId);
+
+      //   let emailInput = document.querySelector(`[name="email"]`);
+      //   let fullNameInput = document.querySelector(`[name="fullName"]`);
+      //   let phoneInput = document.querySelector(`[name="phone"]`);
+      //   let websiteInput = document.querySelector(`[name="website"]`);
+
+
+      //   emailInput.value = contact.email;
+      //   fullNameInput.value = contact.fullName;
+      //   phoneInput.value = contact.phone;
+      //   websiteInput.value = contact.website;
+
+      // }
     </script>
     <script src="/assets/js/data.js"></script>
   </body>

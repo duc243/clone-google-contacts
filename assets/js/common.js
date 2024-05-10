@@ -95,6 +95,7 @@ function showSuggestionsBox() {
 
 window.addEventListener("load", () => {
   onWindowLoad();
+  loadContacts();
 });
 
 function onWindowLoad() {
@@ -173,11 +174,11 @@ async function deleteContacts(ids) {
   });
 }
 
-async function getContact(contactId) {
-  let response = await fetch(`${backendBaseUrl}/contact/${contactId}`);
-  let contact = await response.json();
-  return contact;
-}
+// async function getContact(contactId) {
+//   let response = await fetch(`${backendBaseUrl}/contact/${contactId}`);
+//   let contact = await response.json();
+//   return contact;
+// }
 
 async function onCreateLabelFormSubmit() {
   let dialog = document.querySelector("#labelEditorDialog");
@@ -210,4 +211,34 @@ function editLabel(id, title) {
   dialog.querySelector(".dialogTitle").innerHTML = "Update label";
   dialog.querySelector('[name="title"]').value = title;
   dialog.querySelector('[name="id"]').value = id;
+}
+
+
+async function loadContacts(){
+
+  tableBody()
+  tableBody.innerHTML = '';
+
+  contacts.forEach(contact => {
+  
+    let contactRow = document.createElement('div');
+    contactRow.classList.add('tableRow');
+
+    contactRow.innerHTML =`
+      <div class='column'>
+        <div class="avatar">A</div>
+        <div class="checkbox">
+            <input type="checkbox" >
+        </div>
+        ${contact.firstName} ${contact.lastName}
+      </div>
+      <div class="column">${contact.email}</div>
+      <div class="column">${contact.phone}</div>
+      <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
+      <div class="column">Libellés</div>
+    `;
+
+    // Ajouter la nouvelle ligne au corps du tableau
+    tableBody.appendChild(contactRow);
+  });
 }
