@@ -86,18 +86,18 @@ a {
       display: none; }
     .avatar.cameraIconButton button {
       position: absolute;
-      top: 0px;
-      left: 0px;
-      right: 0px;
-      bottom: 0px;
+      /*top: 0px;
+      left: 0px;*/
+      right: 10px;
+      bottom: 10px;
       margin: auto;
-      width: 50px;
-      height: 50px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       border: 0px;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 255, 0.9);
       color: #fff;
-      font-size: 22px; }
+      font-size: 12px; }
       .avatar.cameraIconButton button input {
         display: none; }
       .avatar.cameraIconButton button label {
@@ -434,7 +434,8 @@ a {
   display: flex;
   padding-top: 20px;
   padding-left: 40px;
-  gap: 30px;
+  justify-content: space-between;
+  max-width: 30vh;
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px; }
   #contactPage #contactHeader .avatar,
@@ -442,14 +443,14 @@ a {
     width: 150px;
     height: 150px;
     font-size: 64px; }
-  #contactPage #contactHeader .nameSection,
-  #contactEditorPage #contactEditorHeader .nameSection {
+  #contactPage #contactHeader .favoriteSection,
+  #contactEditorPage #contactEditorHeader .favoriteSection {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 17px;
+    justify-content: flex-start;
+    align-content: flex-end;
+    right: 0px;
     min-width: 30vw; }
-    #contactPage #contactHeader .nameSection .name,
+    /*#contactPage #contactHeader .nameSection .name,
     #contactEditorPage #contactEditorHeader .nameSection .name {
       font-size: 28px; }
     #contactPage #contactHeader .nameSection .labelsSection,
@@ -484,11 +485,11 @@ a {
         cursor: pointer; }
         #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton:hover,
         #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton:hover {
-          background-color: rgba(235, 235, 235, 0.2); }
+          background-color: rgba(235, 235, 235, 0.2); }*/
   #contactPage #contactHeader .actionSection,
   #contactEditorPage #contactEditorHeader .actionSection {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: end;
     gap: 10px; }
 
