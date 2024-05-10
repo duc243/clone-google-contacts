@@ -517,13 +517,13 @@ a {
       font-size: 13px; }
 
 #contactEditorPage #contactEditorContent {
-  width: 40vw;
+  width: 30vw;
   padding-left: 50px;
   padding-top: 20px; }
   #contactEditorPage #contactEditorContent .row {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     width: 100%; }
     #contactEditorPage #contactEditorContent .row .crossIconColumn {
       width: 20px;
@@ -537,7 +537,8 @@ a {
     #contactEditorPage #contactEditorContent .row:hover .crossIconColumn .fa {
       display: block; }
     #contactEditorPage #contactEditorContent .row .inputColumn {
-      flex-grow: 1; }
+      flex-grow: 1;
+      flex-direction: column;}
     #contactEditorPage #contactEditorContent .row input {
       width: 100%; }
     #contactEditorPage #contactEditorContent .row .fa {
