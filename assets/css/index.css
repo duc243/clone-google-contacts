@@ -74,17 +74,17 @@ a {
   border-radius: 50%;
   align-items: center;
   justify-content: center;
-  display: flex;
+  display: grid;
   position: relative;
   background-size: cover;
   background-position: center; }
-  .avatar.cameraIconButton {
+  .avatar.addIconButton {
     background-color: #e0e0e0; }
-    .avatar.cameraIconButton .fa.fa-user {
+    .avatar.addIconButton .fa.fa-user {
       font-size: 120px; }
-    .avatar.cameraIconButton.imagePicked .fa.fa-user {
+    .avatar.addIconButton.imagePicked .fa.fa-user {
       display: none; }
-    .avatar.cameraIconButton button {
+    .avatar.addIconButton button {
       position: absolute;
       /*top: 0px;
       left: 0px;*/
@@ -98,9 +98,9 @@ a {
       background-color: rgba(0, 0, 255, 0.9);
       color: #fff;
       font-size: 12px; }
-      .avatar.cameraIconButton button input {
+      .avatar.addIconButton button input {
         display: none; }
-      .avatar.cameraIconButton button label {
+      .avatar.addIconButton button label {
         display: flex;
         width: 100%;
         height: 100%;
@@ -435,7 +435,7 @@ a {
   padding-top: 20px;
   padding-left: 40px;
   justify-content: space-between;
-  max-width: 30vh;
+  max-width: 50%;
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px; }
   #contactPage #contactHeader .avatar,
@@ -450,9 +450,9 @@ a {
     align-content: flex-end;
     right: 0px;
     min-width: 30vw; }
-    /*#contactPage #contactHeader .nameSection .name,
+    #contactPage #contactHeader .nameSection .name,
     #contactEditorPage #contactEditorHeader .nameSection .name {
-      font-size: 28px; }
+      font-size: 10px; }
     #contactPage #contactHeader .nameSection .labelsSection,
     #contactEditorPage #contactEditorHeader .nameSection .labelsSection {
       display: flex;
@@ -474,18 +474,22 @@ a {
             background-color: rgba(235, 235, 235, 0.2); }
       #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton,
       #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton {
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
+        
         border: 1px solid #ccc;
         display: flex;
+        font-size: 12px;
         align-items: center;
         justify-content: center;
         color: #1b73e8;
-        cursor: pointer; }
+        cursor: pointer; 
+        
+        svg {
+          width: 13px;
+        }
+      }
         #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton:hover,
         #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton:hover {
-          background-color: rgba(235, 235, 235, 0.2); }*/
+          background-color: rgba(235, 235, 235, 0.2); }
   #contactPage #contactHeader .actionSection,
   #contactEditorPage #contactEditorHeader .actionSection {
     display: flex;

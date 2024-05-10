@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,7 +18,7 @@
 
       <form id="content" action="javascript:void(0)" onsubmit="onFormSubmit(event)">
         <div id="contactEditorHeader">
-          <div class="avatar cameraIconButton">
+          <div class="avatar addIconButton">
             <i class="fa fa-user" aria-hidden="true"></i>
 
             <button>
@@ -31,31 +31,32 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
               </label>
             </button>
-          </div>
-          
-          <!--<div class="nameSection">
-            <div class="name"></div>
-            <div class="labelsSection">
-              <div class="labels"></div>
-              <div
-                class="labelsPickerButton"
-                onclick="showDialog(document.querySelector('#labelPickerDialog'))"
-              >
-                <i class="fa fa-star" aria-hidden="true"></i>
+            <div class="nameSection">
+              <div class="name"></div>
+              <div class="labelsSection">
+                <div class="labels"></div>
+                <div
+                  class="labelsPickerButton"
+                  onclick="showDialog(document.querySelector('#labelPickerDialog'))"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 256 256">
+                          <path fill="currentColor" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8" />
+                      </svg>
+                  Libellé
+                </div>
               </div>
             </div>
-          </div>-->
+          </div>
+          
+          
           <div class="actionSection">
-            <div class="favoriteSection">
-              <i class="fa fa-star"></i>
-            </div>
             <button type="submit" class="editButton primary-button button">Save</button>
           </div>
         </div>
         <div
           id="contactEditorContent"
           action="javascript:void(0)"
-          onsubmit="onFormSubmit(event)"
+          onsubmit="FormSubmit(event)"
         >
           <div class="column">
             <div class="row">
@@ -164,8 +165,7 @@
           </div>
         <a href="#">Plus</a>
         </div>
-      </div>
-    </form>
+      </form>
 
     <div class="dialog" id="labelPickerDialog">
       <div
@@ -232,15 +232,22 @@
         });
       }
 
+
+
       async function onFormSubmit(e) {
+        e.preventDefault();
+
         let formElement = e.target;
         let formData = new FormData(formElement);
         let data = {
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          entreprise: formData.get('entreprise'),
+          fonction: formData.get('fonction'),
           email: formData.get('email'),
-          fullName:formData.get('fullName'),
-          phone:formData.get('phone'),
-          website:formData.get('website'),
-        }
+          phone: formData.get('phone')
+        };
+
 
        save(data, contactId?'update':'create');
         
@@ -250,20 +257,13 @@
       async function save(data, action){
         if(action =='update') data.id = contactId;
 
-        let response =  await fetch(`${backendBaseUrl}/${action}`, {
-          method:'POST',
-          headers:{
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
+        contacts.push(data);
+        console.log(contacts);
+        console.log(data);
 
-        window.location = '/';  
+        //window.location = '/';  
         
       }
-
-
-
    
 
 
@@ -286,5 +286,6 @@
 
       }
     </script>
+    <script src="/assets/js/data.js"></script>
   </body>
 </html>

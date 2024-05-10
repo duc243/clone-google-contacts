@@ -2,7 +2,7 @@
  *
  * Header code starts
  */
-let backendBaseUrl = `http://localhost:3400`;
+let backendBaseUrl = `http://localhost:5500`;
 async function searchKeyUp(event) {
   let keyword = event.currentTarget.value;
 
