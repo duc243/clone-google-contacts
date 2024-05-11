@@ -106,11 +106,7 @@ window.addEventListener("load", () => {
 function onWindowLoad() {
   loadHeader();
   loadSidebar();
-  loadContent();
-  loadContactDetail();
-  loadContactEditor();
-  loadHistory();
-  loadCorbeille();
+  
 }
 
 function loadHeader() {
@@ -143,7 +139,7 @@ function loadSidebar() {
     });
 }*/
 
-function loadContactDetail() {
+/*function loadContactDetail() {
   fetch("/pages/contact.html")
     .then((r) => r.text())
     .then(async (htmlText) => {
@@ -181,11 +177,9 @@ function loadCorbeille() {
       contentPlaceholder.innerHTML = htmlText;
 
     });
-}
+}*/
 
-function showListNumber() {
-  const conter = document.querySelector('.tableTitle .conter');
-}
+
 
 /*async function loadContacts(){
   
@@ -221,28 +215,26 @@ function showListNumber() {
 }*/
 
 
-// Fonction pour charger le contenu HTML
-function loadContent() {
-  return fetch("/pages/content.html")
-    .then((r) => r.text())
-    .then((htmlText) => {
-      let contentPlaceholder = document.querySelector("#content");
+
+// Fonction pour charger le contenu HTML dans l'élément avec la classe 'content'
+function loadContent(url) {
+  return fetch(url)
+    .then(response => response.text())
+    .then(htmlText => {
+      const contentPlaceholder = document.querySelector('#content');
       contentPlaceholder.innerHTML = htmlText;
-    });
+    })
+    .catch(error => console.error('Erreur lors de la récupération:', error));
 }
 
-// Fonction asynchrone pour charger les contacts
+// Fonction asynchrone pour charger les contacts dans l'élément avec la classe 'tableBody'
 async function loadContacts() {
-  // Attendre que le contenu soit chargé
-  await loadContent();
-
-  // Maintenant, on peut accéder à .tableBody car le contenu a été injecté
-  let tableBody = document.querySelector('.tableBody');
+  
+  const tableBody = document.querySelector('.tableBody');
   tableBody.innerHTML = '';
 
-  // Supposons que 'contacts' est déjà défini quelque part dans votre code
-  contacts.forEach(contact => {
-    let contactRow = document.createElement('div');
+  for (const contact of contacts) {
+    const contactRow = document.createElement('div');
     contactRow.classList.add('tableRow');
 
     contactRow.innerHTML = `
@@ -259,12 +251,30 @@ async function loadContacts() {
       <div class="column">Libellés</div>
     `;
 
-    // Ajouter la nouvelle ligne au corps du tableau
     tableBody.appendChild(contactRow);
-  });
+  }
 }
 
-// Appeler loadContacts pour charger le contenu et les contacts
+// Fonction pour initialiser le contenu et les contacts
+async function init() {
+  await loadContent('/pages/content.html');
+  loadContacts();
+}
+
+// Fonction pour changer le contenu lorsque l'utilisateur clique sur un bouton
+/*function setupButtonListener() {
+  const button = document.querySelector('#monBouton');
+  button.addEventListener('click', () => {
+    loadContent('https://example.com/nouveau-contenu.html');
+  });
+}*/
+
+// Initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+  setupButtonListener();
+});
+
 
 
 
