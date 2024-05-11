@@ -462,8 +462,8 @@ a {
       display: flex;
       align-items: center;
       gap: 10px; }
-      #contactPage #contactHeader .nameSection .labelsSection .labels,
-      #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labels {
+      #contactPage #contactHeader .nameSection .labelsSection .label,
+      #contactEditorPage #contactEditorHeader .nameSection .labelsSection .label {
         display: flex;
         gap: 7px; }
         #contactPage #contactHeader .nameSection .labelsSection .labels .label,

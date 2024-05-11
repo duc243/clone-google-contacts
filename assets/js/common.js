@@ -98,61 +98,89 @@
 
  
 
-/*window.addEventListener("load", () => {
-  onWindowLoad();
-  loadContacts();
-});
 
-function onWindowLoad() {
-  loadHeader();
-  loadSidebar();
-  
-}*/
 
-function loadHeader() {
-  fetch("/common/header.html")
-    .then((r) => r.text())
-    .then((htmlText) => {
-      let headerPlaceholder = document.querySelector("#headerPlaceholder");
-      headerPlaceholder.innerHTML = htmlText;
-    });
+
+
+
+
+
+
+// Fonction initiale pour démarrer l'application
+async function init() {
+  try {
+    await Promise.all([loadHeader(), loadSidebar()]);
+    await loadContent('/pages/content.html');
+    await Promise.all([loadLabels(), loadContacts()]);
+    setupButtonListener();
+  } catch (error) {
+    console.error('Erreur lors de l\'initialisation de l\'application:', error);
+  }
 }
 
-function loadSidebar() {
-  fetch("/common/sidebar.html")
-    .then((r) => r.text())
-    .then(async (htmlText) => {
-      let sidebarPlaceholder = document.querySelector("#sideBarPlaceholder");
-      sidebarPlaceholder.innerHTML = htmlText;
-
-      //await loadLabelsInSidebar();
-    });
+// Fonction pour charger le header
+async function loadHeader() {
+  try {
+    const response = await fetch("/common/header.html");
+    const htmlText = await response.text();
+    document.querySelector("#headerPlaceholder").innerHTML = htmlText;
+  } catch (error) {
+    console.error('Erreur lors du chargement du header:', error);
+  }
 }
 
-// Fonction pour charger le contenu HTML
-function loadContent(url) {
-  return fetch(url)
-    .then(response => response.text())
-    .then(htmlText => {
-      const contentPlaceholder = document.querySelector('#content');
-      contentPlaceholder.innerHTML = htmlText;
-      // S'assurer que le bouton est toujours écouté après le chargement du contenu
-      if (url === '/pages/contact-editor.html') {
-        document.querySelector('#submitContactBtn').addEventListener('click', addContactAndReloadContent);
-      }
-    })
-    .catch(error => console.error('Erreur lors de la récupération:', error));
+// Fonction pour charger la sidebar
+async function loadSidebar() {
+  try {
+    const response = await fetch("/common/sidebar.html");
+    const htmlText = await response.text();
+    document.querySelector("#sideBarPlaceholder").innerHTML = htmlText;
+  } catch (error) {
+    console.error('Erreur lors du chargement de la sidebar:', error);
+  }
+}
+
+// Fonction pour charger les labels
+async function loadLabels() {
+  const labelContainer = document.querySelector('.labelContainer');
+  if (labelContainer) {
+    labelContainer.innerHTML = '';
+    labels.forEach(label => {
+      const labelDiv = document.createElement('div');
+      labelDiv.classList.add('label');
+      labelDiv.innerHTML = `<i class="fa fa-thumb-tack" aria-hidden="true"></i>${label.name}`;
+      labelContainer.appendChild(labelDiv);
+    });
+  } else {
+    console.error('Le conteneur de labels est introuvable dans le DOM.');
+  }
+}
+
+// Fonction pour charger le contenu principal
+async function loadContent(url) {
+  try {
+    const response = await fetch(url);
+    const htmlText = await response.text();
+    const contentPlaceholder = document.querySelector('#content');
+    contentPlaceholder.innerHTML = htmlText;
+    if (url === '/pages/contact-editor.html') {
+      document.querySelector('#submitContactBtn').addEventListener('click', addContactAndReloadContent);
+    }
+  } catch (error) {
+    console.error('Erreur lors du chargement du contenu:', error);
+  }
 }
 
 // Fonction pour charger les contacts
 async function loadContacts() {
   const tableBody = document.querySelector('.tableBody');
-  tableBody.innerHTML = '';
-  contacts.forEach(contact => {
-    const contactRow = document.createElement('div');
-    contactRow.classList.add('tableRow');
-    
-    contactRow.innerHTML = `
+  if (tableBody) {
+    tableBody.innerHTML = '';
+    contacts.forEach(contact => {
+      const contactRow = document.createElement('div');
+      contactRow.classList.add('tableRow');
+      
+      contactRow.innerHTML = `
       <div class='column'>
         <div class="avatar">A</div>
         <div class="checkbox">
@@ -167,31 +195,29 @@ async function loadContacts() {
     `;
     
     tableBody.appendChild(contactRow);
-  });
+    });
+  } else {
+    console.error('Le conteneur de contacts est introuvable dans le DOM.');
+  }
 }
 
-// Fonction pour initialiser l'application
-async function init() {
-  await loadHeader();
-  await loadSidebar();
-  await loadContent('/pages/content.html');
-  await loadContacts();
-  setupButtonListener();
-}
-
-// Fonction pour configurer l'écouteur du bouton de création de contact
+// Fonction pour configurer les écouteurs d'événements
 function setupButtonListener() {
   const button = document.querySelector('#createContactBtn');
-  button.addEventListener('click', () => {
-    loadContent('/pages/contact-editor.html');
-  });
+  if (button) {
+    button.addEventListener('click', () => {
+      loadContent('/pages/contact-editor.html');
+    });
+  } else {
+    console.error('Le bouton pour créer un contact est introuvable dans le DOM.');
+  }
 }
 
 // Fonction pour ajouter un contact et recharger le contenu
 async function addContactAndReloadContent(event) {
   event.preventDefault();
-  
-  const form = document.querySelector('#contactEditorContent');
+
+  const form = document.querySelector('#contactEditorPage #content'); // Assurez-vous que l'ID correspond à votre formulaire
   const newContact = {
     firstName: form.querySelector('input[name="firstName"]').value,
     lastName: form.querySelector('input[name="lastName"]').value,
@@ -200,13 +226,34 @@ async function addContactAndReloadContent(event) {
     fonction: form.querySelector('input[name="fonction"]').value,
     entreprise: form.querySelector('input[name="entreprise"]').value
   };
+
+  // Ajouter le nouveau contact au tableau 'contacts'
   contacts.push(newContact);
+
+  // Recharger le contenu de la page 'content.html' et les contacts
   await loadContent('/pages/content.html');
   await loadContacts();
 }
 
-// Initialisation au chargement de la page
+// Écouteur pour démarrer l'application une fois que le DOM est chargé
 document.addEventListener('DOMContentLoaded', init);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
