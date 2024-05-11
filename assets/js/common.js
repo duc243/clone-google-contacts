@@ -98,7 +98,7 @@
 
  
 
-window.addEventListener("load", () => {
+/*window.addEventListener("load", () => {
   onWindowLoad();
   loadContacts();
 });
@@ -107,7 +107,7 @@ function onWindowLoad() {
   loadHeader();
   loadSidebar();
   
-}
+}*/
 
 function loadHeader() {
   fetch("/common/header.html")
@@ -257,22 +257,26 @@ async function loadContacts() {
 
 // Fonction pour initialiser le contenu et les contacts
 async function init() {
+  await loadHeader();
+  await loadSidebar();
   await loadContent('/pages/content.html');
   loadContacts();
+  setupButtonListener();
 }
 
 // Fonction pour changer le contenu lorsque l'utilisateur clique sur un bouton
-/*function setupButtonListener() {
-  const button = document.querySelector('#monBouton');
+async function setupButtonListener() {
+  
+  const button = document.querySelector('#createContactBtn');
   button.addEventListener('click', () => {
-    loadContent('https://example.com/nouveau-contenu.html');
+    loadContent('/pages/contact-editor.html');
   });
-}*/
+}
 
 // Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
   init();
-  setupButtonListener();
+  
 });
 
 
