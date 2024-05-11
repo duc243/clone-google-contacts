@@ -92,19 +92,15 @@
 /**
  * Header code ends
  */
- 
- function faz(){
-   let content = document.querySelector('#content');
-let table = content.querySelector('.table')
-console.log(table)
- }
 
- 
+
+
+
  
 
 window.addEventListener("load", () => {
   onWindowLoad();
-  //loadContacts();
+  loadContacts();
 });
 
 function onWindowLoad() {
@@ -137,7 +133,7 @@ function loadSidebar() {
     });
 }
 
-function loadContent() {
+/*function loadContent() {
   fetch("/pages/content.html")
     .then((r) => r.text())
     .then(async (htmlText) => {
@@ -145,7 +141,7 @@ function loadContent() {
       contentPlaceholder.innerHTML = htmlText;
 
     });
-}
+}*/
 
 function loadContactDetail() {
   fetch("/pages/contact.html")
@@ -192,8 +188,11 @@ function showListNumber() {
 }
 
 /*async function loadContacts(){
+  
+  await loadContent();
           
   let tableBody = document.querySelector('.tableBody');
+  console.log(tableBody);
   tableBody.innerHTML = '';
 
   contacts.forEach(contact => {
@@ -210,7 +209,6 @@ function showListNumber() {
         </div>
         ${contact.firstName} ${contact.lastName}
       </div>
-      <div class="column">${contact.firstName} ${contact.lastName}</div>
       <div class="column">${contact.email}</div>
       <div class="column">${contact.phone}</div>
       <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
@@ -221,6 +219,55 @@ function showListNumber() {
     tableBody.appendChild(contactRow);
   });
 }*/
+
+
+// Fonction pour charger le contenu HTML
+function loadContent() {
+  return fetch("/pages/content.html")
+    .then((r) => r.text())
+    .then((htmlText) => {
+      let contentPlaceholder = document.querySelector("#content");
+      contentPlaceholder.innerHTML = htmlText;
+    });
+}
+
+// Fonction asynchrone pour charger les contacts
+async function loadContacts() {
+  // Attendre que le contenu soit chargé
+  await loadContent();
+
+  // Maintenant, on peut accéder à .tableBody car le contenu a été injecté
+  let tableBody = document.querySelector('.tableBody');
+  tableBody.innerHTML = '';
+
+  // Supposons que 'contacts' est déjà défini quelque part dans votre code
+  contacts.forEach(contact => {
+    let contactRow = document.createElement('div');
+    contactRow.classList.add('tableRow');
+
+    contactRow.innerHTML = `
+      <div class='column'>
+        <div class="avatar">A</div>
+        <div class="checkbox">
+            <input type="checkbox" >
+        </div>
+        ${contact.firstName} ${contact.lastName}
+      </div>
+      <div class="column">${contact.email}</div>
+      <div class="column">${contact.phone}</div>
+      <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
+      <div class="column">Libellés</div>
+    `;
+
+    // Ajouter la nouvelle ligne au corps du tableau
+    tableBody.appendChild(contactRow);
+  });
+}
+
+// Appeler loadContacts pour charger le contenu et les contacts
+
+
+
 
 /*function sidebarDropdownToggleClicked(targetElement) {
   targetElement.closest(".dropdownSection").classList.toggle("active");

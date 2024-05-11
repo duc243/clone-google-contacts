@@ -6,6 +6,10 @@ let contacts = [
 
 // const labels = ['Famille', 'Amis', 'Travail'];
 
+
+
+
+
 /*function addContact(id, firstName, lastName, email) {
     contacts.push({id:id,
         firstName:firstName,
