@@ -129,114 +129,29 @@ function loadSidebar() {
     });
 }
 
-/*function loadContent() {
-  fetch("/pages/content.html")
-    .then((r) => r.text())
-    .then(async (htmlText) => {
-      let contentPlaceholder = document.querySelector("#content");
-      contentPlaceholder.innerHTML = htmlText;
-
-    });
-}*/
-
-/*function loadContactDetail() {
-  fetch("/pages/contact.html")
-    .then((r) => r.text())
-    .then(async (htmlText) => {
-      let contentPlaceholder = document.querySelector("#contactDetail");
-      contentPlaceholder.innerHTML = htmlText;
-
-    });
-}
-
-function loadContactEditor() {
-  fetch("/pages/contact-editor.html")
-    .then((r) => r.text())
-    .then(async (htmlText) => {
-      let contentPlaceholder = document.querySelector("#contatEditor");
-      contentPlaceholder.innerHTML = htmlText;
-
-    });
-}
-
-function loadHistory() {
-  fetch("/pages/history.html")
-    .then((r) => r.text())
-    .then(async (htmlText) => {
-      let contentPlaceholder = document.querySelector("#history");
-      contentPlaceholder.innerHTML = htmlText;
-      
-    });
-}
-
-function loadCorbeille() {
-  fetch("/pages/corbeille.html")
-    .then((r) => r.text())
-    .then(async (htmlText) => {
-      let contentPlaceholder = document.querySelector("#corbeille");
-      contentPlaceholder.innerHTML = htmlText;
-
-    });
-}*/
-
-
-
-/*async function loadContacts(){
-  
-  await loadContent();
-          
-  let tableBody = document.querySelector('.tableBody');
-  console.log(tableBody);
-  tableBody.innerHTML = '';
-
-  contacts.forEach(contact => {
-  
-    let contactRow = document.createElement('div');
-    contactRow.classList.add('row');
-
-
-    contactRow.innerHTML =`
-      <div class='column'>
-        <div class="avatar">A</div>
-        <div class="checkbox">
-            <input type="checkbox" >
-        </div>
-        ${contact.firstName} ${contact.lastName}
-      </div>
-      <div class="column">${contact.email}</div>
-      <div class="column">${contact.phone}</div>
-      <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
-      <div class="column">Libellés</div>
-    `;
-
-    // Ajouter la nouvelle ligne au corps du tableau
-    tableBody.appendChild(contactRow);
-  });
-}*/
-
-
-
-// Fonction pour charger le contenu HTML dans l'élément avec la classe 'content'
+// Fonction pour charger le contenu HTML
 function loadContent(url) {
   return fetch(url)
     .then(response => response.text())
     .then(htmlText => {
       const contentPlaceholder = document.querySelector('#content');
       contentPlaceholder.innerHTML = htmlText;
+      // S'assurer que le bouton est toujours écouté après le chargement du contenu
+      if (url === '/pages/contact-editor.html') {
+        document.querySelector('#submitContactBtn').addEventListener('click', addContactAndReloadContent);
+      }
     })
     .catch(error => console.error('Erreur lors de la récupération:', error));
 }
 
-// Fonction asynchrone pour charger les contacts dans l'élément avec la classe 'tableBody'
+// Fonction pour charger les contacts
 async function loadContacts() {
-  
   const tableBody = document.querySelector('.tableBody');
   tableBody.innerHTML = '';
-
-  for (const contact of contacts) {
+  contacts.forEach(contact => {
     const contactRow = document.createElement('div');
     contactRow.classList.add('tableRow');
-
+    
     contactRow.innerHTML = `
       <div class='column'>
         <div class="avatar">A</div>
@@ -250,34 +165,49 @@ async function loadContacts() {
       <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
       <div class="column">Libellés</div>
     `;
-
+    
     tableBody.appendChild(contactRow);
-  }
+  });
 }
 
-// Fonction pour initialiser le contenu et les contacts
+// Fonction pour initialiser l'application
 async function init() {
   await loadHeader();
   await loadSidebar();
   await loadContent('/pages/content.html');
-  loadContacts();
+  await loadContacts();
   setupButtonListener();
 }
 
-// Fonction pour changer le contenu lorsque l'utilisateur clique sur un bouton
-async function setupButtonListener() {
-  
+// Fonction pour configurer l'écouteur du bouton de création de contact
+function setupButtonListener() {
   const button = document.querySelector('#createContactBtn');
   button.addEventListener('click', () => {
     loadContent('/pages/contact-editor.html');
   });
 }
 
-// Initialisation au chargement de la page
-document.addEventListener('DOMContentLoaded', () => {
-  init();
+// Fonction pour ajouter un contact et recharger le contenu
+async function addContactAndReloadContent(event) {
+  event.preventDefault();
   
-});
+  const form = document.querySelector('#contactEditorContent');
+  const newContact = {
+    firstName: form.querySelector('input[name="firstName"]').value,
+    lastName: form.querySelector('input[name="lastName"]').value,
+    email: form.querySelector('input[name="email"]').value,
+    phone: form.querySelector('input[name="phone"]').value,
+    fonction: form.querySelector('input[name="fonction"]').value,
+    entreprise: form.querySelector('input[name="entreprise"]').value
+  };
+  contacts.push(newContact);
+  await loadContent('/pages/content.html');
+  await loadContacts();
+}
+
+// Initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', init);
+
 
 
 
