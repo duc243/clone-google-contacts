@@ -2,8 +2,8 @@
  *
  * Header code starts
  */
-let backendBaseUrl = `http://localhost:5500`;
-async function searchKeyUp(event) {
+//let backendBaseUrl = `http://localhost:5500`;
+/*async function searchKeyUp(event) {
   let keyword = event.currentTarget.value;
 
   let response = await fetch(backendBaseUrl + "/contact/search/" + keyword);
@@ -16,9 +16,9 @@ async function searchKeyUp(event) {
   } else {
     hideSuggestionsBox();
   }
-}
+}*/
 
-function renderLabelsInSidebar(labels) {
+/*function renderLabelsInSidebar(labels) {
   let links = ``;
 
   labels.forEach((label) => {
@@ -42,19 +42,19 @@ function renderLabelsInSidebar(labels) {
   document.querySelector(
     `#sidebar .dropdownSection #linksContainer`
   ).innerHTML = links;
-}
+}*/
 
-async function getLabels() {
+/*async function getLabels() {
   let response = await fetch(backendBaseUrl + "/label");
   return await response.json();
-}
+}*/
 
-async function loadLabelsInSidebar() {
+/*async function loadLabelsInSidebar() {
   let data = await getLabels();
   renderLabelsInSidebar(data);
-}
+}*/
 
-function renderSuggestionsInSuggestionsBox(data) {
+/*function renderSuggestionsInSuggestionsBox(data) {
   let suggestions = ``;
 
   data.forEach((contact) => {
@@ -70,39 +70,51 @@ function renderSuggestionsInSuggestionsBox(data) {
 
   document.querySelector("#searchContainer .suggestions").innerHTML =
     suggestions;
-}
+}*/
 
-function clearSearchInput() {
+/*function clearSearchInput() {
   let input = document.querySelector("#searchContainer input");
   input.value = "";
 
   hideSuggestionsBox();
-}
+}*/
 
-function hideSuggestionsBox() {
+/*function hideSuggestionsBox() {
   let searchContainerEl = document.getElementById("searchContainer");
   searchContainerEl.classList.remove("suggestionsVisible");
-}
+}*/
 
-function showSuggestionsBox() {
+/*function showSuggestionsBox() {
   let searchContainerEl = document.getElementById("searchContainer");
   searchContainerEl.classList.add("suggestionsVisible");
-}
+}*/
 
 /**
  * Header code ends
  */
+ 
+ function faz(){
+   let content = document.querySelector('#content');
+let table = content.querySelector('.table')
+console.log(table)
+ }
+
+ 
+ 
 
 window.addEventListener("load", () => {
   onWindowLoad();
-  loadContacts();
+  //loadContacts();
 });
 
 function onWindowLoad() {
   loadHeader();
   loadSidebar();
-  loadContent()
-
+  loadContent();
+  loadContactDetail();
+  loadContactEditor();
+  loadHistory();
+  loadCorbeille();
 }
 
 function loadHeader() {
@@ -121,22 +133,96 @@ function loadSidebar() {
       let sidebarPlaceholder = document.querySelector("#sideBarPlaceholder");
       sidebarPlaceholder.innerHTML = htmlText;
 
-      await loadLabelsInSidebar();
+      //await loadLabelsInSidebar();
     });
 }
 
 function loadContent() {
-  fetch("/common/content.html")
+  fetch("/pages/content.html")
     .then((r) => r.text())
     .then(async (htmlText) => {
       let contentPlaceholder = document.querySelector("#content");
       contentPlaceholder.innerHTML = htmlText;
 
-      await loadLabelsInSidebar();
     });
 }
 
-function sidebarDropdownToggleClicked(targetElement) {
+function loadContactDetail() {
+  fetch("/pages/contact.html")
+    .then((r) => r.text())
+    .then(async (htmlText) => {
+      let contentPlaceholder = document.querySelector("#contactDetail");
+      contentPlaceholder.innerHTML = htmlText;
+
+    });
+}
+
+function loadContactEditor() {
+  fetch("/pages/contact-editor.html")
+    .then((r) => r.text())
+    .then(async (htmlText) => {
+      let contentPlaceholder = document.querySelector("#contatEditor");
+      contentPlaceholder.innerHTML = htmlText;
+
+    });
+}
+
+function loadHistory() {
+  fetch("/pages/history.html")
+    .then((r) => r.text())
+    .then(async (htmlText) => {
+      let contentPlaceholder = document.querySelector("#history");
+      contentPlaceholder.innerHTML = htmlText;
+      
+    });
+}
+
+function loadCorbeille() {
+  fetch("/pages/corbeille.html")
+    .then((r) => r.text())
+    .then(async (htmlText) => {
+      let contentPlaceholder = document.querySelector("#corbeille");
+      contentPlaceholder.innerHTML = htmlText;
+
+    });
+}
+
+function showListNumber() {
+  const conter = document.querySelector('.tableTitle .conter');
+}
+
+/*async function loadContacts(){
+          
+  let tableBody = document.querySelector('.tableBody');
+  tableBody.innerHTML = '';
+
+  contacts.forEach(contact => {
+  
+    let contactRow = document.createElement('div');
+    contactRow.classList.add('row');
+
+
+    contactRow.innerHTML =`
+      <div class='column'>
+        <div class="avatar">A</div>
+        <div class="checkbox">
+            <input type="checkbox" >
+        </div>
+        ${contact.firstName} ${contact.lastName}
+      </div>
+      <div class="column">${contact.firstName} ${contact.lastName}</div>
+      <div class="column">${contact.email}</div>
+      <div class="column">${contact.phone}</div>
+      <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
+      <div class="column">Libellés</div>
+    `;
+
+    // Ajouter la nouvelle ligne au corps du tableau
+    tableBody.appendChild(contactRow);
+  });
+}*/
+
+/*function sidebarDropdownToggleClicked(targetElement) {
   targetElement.closest(".dropdownSection").classList.toggle("active");
 }
 
@@ -185,7 +271,7 @@ async function deleteContacts(ids) {
     },
     body: JSON.stringify({ ids: ids }),
   });
-}
+}*/
 
 // async function getContact(contactId) {
 //   let response = await fetch(`${backendBaseUrl}/contact/${contactId}`);
@@ -193,7 +279,7 @@ async function deleteContacts(ids) {
 //   return contact;
 // }
 
-async function onCreateLabelFormSubmit() {
+/*async function onCreateLabelFormSubmit() {
   let dialog = document.querySelector("#labelEditorDialog");
   let title = dialog.querySelector('[name="title"]').value;
   let id = dialog.querySelector('[name="id"]').value;
@@ -227,33 +313,373 @@ function editLabel(id, title) {
 }
 
 
-async function loadContacts(){
+
+*/
+
+////////////////////////////////
+
+
+
+
+      
+
+
+      
+
+
+      // async function loadContacts() {
+      //   let response = await fetch(`${backendBaseUrl}/contact`);
+      //   let data = await response.json();
+
+      //   contacts = data;
+      //   console.log(contacts);
+      //   renderContacts();
+      // }
+
+      /*function getSelectedContacts() {
+        return contacts.filter((contact) => contact.selected);
+      }
+
+      async function deleteSelectedContacts(pSelectedContacts = undefined) {
+        let selectedContacts = pSelectedContacts
+          ? pSelectedContacts
+          : getSelectedContacts();
+        let selectedContactIds = selectedContacts.map((contact) => contact.id);
+        contacts = contacts.filter(
+          (contact) => !selectedContactIds.includes(contact.id)
+        );
+
+        selectedContacts = contacts.filter((contact) => contact.selected);
+
+        renderContacts();
+        selectedContacts = getSelectedContacts();
+        updateNumberOfSelectedContacts(selectedContacts.length);
+        showHideTableHead(selectedContacts);
+
+        await deleteContacts(selectedContactIds);
+      }
+
+      function onCheckboxChange(e) {
+        let selectedContactId = parseInt(e.currentTarget.value);
+        let selectedContact = contacts.find(
+          (contact) => contact.id === selectedContactId
+        );
+        if (e.currentTarget.checked) {
+          e.currentTarget.closest(".contactRow").classList.add("selected");
+
+          if (selectedContact) {
+            selectedContact.selected = true;
+          }
+        } else {
+          e.currentTarget.closest(".contactRow").classList.remove("selected");
+
+          if (selectedContact) {
+            selectedContact.selected = false;
+          }
+        }
+        let selectedContacts = contacts.filter((contact) => contact.selected);
+
+        showHideTableHead(selectedContacts);
+
+        updateNumberOfSelectedContacts(selectedContacts.length);
+      }
+
+      function showHideTableHead(selectedContacts) {
+        if (selectedContacts.length > 0) {
+          document.querySelector(".tableHead").classList.add("hide");
+          document.querySelector(".actionsBar").classList.add("active");
+        } else {
+          document.querySelector(".tableHead").classList.remove("hide");
+          document.querySelector(".actionsBar").classList.remove("active");
+        }
+      }
+
+      function updateNumberOfSelectedContacts(totalSelectedContacts) {
+        document.querySelector(".numberOfSelectedContacts").innerHTML =
+          totalSelectedContacts;
+      }
+
+      function renderContact() {
+        let tableBody = document.querySelector(".tableBody");
+        let tableRowsHTML = ``;
+
+        contacts.forEach((contact) => {
+          tableRowsHTML += `<div onclick="window.location='/pages/contact.html?id=${
+            contact.id
+          }'" class="tableRow contactRow ${contact.selected ? "selected" : ""}">
+                    <div class="column">
+                      <div class="avatar">A</div>
+                      <div class="checkbox"  onClick="event.stopImmediatePropagation()">
+                        <input type="checkbox" ${
+                          contact.selected ? "checked" : ""
+                        } value="${
+            contact.id
+          }" onChange="onCheckboxChange(event)" />
+                      </div>
+                      ${contact.fullName}
+                    </div>
+                    <div class="column">${contact.email}</div>
+                    <div class="column">${contact.phone}</div>
+                    <div class="column">${
+                      !contact.lables ? "" : contact.lables.join(", ")
+                    }</div>
+                    <div class="column" style="width: 40px">
+                      <div class="actionButtons">
+                        <i class="fa fa-trash" onclick="deleteContact(${
+                          contact.id
+                        }, event)" aria-hidden="true"></i>
+
+                        <i class="fa fa-edit" onclick="editContact(${
+                          contact.id
+                        }, event)" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>`;
+        });
+
+        tableBody.innerHTML = tableRowsHTML;
+      }
+
+      function deleteContact(contactId, event) {
+        event.stopImmediatePropagation();
+        let contact = contacts.find((contact) => contact.id == contactId);
+        if (contact) {
+          deleteSelectedContacts([contact]);
+        }
+      }
+
+      function editContact(contactId, event) {
+        event.stopImmediatePropagation();
+        window.location = `/pages/contact-editor.html?id=${contactId}`;
+      }
+      
+      
+      
+      
+      
+      
+      const params = new URLSearchParams(location.search);
+        contactId = params.get("id");
+      if(contactId){
+        loadContact();
+      }
+
+      function onFileChange(files) {
+        let file = files.length > 0 ? files[0] : null;
+        getBase64FromFile(file).then((base64) => {
+          let avatar = document.querySelector("#contactEditorHeader .avatar");
+
+          avatar.style.backgroundImage = `url(${base64})`;
+          avatar.classList.add("imagePicked");
+        });
+      }
+
+
+
+      async function onFormSubmit(e) {
+        e.preventDefault();
+
+        let formElement = e.target;
+        let formData = new FormData(formElement);
+        let data = {
+          id: crypto.randomUUID(),
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          entreprise: formData.get('entreprise'),
+          fonction: formData.get('fonction'),
+          email: formData.get('email'),
+          phone: formData.get('phone')
+        };
+
+
+       save(data, contactId?'update':'create');
+        
+        console.log(e);
+      }
+
+      async function save(data, action){
+        if(action =='update') data.id = contactId;
+
+        contacts.push(data);
+
+        window.location = '/';  
+        
+      }
+
+
+      function tableBody() {
+        let tableBody = document.querySelector('.tableBody');
+        console.log(tableBody);
+      }*/
+      
+   
+      // Ajouter le gestionnaire d'événements à la soumission du formulaire
+      //document.getElementById('content').addEventListener('submit', onFormSubmit);
+
+      
+
+      // async function loadContact(){
           
-  let tableBody = document.querySelector('.tableBody');
-  tableBody.innerHTML = '';
+      //   let contact = await getContact(contactId);
 
-  contacts.forEach(contact => {
-  
-    let contactRow = document.createElement('div');
-    contactRow.classList.add('row');
+      //   let emailInput = document.querySelector(`[name="email"]`);
+      //   let fullNameInput = document.querySelector(`[name="fullName"]`);
+      //   let phoneInput = document.querySelector(`[name="phone"]`);
+      //   let websiteInput = document.querySelector(`[name="website"]`);
 
 
-    contactRow.innerHTML =`
-      <div class='column'>
-        <div class="avatar">A</div>
-        <div class="checkbox">
-            <input type="checkbox" >
-        </div>
-        ${contact.firstName} ${contact.lastName}
-      </div>
-      <div class="column">${contact.firstName} ${contact.lastName}</div>
-      <div class="column">${contact.email}</div>
-      <div class="column">${contact.phone}</div>
-      <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
-      <div class="column">Libellés</div>
-    `;
+      //   emailInput.value = contact.email;
+      //   fullNameInput.value = contact.fullName;
+      //   phoneInput.value = contact.phone;
+      //   websiteInput.value = contact.website;
 
-    // Ajouter la nouvelle ligne au corps du tableau
-    tableBody.appendChild(contactRow);
-  });
-}
+      // }
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+//////////////  Contact Details    ///////////////
+
+
+
+
+
+      /*let contactLabels;
+      let contactId;
+
+      loadContact();
+
+      function editClicked() {
+        window.location = `/pages/contact-editor.html?id=${contactId}`;
+      }
+
+      async function loadContact() {
+        const params = new URLSearchParams(location.search);
+        contactId = params.get("id");
+
+        let contact = await getContact(contactId);
+
+        renderLayout(contact);
+        await loadLabels();
+      }
+
+      async function loadLabels() {
+        contactLabels = await getContactLabels();
+
+        loadLabelsInLablesPickerDialog();
+
+        renderLabels(contactLabels);
+      }
+
+      async function getContactLabels() {
+        let response = await fetch(
+          `${backendBaseUrl}/contact-labels/${contactId}`
+        );
+        let contactLabels = await response.json();
+        return contactLabels;
+      }
+
+      function renderLabels(contactLabels) {
+        let labelsEl = document.querySelector(".labels");
+        let labelsHtml = ``;
+
+        contactLabels.forEach((label) => {
+          labelsHtml += `  <div class="label">${label.title}</div>`;
+        });
+
+        labelsEl.innerHTML = labelsHtml;
+      }
+
+      function renderLayout(contact) {
+        document.querySelector("#contactHeader .name").innerHTML =
+          contact.fullName;
+        document.querySelector("#contactHeader .avatar").innerHTML =
+          contact.fullName.charAt(0).toUpperCase();
+        document.querySelector("#websiteUrl").innerHTML = contact.website;
+        document.querySelector("#phoneNumber").innerHTML = contact.phone;
+        document.querySelector("#email").innerHTML = contact.email;
+
+        document.querySelector("#content").style.display = "block";
+        document.querySelector("#preloader").style.display = "none";
+      }
+
+      async function deleteContact() {
+        await deleteContacts([contactId]);
+        window.location = "/";
+      }
+
+      async function loadLabelsInLablesPickerDialog() {
+        let data = await getLabels();
+        renderLabelsInLabelsPickerDialog(data);
+      }
+
+      function renderLabelsInLabelsPickerDialog(labels) {
+        let labelsHtml = ``;
+        labels.forEach((label) => {
+          let isLabelSelected = isLabelInContactLabels(label, contactLabels);
+
+          labelsHtml += `<div class="label" onclick="toggleContactLabel(${
+            label.id
+          },  ${isLabelSelected})">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">${label.title}</div>
+            ${
+              isLabelSelected
+                ? `<div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>`
+                : ""
+            }
+          </div>`;
+        });
+
+        document.querySelector("#labelPickerDialog .dialogContent").innerHTML =
+          labelsHtml;
+      }
+
+      async function toggleContactLabel(labelId, isLabelSelected) {
+        ///closeDialog(this.closest('.dialog'))
+        if (isLabelSelected) {
+          await fetch(`${backendBaseUrl}/contact-labels`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ labelId, contactId }),
+          });
+        } else {
+          // if not selected
+          await fetch(`${backendBaseUrl}/contact-labels`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ labelId, contactId }),
+          });
+        }
+
+        await loadLabels();
+        await loadLabelsInLablesPickerDialog();
+      }
+
+      function isLabelInContactLabels(label, contactLabels) {
+        let foundItem = contactLabels.find(
+          (contactLabel) => contactLabel.labelId === label.id
+        );
+
+        if (foundItem) return true;
+        return false;
+      }
+
+      async function showLabelPickerDialog() {
+        await loadLabelsInLablesPickerDialog();
+        showDialog(document.querySelector("#labelPickerDialog"));
+      }*/

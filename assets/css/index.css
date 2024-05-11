@@ -1,5 +1,9 @@
 .primary-color {
   color: #1b73e8; }
+  
+.disable{
+  display: none;
+}
 
 #labelPickerDialog .dialogContent {
   padding-left: 0px;
