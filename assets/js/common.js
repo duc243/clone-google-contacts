@@ -213,6 +213,23 @@ function setupButtonListener() {
   }
 }
 
+async function addLabelAndReloadSidebar(event) {
+  event.preventDefault();
+
+  const form = document.querySelector('.dialogContentContainer'); // Assurez-vous que l'ID correspond à votre formulaire
+  const newLabel = {
+    id: crypto.randomUUID(),
+    title: form.querySelector('input[name="title"]').value
+  };
+
+  // Ajouter le nouveau contact au tableau 'contacts'
+  Labels.push(newLabel);
+
+  // Recharger le contenu de la page 'content.html' et les contacts
+  await loadSidebar();
+  await loadLabels();
+}
+
 // Fonction pour ajouter un contact et recharger le contenu
 async function addContactAndReloadContent(event) {
   event.preventDefault();
