@@ -112,6 +112,7 @@ async function init() {
     await Promise.all([loadHeader(), loadSidebar()]);
     await loadContent('/pages/content.html');
     await Promise.all([loadLabels(), loadContacts()]);
+    showAndHideSidebar();
     setupNewContactButtonListener();
     setupRedirectButtonListener();
   } catch (error) {
@@ -129,6 +130,34 @@ async function loadHeader() {
     console.error('Erreur lors du chargement du header:', error);
   }
 }
+
+// Supposons que vous avez un bouton avec la classe 'burger-menu' pour le menu burger
+// et que vos éléments sidebar et content ont respectivement les classes 'sidebar' et 'content'
+
+function showAndHideSidebar() {
+  const burgerMenuButton = document.querySelector('.burger-menu');
+  const sidebar = document.querySelector('#sidebar');
+  const content = document.querySelector('#content');
+  let isSidebarCollapsed = false;
+
+  burgerMenuButton.addEventListener('click', () => {
+    if (!isSidebarCollapsed) {
+      // Rétrécir la sidebar et augmenter la largeur du content
+      sidebar.style.minWidth = '0px';
+      sidebar.style.display = 'none';
+      // ou la largeur réduite souhaitée
+      content.style.minWidth = '100%'; // ajuster en fonction de la nouvelle largeur de la sidebar
+    } else {
+      // Rétablir les tailles originales
+      sidebar.style.minWidth = ''; 
+      sidebar.style.display = '';
+      // supprimer le style inline pour revenir au CSS d'origine
+      content.style.minWidth = ''; // supprimer le style inline pour revenir au CSS d'origine
+    }
+    isSidebarCollapsed = !isSidebarCollapsed; // basculer l'état
+  });
+}
+
 
 // Fonction pour charger la sidebar
 async function loadSidebar() {
