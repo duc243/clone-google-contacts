@@ -8,7 +8,7 @@
   </div>
 
   <div id="links">
-    <div class="link active" onclick="window.location='/index.html'">
+    <div class="link active" onclick="loadContent('/pages/content.html')">
       <div class="content">
         <i class="fa fa-user-o" aria-hidden="true"></i> Contacts
       </div>
@@ -27,7 +27,7 @@
     <div class="labels">
         <div class="labelTitle">
             Libellés
-            <div class="addLabel">
+            <div class="addLabel" onclick="showCreateLabelDialog()">
                 <i class="fa fa-plus" aria-hidden="true"></i>
             </div>
         </div>

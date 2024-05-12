@@ -148,7 +148,7 @@ async function loadLabels() {
     labels.forEach(label => {
       const labelDiv = document.createElement('div');
       labelDiv.classList.add('label');
-      labelDiv.innerHTML = `<i class="fa fa-thumb-tack" aria-hidden="true"></i>${label.name}`;
+      labelDiv.innerHTML = `<i class="fa fa-thumb-tack" aria-hidden="true"></i>${label.title}`;
       labelContainer.appendChild(labelDiv);
     });
   } else {
@@ -242,6 +242,29 @@ document.addEventListener('DOMContentLoaded', init);
 
 
 
+function showCreateLabelDialog() {
+  let dialog = document.querySelector("#labelEditorDialog");
+  resetCreateLabelDialog(dialog);
+  showDialog(dialog);
+}
+
+function resetCreateLabelDialog(dialog) {
+  dialog.querySelector("[name='id']").value = "";
+  dialog.querySelector("[name='title']").value = "";
+  dialog.querySelector(".dialogTitle").innerHTML = "Create label";
+}
+
+function hideCreateLabelDialog() {
+  let dialog = document.querySelector("#labelEditorDialog");
+  closeDialog(dialog);
+}
+function closeDialog(dilaogElement) {
+  dilaogElement.classList.remove("active");
+}
+
+function showDialog(dilaogElement) {
+  dilaogElement.classList.add("active");
+}
 
 
 

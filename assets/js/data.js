@@ -4,7 +4,7 @@ let contacts = [
     }
 ]
 
-let labels = [{ id: 1, name:'Famille'}];
+let labels = [{ id: 1, title:'Famille'}];
 
 
 
