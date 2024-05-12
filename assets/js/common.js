@@ -216,15 +216,37 @@ function setupNewContactButtonListener() {
 }
 
 function setupRedirectButtonListener() {
-  const button = document.querySelectorAll('#links .link');
-  if (button) {
-      for (let i = 0; i < button.length; i++) {
-        button[i].addEventListener('click', () => {
-          loadContent(links[i]);
-        });
-      }
+  const buttons = document.querySelectorAll('#links .link');
+  if (buttons.length > 0) {
+    buttons.forEach((button, index) => {
+      button.addEventListener('click', async () => {
+        // Enlever le fond bleu de tous les boutons
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Charger le contenu correspondant
+        await loadContent(links[index]);
+
+        // Mettre le fond bleu sur le bouton actif
+        button.classList.add('active');
+
+        // Charger le contenu supplémentaire spécifique à la page
+        switch (index) {
+          case 0:
+            await loadContacts(); // Charge les contacts pour content.html
+            break;
+          case 1:
+            await loadHistory(); // Charge l'historique pour history.html
+            break;
+          case 2:
+            await loadCorbeille(); // Charge la corbeille pour corbeille.html
+            break;
+          default:
+            console.error('Index non géré:', index);
+        }
+      });
+    });
   } else {
-    console.error('Le bouton pour rediriger le contenu est introuvable dans le DOM.');
+    console.error('Les boutons pour rediriger le contenu sont introuvables dans le DOM.');
   }
 }
 
@@ -298,6 +320,7 @@ function hideCreateLabelDialog() {
   let dialog = document.querySelector("#labelEditorDialog");
   closeDialog(dialog);
 }
+
 function closeDialog(dilaogElement) {
   dilaogElement.classList.remove("active");
 }
