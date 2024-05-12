@@ -1,8 +1,34 @@
 .primary-color {
   color: #1b73e8; }
   
-.disable{
-  display: none;
+.inputColumn{
+  position: relative;
+  display: flex;
+  width: 70%;
+  height: 3rem;
+  margin: 0px auto;
+  align-items: center;
+  
+  input{
+    width: 100%;
+    height: 50%;
+    border: 2px solid #1b73e8;
+    outline: none;
+    
+    &:hover{
+      
+      
+      ~label {
+        top: 0px;
+        background-color: white;
+      }
+    }
+  }
+  label {
+    position: absolute;
+    padding: 0px 5px;
+    margin: 0px 10px;
+  }
 }
 
 #labelPickerDialog .dialogContent {
@@ -24,14 +50,7 @@
   #labelPickerDialog .label:hover {
     background-color: rgba(0, 0, 0, 0.05); }
 
-input {
-  width: 100%;
-  border: 0px;
-  outline: none;
-  border-bottom: 1px solid #ccc;
-  height: 30px; }
-  input:focus {
-    border-bottom: 2px solid #1b73e8; }
+
 
 body {
   margin: 0px;
@@ -268,9 +287,7 @@ a {
       display: flex;
       align-items: center;
       padding-left: 20px; }
-    .dialog .dialogContentContainer .dialogContent {
-      flex-grow: 1;
-      padding: 10px 20px; }
+    
     .dialog .dialogContentContainer .dialogFooter {
       min-height: 30px;
       padding: 15px 20px;

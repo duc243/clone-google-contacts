@@ -112,7 +112,8 @@ async function init() {
     await Promise.all([loadHeader(), loadSidebar()]);
     await loadContent('/pages/content.html');
     await Promise.all([loadLabels(), loadContacts()]);
-    setupButtonListener();
+    setupNewContactButtonListener();
+    setupRedirectButtonListener();
   } catch (error) {
     console.error('Erreur lors de l\'initialisation de l\'application:', error);
   }
@@ -202,11 +203,24 @@ async function loadContacts() {
 }
 
 // Fonction pour configurer les écouteurs d'événements
-function setupButtonListener() {
+function setupNewContactButtonListener() {
   const button = document.querySelector('#createContactBtn');
   if (button) {
     button.addEventListener('click', () => {
       loadContent('/pages/contact-editor.html');
+    });
+  } else {
+    console.error('Le bouton pour créer un contact est introuvable dans le DOM.');
+  }
+}
+
+function setupRedirectButtonListener() {
+  const button = document.querySelectorAll('#links .link');
+  if (button) {
+    button.addEventListener('click', () => {
+      for ( const link of button) {
+        if (link.textContent == 'contacts') loadContent('/pages/content.html')
+      }
     });
   } else {
     console.error('Le bouton pour créer un contact est introuvable dans le DOM.');
