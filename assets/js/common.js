@@ -165,12 +165,13 @@ async function loadContent(url) {
     const contentPlaceholder = document.querySelector('#content');
     contentPlaceholder.innerHTML = htmlText;
     if (url === '/pages/contact-editor.html') {
-      document.querySelector('#submitContactBtn').addEventListener('click', addContactAndReloadContent);
+      checkContactForm();
     }
   } catch (error) {
     console.error('Erreur lors du chargement du contenu:', error);
   }
 }
+
 
 // Fonction pour charger les contacts
 async function loadContacts() {
@@ -191,7 +192,7 @@ async function loadContacts() {
       </div>
       <div class="column">${contact.email}</div>
       <div class="column">${contact.phone}</div>
-      <div class="column">${contact.fonction} chez ${contact.entreprise}</div>
+      <div class="column">${contact.fonction} ${contact.entreprise}</div>
       <div class="column">Libellés</div>
     `;
     
@@ -225,6 +226,31 @@ function setupRedirectButtonListener() {
   } else {
     console.error('Le bouton pour rediriger le contenu est introuvable dans le DOM.');
   }
+}
+
+function checkContactForm() {
+  const submitButton = document.querySelector('#submitContactBtn');
+      const inputs = document.querySelectorAll('#contactEditorPage #content .important');
+      
+      console.log(submitButton)
+      console.log(inputs[0])
+
+      // Fonction pour vérifier l'état des champs importants
+      function checkInputs() {
+        // Vérifier si au moins un champ est rempli
+        const isAnyFilled = Array.from(inputs).some(input => input.value.trim() !== '');
+        submitButton.disabled = !isAnyFilled; // Désactiver le bouton si aucun champ n'est rempli
+        submitButton.style.backgroundColor = isAnyFilled ? '' : 'grey'; // Rendre le bouton gris si désactivé
+      }
+
+      // Vérifier l'état initial des champs
+      checkInputs();
+
+      // Ajouter un écouteur d'événements sur chaque champ important pour vérifier l'état lors de la saisie
+      inputs.forEach(input => {
+        input.addEventListener('input', checkInputs);
+      });
+      submitButton.addEventListener('click', addContactAndReloadContent);
 }
 
 // Fonction pour ajouter un contact et recharger le contenu
