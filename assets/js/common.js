@@ -131,9 +131,6 @@ async function loadHeader() {
   }
 }
 
-// Supposons que vous avez un bouton avec la classe 'burger-menu' pour le menu burger
-// et que vos éléments sidebar et content ont respectivement les classes 'sidebar' et 'content'
-
 function showAndHideSidebar() {
   const burgerMenuButton = document.querySelector('.burger-menu');
   const sidebar = document.querySelector('#sidebar');
@@ -157,7 +154,6 @@ function showAndHideSidebar() {
     isSidebarCollapsed = !isSidebarCollapsed; // basculer l'état
   });
 }
-
 
 // Fonction pour charger la sidebar
 async function loadSidebar() {
@@ -201,7 +197,6 @@ async function loadContent(url) {
   }
 }
 
-
 // Fonction pour charger les contacts
 async function loadContacts() {
   const tableBody = document.querySelector('.tableBody');
@@ -215,7 +210,8 @@ async function loadContacts() {
       <div class='column'>
         <div class="avatar">A</div>
         <div class="checkbox">
-            <input type="checkbox" >
+            <input type="checkbox">
+            <span class="contactId">${contact.id}</span>
         </div>
         ${contact.firstName} ${contact.lastName}
       </div>
@@ -223,6 +219,13 @@ async function loadContacts() {
       <div class="column">${contact.phone}</div>
       <div class="column">${contact.fonction} ${contact.entreprise}</div>
       <div class="column">Libellés</div>
+      <div class="column">
+        <div class="buttons">
+          <i class="fa fa-tags" aria-hidden="true"></i>
+          <i
+            class="fa fa-trash" aria-hidden="true"></i>
+        </div>
+      </div>
     `;
     
     tableBody.appendChild(contactRow);
@@ -231,6 +234,78 @@ async function loadContacts() {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');
   }
 }
+
+function onCheckboxChange(e) {
+  let selectedContactId = parseInt(e.currentTarget.value);
+  let selectedContact = contacts.find(
+    (contact) => contact.id === selectedContactId
+  );
+  if (e.currentTarget.checked) {
+    e.currentTarget.closest(".contactRow").classList.add("selected");
+
+    if (selectedContact) {
+      selectedContact.selected = true;
+    }
+  } else {
+    e.currentTarget.closest(".contactRow").classList.remove("selected");
+
+    if (selectedContact) {
+      selectedContact.selected = false;
+    }
+  }
+  let selectedContacts = contacts.filter((contact) => contact.selected);
+
+  showHideTableHead(selectedContacts);
+
+  updateNumberOfSelectedContacts(selectedContacts.length);
+}
+
+// Fonction pour supprimer un contact spécifique
+function deleteContact(contactId) {
+  // Trouver le contact à supprimer
+  const contactToDelete = contacts.find(contact => contact.id === contactId);
+  if (contactToDelete) {
+    // Ajouter le contact au tableau 'corbeille'
+    corbeille.push(contactToDelete);
+    // Supprimer le contact du tableau 'contacts'
+    contacts = contacts.filter(contact => contact.id !== contactId);
+    // Recharger la liste des contacts
+    loadContacts();
+  } else {
+    console.error('Contact non trouvé:', contactId);
+  }
+}
+
+// Fonction pour supprimer les contacts sélectionnés
+/*function deleteSelectedContacts() {
+  const checkboxes = document.querySelectorAll('.tableBody .checkbox input[type="checkbox"]:checked');
+  checkboxes.forEach(checkbox => {
+    const contactId = checkbox.textContent.trim();
+    deleteContact(contactId);
+  });
+}*/
+
+// Fonction pour éditer un contact
+/*function editContact(contactId) {
+  // Trouver le contact dans le tableau 'contacts'
+  const contactToEdit = contacts.find(contact => contact.id === contactId);
+  if (contactToEdit) {
+    // Mettre à jour les informations du contact
+    // Supposons que vous avez un formulaire avec des champs pour éditer les informations
+    const form = document.querySelector('#editContactForm');
+    contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
+    contactToEdit.lastName = form.querySelector('input[name="lastName"]').value;
+    contactToEdit.email = form.querySelector('input[name="email"]').value;
+    contactToEdit.phone = form.querySelector('input[name="phone"]').value;
+    contactToEdit.fonction = form.querySelector('input[name="fonction"]').value;
+    contactToEdit.entreprise = form.querySelector('input[name="entreprise"]').value;
+    // Recharger la liste des contacts après l'édition
+    loadContacts();
+  } else {
+    console.error('Contact non trouvé:', contactId);
+  }
+}*/
+
 
 // Fonction pour configurer les écouteurs d'événements
 function setupNewContactButtonListener() {
@@ -310,6 +385,7 @@ async function addContactAndReloadContent(event) {
 
   const form = document.querySelector('#contactEditorPage #content'); // Assurez-vous que l'ID correspond à votre formulaire
   const newContact = {
+    id: crypto.randomUUID(),
     firstName: form.querySelector('input[name="firstName"]').value,
     lastName: form.querySelector('input[name="lastName"]').value,
     email: form.querySelector('input[name="email"]').value,

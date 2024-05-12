@@ -446,6 +446,9 @@ a {
           background-color: #f1f1f1; }
           #contentContainer #content .table .tableBody .tableRow:hover .checkbox, #contentContainer #content .table .tableBody .tableRow.selected .checkbox {
             display: flex; }
+            .checkbox span {
+              display: none;
+            }
           #contentContainer #content .table .tableBody .tableRow:hover .avatar, #contentContainer #content .table .tableBody .tableRow.selected .avatar {
             display: none; }
         #contentContainer #content .table .tableBody .tableRow:hover .actionButtons {
