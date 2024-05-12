@@ -217,13 +217,13 @@ function setupNewContactButtonListener() {
 function setupRedirectButtonListener() {
   const button = document.querySelectorAll('#links .link');
   if (button) {
-    button.addEventListener('click', () => {
-      for ( const link of button) {
-        if (link.textContent == 'contacts') loadContent('/pages/content.html')
+      for (let i = 0; i < button.length; i++) {
+        button[i].addEventListener('click', () => {
+          loadContent(links[i]);
+        });
       }
-    });
   } else {
-    console.error('Le bouton pour créer un contact est introuvable dans le DOM.');
+    console.error('Le bouton pour rediriger le contenu est introuvable dans le DOM.');
   }
 }
 
