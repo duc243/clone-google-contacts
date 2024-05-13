@@ -330,6 +330,18 @@ a {
       margin-top: 30px; }
     #contentContainer #sidebar #links {
       margin-top: 20px; }
+      #contentContainer #sidebar #links .label {
+        display: flex;
+        gap: 10px;
+        margin: 10px;
+        padding: 5px 40px;
+        border-radius: 20px;
+        cursor: pointer;
+
+        &:hover{
+          background-color: #e4e4e4;
+        }
+      }
       #contentContainer #sidebar #links .link {
         display: flex;
         align-items: center;

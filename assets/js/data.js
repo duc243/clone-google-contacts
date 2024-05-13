@@ -2,16 +2,16 @@ let links = ['/pages/content.html', '/pages/history.html', '/pages/corbeille.htm
 
 let contacts = [
     {
-        id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', 
+        id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', labels:['Amis', 'Travail']
     }
 ]
 
-let labels = [{ id: 1, title:'Famille'}];
+let labels = [{ id: 2, title:'Famille'}, {id: 3, title:'Travail'}, {id:5, title:'Amis'}];
 
 
 let corbeille = [
     {
-        id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', 
+        id:4, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', labels:['Famille']
     }
 ]
 
