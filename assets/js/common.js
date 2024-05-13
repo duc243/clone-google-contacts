@@ -230,7 +230,6 @@ async function loadContacts() {
       
       tableBody.appendChild(contactRow);
     });
-    updateNumberOfContacts(contacts);
   } else {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');
   }
@@ -259,14 +258,12 @@ function onCheckboxChange(e) {
   let selectedContacts = contacts.filter((contact) => contact.selected);
 
   showHideTableHead(selectedContacts);
-  updateNumberOfContacts(selectedContacts);
+  updateNumberOfSelectedContacts(selectedContacts.length);
 }
 
-function updateNumberOfContacts(totalSelectedContacts) {
-  document.querySelectorAll(".numberOfContacts").forEach(numberOfContacts => {
-    numberOfContacts.innerHTML = totalSelectedContacts.length;
-  })
-  
+function updateNumberOfSelectedContacts(totalSelectedContacts) {
+  document.querySelector(".numberOfSelectedContacts").innerHTML =
+    totalSelectedContacts;
 }
 
 function initializeCheckboxes() {
@@ -291,42 +288,14 @@ function deleteContact(contactId, element) {
   }
 }
 
-
-/*function onCheckboxChange(e) {
-  let selectedContactId = parseInt(e.currentTarget.value);
-  console.log(selectedContactId)
-  let selectedContact = contacts.find(
-    (contact) => contact.id === selectedContactId
-  );
-  if (e.currentTarget.checked) {
-    e.currentTarget.closest(".tableRow").classList.add("selected");
-
-    if (selectedContact) {
-      selectedContact.selected = true;
-    }
-  } else {
-    e.currentTarget.closest(".tableRow").classList.remove("selected");
-
-    if (selectedContact) {
-      selectedContact.selected = false;
-    }
-  }
-  let selectedContacts = contacts.filter((contact) => contact.selected);
-
-  showHideTableHead(selectedContacts);
-
-  updateNumberOfSelectedContacts(selectedContacts.length);
-}*/
-
-
 // Fonction pour supprimer les contacts sélectionnés
-/*function deleteSelectedContacts() {
+function deleteSelectedContacts() {
   const checkboxes = document.querySelectorAll('.tableBody .checkbox input[type="checkbox"]:checked');
   checkboxes.forEach(checkbox => {
     const contactId = checkbox.textContent.trim();
     deleteContact(contactId);
   });
-}*/
+}
 
 // Fonction pour éditer un contact
 /*function editContact(contactId) {
