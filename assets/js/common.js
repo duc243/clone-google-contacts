@@ -230,6 +230,7 @@ async function loadContacts() {
       
       tableBody.appendChild(contactRow);
     });
+    updateNumberOfContacts(contacts);
   } else {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');
   }
@@ -258,7 +259,14 @@ function onCheckboxChange(e) {
   let selectedContacts = contacts.filter((contact) => contact.selected);
 
   showHideTableHead(selectedContacts);
-  updateNumberOfSelectedContacts(selectedContacts.length);
+  updateNumberOfContacts(selectedContacts);
+}
+
+function updateNumberOfContacts(totalSelectedContacts) {
+  document.querySelectorAll(".numberOfContacts").forEach(numberOfContacts => {
+    numberOfContacts.innerHTML = totalSelectedContacts.length;
+  })
+  
 }
 
 function initializeCheckboxes() {
