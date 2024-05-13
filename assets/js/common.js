@@ -113,6 +113,7 @@ async function init() {
     await loadContent('/pages/content.html');
     await Promise.all([loadLabels(), loadContacts()]);
     showAndHideSidebar();
+    initializeCheckboxes();
     setupNewContactButtonListener();
     setupRedirectButtonListener();
   } catch (error) {
@@ -207,28 +208,27 @@ async function loadContacts() {
       contactRow.classList.add('tableRow');
       
       contactRow.innerHTML = `
-      <div class='column'>
-        <div class="avatar">A</div>
-        <div class="checkbox">
-            <input type="checkbox">
-            <span class="contactId">${contact.id}</span>
+        <div class='column'>
+          <div class="avatar">A</div>
+          <div class="checkbox">
+              <input type="checkbox">
+              <span class="contactId">${contact.id}</span>
+          </div>
+          ${contact.firstName} ${contact.lastName}
         </div>
-        ${contact.firstName} ${contact.lastName}
-      </div>
-      <div class="column">${contact.email}</div>
-      <div class="column">${contact.phone}</div>
-      <div class="column">${contact.fonction} ${contact.entreprise}</div>
-      <div class="column">Libellés</div>
-      <div class="column">
-        <div class="buttons">
-          <i class="fa fa-tags" aria-hidden="true"></i>
-          <i
-            class="fa fa-trash" aria-hidden="true"></i>
+        <div class="column">${contact.email}</div>
+        <div class="column">${contact.phone}</div>
+        <div class="column">${contact.fonction} ${contact.entreprise}</div>
+        <div class="column">Libellés</div>
+        <div class="column">
+          <div class="buttons columnLogo">
+            <i class="fa fa-tags" aria-hidden="true">modifier</i>
+            <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
+          </div>
         </div>
-      </div>
-    `;
-    
-    tableBody.appendChild(contactRow);
+      `;
+      
+      tableBody.appendChild(contactRow);
     });
   } else {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');
@@ -236,18 +236,68 @@ async function loadContacts() {
 }
 
 function onCheckboxChange(e) {
-  let selectedContactId = parseInt(e.currentTarget.value);
+  let selectedContactId = e.currentTarget.nextElementSibling.textContent.trim();
   let selectedContact = contacts.find(
     (contact) => contact.id === selectedContactId
   );
   if (e.currentTarget.checked) {
-    e.currentTarget.closest(".contactRow").classList.add("selected");
+    e.currentTarget.closest(".tableRow").classList.add("selected");
+    /*e.currentTarget.closest(".tableRow").querySelector(".avatar").style.display = "none";*/
 
     if (selectedContact) {
       selectedContact.selected = true;
     }
   } else {
-    e.currentTarget.closest(".contactRow").classList.remove("selected");
+    e.currentTarget.closest(".tableRow").classList.remove("selected");
+    /*e.currentTarget.closest(".tableRow").querySelector(".avatar").style.display = "block";*/
+
+    if (selectedContact) {
+      selectedContact.selected = false;
+    }
+  }
+  let selectedContacts = contacts.filter((contact) => contact.selected);
+
+  showHideTableHead(selectedContacts);
+  updateNumberOfSelectedContacts(selectedContacts.length);
+}
+
+function initializeCheckboxes() {
+  const checkboxes = document.querySelectorAll('.tableBody .checkbox input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', onCheckboxChange);
+  });
+}
+
+function deleteContact(contactId, element) {
+  // Trouver l'index du contact à supprimer
+  const contactIndex = contacts.findIndex(contact => contact.id === contactId);
+  if (contactIndex !== -1) {
+    // Ajouter le contact au tableau 'corbeille'
+    corbeille.push(contacts[contactIndex]);
+    // Supprimer le contact du tableau 'contacts'
+    contacts.splice(contactIndex, 1);
+    // Supprimer la ligne du contact du DOM
+    element.closest('.tableRow').remove();
+  } else {
+    console.error('Contact non trouvé:', contactId);
+  }
+}
+
+
+/*function onCheckboxChange(e) {
+  let selectedContactId = parseInt(e.currentTarget.value);
+  console.log(selectedContactId)
+  let selectedContact = contacts.find(
+    (contact) => contact.id === selectedContactId
+  );
+  if (e.currentTarget.checked) {
+    e.currentTarget.closest(".tableRow").classList.add("selected");
+
+    if (selectedContact) {
+      selectedContact.selected = true;
+    }
+  } else {
+    e.currentTarget.closest(".tableRow").classList.remove("selected");
 
     if (selectedContact) {
       selectedContact.selected = false;
@@ -258,23 +308,8 @@ function onCheckboxChange(e) {
   showHideTableHead(selectedContacts);
 
   updateNumberOfSelectedContacts(selectedContacts.length);
-}
+}*/
 
-// Fonction pour supprimer un contact spécifique
-function deleteContact(contactId) {
-  // Trouver le contact à supprimer
-  const contactToDelete = contacts.find(contact => contact.id === contactId);
-  if (contactToDelete) {
-    // Ajouter le contact au tableau 'corbeille'
-    corbeille.push(contactToDelete);
-    // Supprimer le contact du tableau 'contacts'
-    contacts = contacts.filter(contact => contact.id !== contactId);
-    // Recharger la liste des contacts
-    loadContacts();
-  } else {
-    console.error('Contact non trouvé:', contactId);
-  }
-}
 
 // Fonction pour supprimer les contacts sélectionnés
 /*function deleteSelectedContacts() {

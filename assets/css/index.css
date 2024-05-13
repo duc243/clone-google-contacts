@@ -418,8 +418,13 @@ a {
           font-size: 12px; 
           
         }
-        #contentContainer #content .table .tableHead .columnLogo {
+        #contentContainer #content .table .columnLogo {
           display: flex;
+          z-index: 1000;
+          
+          .fa{
+            cursor: pointer;
+          }
         }
       #contentContainer #content .table .tableBody .tableRow {
         display: flex;
