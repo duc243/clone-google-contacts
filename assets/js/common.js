@@ -278,7 +278,7 @@ function initializeCheckboxes() {
 
 function deleteContact(contactId, element) {
   // Trouver l'index du contact à supprimer
-  const contactIndex = contacts.findIndex(contact => contact.id === contactId);
+  const contactIndex = contacts.findIndex(contact => contact.id == contactId);
   if (contactIndex !== -1) {
     // Ajouter le contact au tableau 'corbeille'
     corbeille.push(contacts[contactIndex]);

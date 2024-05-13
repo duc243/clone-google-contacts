@@ -9,7 +9,7 @@ let contacts = [
 let labels = [{ id: 1, title:'Famille'}];
 
 
-let corbeilles = [
+let corbeille = [
     {
         id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', 
     }
