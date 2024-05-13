@@ -1,3 +1,6 @@
+body{
+  background-color: #F7FAFD;
+}
 .primary-color {
   color: #1b73e8; }
   
@@ -344,7 +347,7 @@ a {
         #contentContainer #sidebar #links .link .fa {
           font-size: 12px;
           color: #6e6e6e; }
-        #contentContainer #sidebar #links .link:hover {
+        #contentContainer #sidebar #links .link:hover, #contentContainer #sidebar #links .labels .labelContainer:hover {
           background-color: #e4e4e4; }
         #contentContainer #sidebar #links .link.active {
           background-color: #e8f0fe; }
@@ -356,6 +359,15 @@ a {
         #contentContainer #sidebar #links .labels .labelTitle {
           display: flex;
           justify-content: space-between; }
+          #contentContainer #sidebar #links .labels .labelTitle .addLabel {
+            padding: 2px 4px;
+            border-radius: 50%;
+            cursor: pointer;
+
+            &:hover{
+              background-color: #E6E6E6;
+            }
+          }
       #contentContainer #sidebar #links .dropdownSection .dropdownContent {
         display: none; }
         #contentContainer #sidebar #links .dropdownSection .dropdownContent .actions {
