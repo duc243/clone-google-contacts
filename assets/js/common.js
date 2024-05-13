@@ -371,31 +371,32 @@ function setupRedirectButtonListener() {
 
 function checkContactForm() {
   const submitButton = document.querySelector('#submitContactBtn');
-      const inputs = document.querySelectorAll('#contactEditorPage #content .important');
+  const inputs = document.querySelectorAll('#contactEditorPage #contactContent .important');
+  console.log(submitButton, inputs);
+  // Fonction pour vérifier l'état des champs importants
+  function checkInputs() {
+    // Vérifier si au moins un champ est rempli
+    const isAnyFilled = Array.from(inputs).some(input => input.value.trim() !== '');
+    submitButton.disabled = !isAnyFilled; // Désactiver le bouton si aucun champ n'est rempli
+    submitButton.style.backgroundColor = isAnyFilled ? '' : 'grey'; // Rendre le bouton gris si désactivé
+  }
 
-      // Fonction pour vérifier l'état des champs importants
-      function checkInputs() {
-        // Vérifier si au moins un champ est rempli
-        const isAnyFilled = Array.from(inputs).some(input => input.value.trim() !== '');
-        submitButton.disabled = !isAnyFilled; // Désactiver le bouton si aucun champ n'est rempli
-        submitButton.style.backgroundColor = isAnyFilled ? '' : 'grey'; // Rendre le bouton gris si désactivé
-      }
+  // Vérifier l'état initial des champs
+  checkInputs();
 
-      // Vérifier l'état initial des champs
-      checkInputs();
-
-      // Ajouter un écouteur d'événements sur chaque champ important pour vérifier l'état lors de la saisie
-      inputs.forEach(input => {
-        input.addEventListener('input', checkInputs);
-      });
-      submitButton.addEventListener('click', addContactAndReloadContent);
+  // Ajouter un écouteur d'événements sur chaque champ important pour vérifier l'état lors de la saisie
+  inputs.forEach(input => {
+    input.addEventListener('input', checkInputs);
+  });
+  submitButton.addEventListener('click', addContactAndReloadContent);
 }
 
 // Fonction pour ajouter un contact et recharger le contenu
 async function addContactAndReloadContent(event) {
   event.preventDefault();
 
-  const form = document.querySelector('#contactEditorPage #content'); // Assurez-vous que l'ID correspond à votre formulaire
+  const form = document.querySelector('#contactEditorPage #contactContent'); // Assurez-vous que l'ID correspond à votre formulaire
+  console.log(form);
   const newContact = {
     id: crypto.randomUUID(),
     firstName: form.querySelector('input[name="firstName"]').value,
