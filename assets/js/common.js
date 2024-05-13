@@ -175,7 +175,9 @@ async function loadLabels() {
     labels.forEach(label => {
       const labelDiv = document.createElement('div');
       labelDiv.classList.add('label');
-      labelDiv.innerHTML = `<i class="fa fa-thumb-tack" aria-hidden="true"></i>${label.title}`;
+      labelDiv.innerHTML = `<i class="fa fa-thumb-tack" aria-hidden="true"></i>${label.title}
+      `;
+      
       labelContainer.appendChild(labelDiv);
     });
   } else {
@@ -222,7 +224,7 @@ async function loadContacts() {
         <div class="column">Libellés</div>
         <div class="column">
           <div class="buttons columnLogo">
-            <i class="fa fa-tags" aria-hidden="true">modifier</i>
+            <i class="fa fa-tags" aria-hidden="true" onclick="editContact('${contact.id}', this)"></i>
             <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
           </div>
         </div>
@@ -298,13 +300,12 @@ function deleteSelectedContacts() {
 }
 
 // Fonction pour éditer un contact
-/*function editContact(contactId) {
+function editContact(contactId, element) {
   // Trouver le contact dans le tableau 'contacts'
   const contactToEdit = contacts.find(contact => contact.id === contactId);
   if (contactToEdit) {
     // Mettre à jour les informations du contact
-    // Supposons que vous avez un formulaire avec des champs pour éditer les informations
-    const form = document.querySelector('#editContactForm');
+    const form = element.closest('#content');
     contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
     contactToEdit.lastName = form.querySelector('input[name="lastName"]').value;
     contactToEdit.email = form.querySelector('input[name="email"]').value;
@@ -316,7 +317,7 @@ function deleteSelectedContacts() {
   } else {
     console.error('Contact non trouvé:', contactId);
   }
-}*/
+}
 
 
 // Fonction pour configurer les écouteurs d'événements
