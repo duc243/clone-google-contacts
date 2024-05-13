@@ -430,10 +430,12 @@ a {
         display: flex;
         width: 100%;
         min-height: 48px;
+        border-radius: 5px;
         cursor: pointer; }
         #contentContainer #content .table .tableBody .tableRow .column {
           flex-grow: 1;
           font-size: 11px;
+          min-width: 20%;
           padding: 8px 0px;
           display: flex;
           align-items: center;
@@ -448,11 +450,25 @@ a {
         #contentContainer #content .table .tableBody .tableRow .actionButtons {
           display: none; }
         #contentContainer #content .table .tableBody .tableRow:hover, #contentContainer #content .table .tableBody .tableRow.selected {
-          background-color: #f1f1f1; }
-          #contentContainer #content .table .tableBody .tableRow:hover .checkbox, #contentContainer #content .table .tableBody .tableRow.selected .checkbox {
+          background-color: #EDF2FC; }
+          #contentContainer #content .table .tableBody .tableRow:hover .checkbox, #contentContainer #content .table .tableBody .tableRow.selected .checkbox,
+          #contentContainer #content .table .tableBody .tableRow:hover .column .buttons {
             display: flex; }
             .checkbox span {
               display: none;
+            }
+            #contentContainer #content .table .tableBody .tableRow .column .buttons {
+              position: absolute;
+              right: 5%;
+              gap: 10px;
+              display: none;
+
+              .fa{
+                padding: 5px;}
+            }
+            #contentContainer #content .table .tableBody .tableRow .column .buttons .fa:hover {
+              background-color: #e6e6e6;
+              border-radius: 50%;
             }
           #contentContainer #content .table .tableBody .tableRow:hover .avatar, #contentContainer #content .table .tableBody .tableRow.selected .avatar {
             display: none; }

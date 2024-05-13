@@ -223,8 +223,9 @@ async function loadContacts() {
         <div class="column">${contact.fonction} ${contact.entreprise}</div>
         <div class="column">Libellés</div>
         <div class="column">
-          <div class="buttons columnLogo">
-            <i class="fa fa-tags" aria-hidden="true" onclick="editContact('${contact.id}', this)"></i>
+          <div class="buttons">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-pencil" aria-hidden="true" onclick="editContact('${contact.id}', this)"></i>
             <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
           </div>
         </div>
