@@ -225,7 +225,7 @@ async function loadContacts() {
         <div class="column">
           <div class="buttons">
             <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-pencil" aria-hidden="true" onclick="editContact('${contact.id}', this)"></i>
+            <i class="fa fa-pencil" aria-hidden="true" onclick="editContact('${contact.id}')"></i>
             <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
           </div>
         </div>
@@ -301,20 +301,21 @@ function deleteSelectedContacts() {
 }
 
 // Fonction pour éditer un contact
-function editContact(contactId, element) {
+async function editContact(contactId) {
   // Trouver le contact dans le tableau 'contacts'
-  const contactToEdit = contacts.find(contact => contact.id === contactId);
+  const contactToEdit = contacts.find(contact => contact.id == contactId);
   if (contactToEdit) {
-    // Mettre à jour les informations du contact
-    const form = element.closest('#content');
+    await loadContent('/pages/contact-editor.html');
+
+    const form = document.querySelector('#contactEditorContent');
+    console.log(form);
     contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
     contactToEdit.lastName = form.querySelector('input[name="lastName"]').value;
     contactToEdit.email = form.querySelector('input[name="email"]').value;
     contactToEdit.phone = form.querySelector('input[name="phone"]').value;
     contactToEdit.fonction = form.querySelector('input[name="fonction"]').value;
     contactToEdit.entreprise = form.querySelector('input[name="entreprise"]').value;
-    // Recharger la liste des contacts après l'édition
-    loadContacts();
+    
   } else {
     console.error('Contact non trouvé:', contactId);
   }
@@ -371,9 +372,6 @@ function setupRedirectButtonListener() {
 function checkContactForm() {
   const submitButton = document.querySelector('#submitContactBtn');
       const inputs = document.querySelectorAll('#contactEditorPage #content .important');
-      
-      console.log(submitButton)
-      console.log(inputs[0])
 
       // Fonction pour vérifier l'état des champs importants
       function checkInputs() {
