@@ -264,9 +264,9 @@ async function loadContacts() {
         <div class="column">${contact.labels.join(', ')}</div>
         <div class="column">
           <div class="buttons">
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-pencil" aria-hidden="true" onclick="editContact('${contact.id}')"></i>
-            <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
+            <span class="material-symbols--star-outline"></span>
+            <span class="mdi--pencil-outline" onclick="editContact('${contact.id}')"></span>
+            <span class="material-symbols--delete-outline" onclick="deleteContact('${contact.id}', this)"></span>
           </div>
         </div>
       `;
