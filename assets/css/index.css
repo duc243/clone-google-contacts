@@ -444,7 +444,7 @@ a {
           gap: 5px;
           color: #1967d2; }
       #contentContainer #content .table .column {
-        width: 25%; }
+        width: 20%; }
         #contentContainer #content .table .column span {
           font-size: 15px; }
       #contentContainer #content .table .tableHead {
@@ -456,9 +456,10 @@ a {
         }
         #contentContainer #content .table .columnLogo {
           display: flex;
-          z-index: 1000;
+          position: absolute;
+          right: 10%;
           
-          .fa{
+          span{
             cursor: pointer;
           }
         }

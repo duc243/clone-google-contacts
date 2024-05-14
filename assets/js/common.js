@@ -143,7 +143,8 @@ function showAndHideSidebar() {
       sidebar.style.minWidth = '0px';
       sidebar.style.display = 'none';
       // ou la largeur réduite souhaitée
-      content.style.minWidth = '100%'; // ajuster en fonction de la nouvelle largeur de la sidebar
+      content.style.marginLeft = '5%';
+      content.style.minWidth = '90%'; // ajuster en fonction de la nouvelle largeur de la sidebar
     } else {
       // Rétablir les tailles originales
       sidebar.style.minWidth = ''; 
