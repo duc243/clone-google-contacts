@@ -174,7 +174,7 @@ async function loadLabels() {
     labels.forEach(label => {
       const labelDiv = document.createElement('div');
       labelDiv.classList.add('link');
-      labelDiv.innerHTML = `<i class="fa fa-thumb-tack" aria-hidden="true"></i>${label.title}`;
+      labelDiv.innerHTML = `<span class="material-symbols--label"></span>${label.title}`;
       labelDiv.addEventListener('click', () => showContactsForLabel(label.title));
       labelContainer.appendChild(labelDiv);
     });
