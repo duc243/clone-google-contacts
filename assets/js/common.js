@@ -121,9 +121,6 @@ async function init() {
   }
 }
 
-
-
-// Fonction pour charger le header
 async function loadHeader() {
   try {
     const response = await fetch("/common/header.html");
@@ -169,7 +166,7 @@ async function loadSidebar() {
   }
 }
 
-// Fonction pour charger les labels
+
 async function loadLabels() {
   const labelContainer = document.querySelector('.labelContainer');
   if (labelContainer) {
@@ -183,6 +180,45 @@ async function loadLabels() {
     });
   } else {
     console.error('Le conteneur de labels est introuvable dans le DOM.');
+  }
+}
+
+
+// Cette fonction affiche les contacts pour un label donné
+function showContactsForLabel(labelTitle) {
+  const filteredContacts = contacts.filter(contact => contact.labels.includes(labelTitle));
+  const tableBody = document.querySelector('.tableBody');
+  if (tableBody) {
+    tableBody.innerHTML = '';
+    filteredContacts.forEach(contact => {
+      const contactRow = document.createElement('div');
+      contactRow.classList.add('tableRow');
+      contactRow.innerHTML = `
+        <div class='column'>
+          <div class="avatar">A</div>
+          <div class="checkbox">
+              <input type="checkbox">
+              <span class="contactId">${contact.id}</span>
+          </div>
+          ${contact.firstName} ${contact.lastName}
+        </div>
+        <div class="column">${contact.email}</div>
+        <div class="column">${contact.phone}</div>
+        <div class="column">${contact.fonction} ${contact.entreprise}</div>
+        <div class="column">${contact.labels.join(', ')}</div>
+        <div class="column">
+          <div class="buttons">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <i class="fa fa-pencil" aria-hidden="true" onclick="editContact('${contact.id}')"></i>
+            <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
+          </div>
+        </div>
+      `;
+
+      tableBody.appendChild(contactRow);
+    });
+  } else {
+    console.error('Le conteneur de contacts est introuvable dans le DOM.');
   }
 }
 

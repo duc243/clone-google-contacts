@@ -330,10 +330,10 @@ a {
       margin-top: 20px; }
       #contentContainer #sidebar #links .label {
         display: flex;
-        gap: 10px;
-        margin: 10px;
+        gap: 20px;
         padding: 5px 40px;
         border-radius: 20px;
+        align-items: center;
         cursor: pointer;
 
         &:hover{
