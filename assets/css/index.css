@@ -331,7 +331,8 @@ a {
       #contentContainer #sidebar #links .label {
         display: flex;
         gap: 20px;
-        padding: 5px 40px;
+        padding: 10px 40px;
+        margin: 0px 10px;
         border-radius: 20px;
         align-items: center;
         cursor: pointer;
