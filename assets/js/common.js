@@ -150,6 +150,7 @@ function showAndHideSidebar() {
       sidebar.style.minWidth = ''; 
       sidebar.style.display = '';
       // supprimer le style inline pour revenir au CSS d'origine
+      content.style.marginLeft = '0%';
       content.style.minWidth = ''; // supprimer le style inline pour revenir au CSS d'origine
     }
     isSidebarCollapsed = !isSidebarCollapsed; // basculer l'état

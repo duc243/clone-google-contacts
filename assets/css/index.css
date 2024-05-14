@@ -1,5 +1,6 @@
 * {
   font-size: 14px;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .primary-color {
   color: #1b73e8; }
@@ -7,24 +8,27 @@
 .inputColumn{
   position: relative;
   display: flex;
-  width: 70%;
+  width: 100%;
   height: 3rem;
   margin: 0px auto;
   align-items: center;
   
   input{
     width: 100%;
-    height: 50%;
-    border: 2px solid #1b73e8;
+    height: 100%;
+    border: 2px solid #585858;
     outline: none;
     border-radius: 5px;
+    background-color: #EEF3FB;
     
-    &:hover{
-      
+    &:focus{
+      border: 2px solid #1b73e8;
       
       ~label {
-        top: 0px;
-        background-color: white;
+        bottom: 90%;
+        font-size: 12px;
+        background-color: #EEF3FB;
+        color: #1b73e8;
       }
     }
   }
@@ -32,6 +36,7 @@
     position: absolute;
     padding: 0px 5px;
     margin: 0px 10px;
+    font-size: 16px;
   }
 }
 
@@ -272,25 +277,22 @@ a {
     width: 100%;
     height: 100%;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.4); }
   .dialog .dialogContentContainer {
-    min-width: 300px;
+    min-width: 330px;
     min-height: 200px;
-    background-color: #fff;
+    background-color: #EEF3FB;
     z-index: 1;
-    border-radius: 10px;
+    border-radius: 30px;
+    padding: 2em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     display: flex;
+    justify-content: space-between;
     flex-direction: column; }
     .dialog .dialogContentContainer .dialogTitle {
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      padding-left: 20px; }
+      font-size: 24px; }
     
     .dialog .dialogContentContainer .dialogFooter {
-      min-height: 30px;
-      padding: 15px 20px;
       display: flex;
       align-items: center;
       justify-content: end;
@@ -300,6 +302,8 @@ a {
         color: #1b73e8;
         border: 0px;
         cursor: pointer; }
+        dialog .dialogContentContainer .dialogFooter button:hover {
+          background-color: #040b15; }
 
 #contentContainer {
   display: flex;
