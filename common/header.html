@@ -9,14 +9,15 @@
   </div>
   <div id="searchSection">
     <div id="searchContainer">
-      <button class="searchButton">
-        <div><span class="material-symbols--search"></span></div>
-      </button>
+      <div id="buttonSearch">
+        <button class="searchButton">
+          <div><span class="material-symbols--search"></span></div>
+        </button>
+        <button class="clearSearchButton" onclick="clearSearchInput()">
+          <div><span class="basil--cross-solid"></span></i></div>
+        </button>
+      </div>
       <input type="text" placeholder="Search" onkeyup="searchKeyUp(event)" />
-      <button class="clearSearchButton" onclick="clearSearchInput()">
-        <div><span class="basil--cross-solid"></span></i></div>
-      </button>
-
       <div class="suggestions"></div>
     </div>
   </div>

@@ -144,10 +144,10 @@ a {
   color: #616161;
   box-sizing: border-box; }
   #header #logoSection {
-    flex-basis: 250px;
+    flex-basis: 270px;
     display: flex;
     align-items: center;
-    gap: 20px; }
+    gap: 15px; }
     #header #logoSection .fa {
       cursor: pointer;
     }
@@ -162,45 +162,35 @@ a {
     flex-grow: 1; }
     #header #searchSection #searchContainer {
       width: 70%;
-      background-color: #F0F3F4;
-      height: 80%;
-      border: 1px solid red;
-      padding-top: 7px;
+      height: 100%;
       position: relative; }
       #header #searchSection #searchContainer button {
         position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        left: 0px;
+        top: 20%;
         background-color: transparent;
         border: 0px;
         width: 40px;
         color: #585858;
         cursor: pointer; }
-        #header #searchSection #searchContainer button.searchButton {
-          left: 0px; }
         #header #searchSection #searchContainer button.clearSearchButton {
           right: 0px;
-          display: none; }
-        #header #searchSection #searchContainer button div {
-          width: 29px;
-          height: 29px;
-          display: flex;
-          align-items: center;
-          justify-content: center; }
+          top: 20%;
+          display: none;}
         #header #searchSection #searchContainer button:hover div {
           background-color: #e8e8e8;
           border-radius: 50%; }
       #header #searchSection #searchContainer input {
         width: 100%;
-        height: 35px;
+        height: 100%;
         border: 0px;
-        background: #f3f3f3;
+        background: #e4f1f5;
         padding-left: 40px;
         color: #5a5a5a;
         outline: none;
         box-sizing: border-box;
-        border-radius: 5px; }
+        border-top-right-radius: 10px;
+      border-top-left-radius: 10px; }
         #header #searchSection #searchContainer input:focus {
           background: #fff;
           box-shadow: 0px 0px 5px #ccc; }
