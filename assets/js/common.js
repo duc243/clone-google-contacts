@@ -265,7 +265,7 @@ async function loadContacts() {
         <div class="column">${contact.email}</div>
         <div class="column">${contact.phone}</div>
         <div class="column">${contact.fonction} ${contact.entreprise}</div>
-        <div class="column">${contact.labels.join(', ')}</div>
+        <div class="column">${contact.labels}</div>
         <div class="column">
           <div class="buttons">
             <span class="material-symbols--star-outline"></span>
@@ -483,6 +483,8 @@ function setupRedirectButtonListener() {
 
 // Fonction pour vérifier l'état des champs importants
 function checkInputs() {
+  const submitButton = document.querySelector('#submitContactBtn');
+  const inputs = document.querySelectorAll('#contactEditorPage #contactContent .important');
   // Vérifier si au moins un champ est rempli
   const isAnyFilled = Array.from(inputs).some(input => input.value.trim() !== '');
   submitButton.disabled = !isAnyFilled; // Désactiver le bouton si aucun champ n'est rempli
@@ -495,7 +497,7 @@ function checkContactForm() {
   console.log(submitButton, inputs);
   
   // Vérifier l'état initial des champs
-  checkInputs();
+  checkInputs()
 
   // Ajouter un écouteur d'événements sur chaque champ important pour vérifier l'état lors de la saisie
   inputs.forEach(input => {
