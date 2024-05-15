@@ -3,6 +3,12 @@ let links = ['/pages/content.html', '/pages/history.html', '/pages/corbeille.htm
 let contacts = [
     {
         id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', labels:['Amis', 'Travail']
+    },
+    {
+        id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', labels:['Amis', 'Travail']
+    },
+    {
+        id:1, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', labels:['Amis', 'Travail']
     }
 ]
 

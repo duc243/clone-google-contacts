@@ -374,8 +374,8 @@ function deleteContact(contactId, element) {
 function deleteSelectedContacts() {
   const checkboxes = document.querySelectorAll('.tableBody .checkbox input[type="checkbox"]:checked');
   checkboxes.forEach(checkbox => {
-    const contactId = checkbox.textContent.trim();
-    deleteContact(contactId);
+    const contactId = checkbox.nextElementSibling.textContent.trim();
+    deleteContact(contactId, checkbox);
   });
 }
 

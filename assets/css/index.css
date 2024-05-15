@@ -422,13 +422,10 @@ a {
           font-size: 14px;
         }
       }
-      #contentContainer #content .table .tableHead {
-        border-bottom: 1px solid #cfcfcf;
-        color: #6e6e6e;
-        padding-bottom: 13px;
-        margin: 20px 0px; }
+      
         #contentContainer #content .table .tableHead.hide {
           display: none; }
+          #contentContainer #content .table .tableHead,
       #contentContainer #content .table .actionsBar {
         justify-content: space-between;
         border-bottom: 1px solid #ccc;
