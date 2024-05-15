@@ -177,7 +177,7 @@ async function loadLabels() {
       const labelDiv = document.createElement('div');
       labelDiv.classList.add('label');
       labelDiv.innerHTML = `<span class="material-symbols--label"></span>${label.title}
-                            <i class="fa fa-pencil" aria-hidden="true" onclick="editLabel('${label.id}')"></i>
+                            <i class="fa fa-pencil" aria-hidden="true" onclick="editLabel('${label.id}'), showCreateLabelDialog()"></i>
                             <i class="fa fa-trash" aria-hidden="true" onclick="deleteLabel('${label.id}', this)"></i>`;
       labelDiv.addEventListener('click', () => showContactsForLabel(label.title));
       labelContainer.appendChild(labelDiv);
@@ -341,7 +341,7 @@ function deleteLabel(labelId, element) {
     // Supprimer la ligne du contact du DOM
     element.closest('.label').remove();
   } else {
-    console.error('Label non trouvé:', labelId);
+    console.error('Contact non trouvé:', labelId);
   }
 }
 
@@ -369,15 +369,28 @@ function deleteSelectedContacts() {
   });
 }
 
+async function editLabel(labelId) {
+  // Trouver le contact dans le tableau 'contacts'
+  const labelToEdit = labels.find(label => label.id == labelId);
+  if (labelToEdit) {
+    
+    const form = document.querySelector('#labelEditorDialog');
+    console.log(form);
+    labelToEdit.title = form.querySelector('input[name="title"]').value;
+    
+    
+  } else {
+    console.error('Contact non trouvé:', contactId);
+  }
+}
+
 // Fonction pour éditer un contact
 async function editContact(contactId) {
   // Trouver le contact dans le tableau 'contacts'
   const contactToEdit = contacts.find(contact => contact.id == contactId);
   if (contactToEdit) {
-    await loadContent('/pages/contact-editor.html');
 
     const form = document.querySelector('#contactEditorContent');
-    console.log(form);
     contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
     contactToEdit.lastName = form.querySelector('input[name="lastName"]').value;
     contactToEdit.email = form.querySelector('input[name="email"]').value;
