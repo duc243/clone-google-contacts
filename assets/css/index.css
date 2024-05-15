@@ -307,7 +307,6 @@ a {
 
 #contentContainer {
   display: flex;
-  position: relative;
   flex-grow: 1; }
   #contentContainer #sidebar {
     min-width: 290px;
@@ -339,7 +338,6 @@ a {
         display: flex;
         gap: 20px;
         padding: 10px 40px;
-        margin: 0px 10px;
         border-radius: 20px;
         align-items: center;
         cursor: pointer;
@@ -406,7 +404,8 @@ a {
       #contentContainer #sidebar #links .dropdownSection.active .dropdownContent {
         display: block; }
   #contentContainer #content {
-    flex-grow: 0.9;
+    flex-grow: 1;
+    margin-right: 20px;
     padding: 0px 20px;
     background-color: #f4f4f4;
     height: 85vh;

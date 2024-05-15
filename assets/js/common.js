@@ -143,7 +143,7 @@ function showAndHideSidebar() {
       sidebar.style.minWidth = '0px';
       sidebar.style.display = 'none';
       // ou la largeur réduite souhaitée
-      content.style.marginLeft = '5%';
+      content.style.marginLeft = '20px';
       content.style.minWidth = '90%'; // ajuster en fonction de la nouvelle largeur de la sidebar
     } else {
       // Rétablir les tailles originales
@@ -375,7 +375,6 @@ async function editLabel(labelId) {
   if (labelToEdit) {
     
     const form = document.querySelector('#labelEditorDialog');
-    console.log(form);
     labelToEdit.title = form.querySelector('input[name="title"]').value;
     
     
@@ -389,6 +388,8 @@ async function editContact(contactId) {
   // Trouver le contact dans le tableau 'contacts'
   const contactToEdit = contacts.find(contact => contact.id == contactId);
   if (contactToEdit) {
+
+    await loadContent('/pages/contact-editor.html')
 
     const form = document.querySelector('#contactEditorContent');
     contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
