@@ -307,6 +307,7 @@ a {
 
 #contentContainer {
   display: flex;
+  position: relative;
   flex-grow: 1; }
   #contentContainer #sidebar {
     min-width: 290px;

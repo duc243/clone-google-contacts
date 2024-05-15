@@ -176,7 +176,9 @@ async function loadLabels() {
     labels.forEach(label => {
       const labelDiv = document.createElement('div');
       labelDiv.classList.add('label');
-      labelDiv.innerHTML = `<span class="material-symbols--label"></span>${label.title}`;
+      labelDiv.innerHTML = `<span class="material-symbols--label"></span>${label.title}
+                            <i class="fa fa-pencil" aria-hidden="true" onclick="editLabel('${label.id}')"></i>
+                            <i class="fa fa-trash" aria-hidden="true" onclick="deleteLabel('${label.id}', this)"></i>`;
       labelDiv.addEventListener('click', () => showContactsForLabel(label.title));
       labelContainer.appendChild(labelDiv);
     });
@@ -328,6 +330,19 @@ function initializeCheckboxes() {
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener('change', onCheckboxChange);
   });
+}
+
+function deleteLabel(labelId, element) {
+  // Trouver l'index du contact à supprimer
+  const labelIndex = labels.findIndex(label => label.id == labelId);
+  if (labelIndex !== -1) {
+    // Supprimer le contact du tableau 'contacts'
+    labels.splice(labelIndex, 1);
+    // Supprimer la ligne du contact du DOM
+    element.closest('.label').remove();
+  } else {
+    console.error('Label non trouvé:', labelId);
+  }
 }
 
 function deleteContact(contactId, element) {
