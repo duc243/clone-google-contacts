@@ -176,9 +176,9 @@ async function loadLabels() {
     labels.forEach(label => {
       const labelDiv = document.createElement('div');
       labelDiv.classList.add('label');
-      labelDiv.innerHTML = `<span class="material-symbols--label"></span>${label.title}
-                            <i class="fa fa-pencil" aria-hidden="true" onclick="editLabel('${label.id}'), showCreateLabelDialog()"></i>
-                            <i class="fa fa-trash" aria-hidden="true" onclick="deleteLabel('${label.id}', this)"></i>`;
+      labelDiv.innerHTML = `<div class='title'><span class="material-symbols--label"></span>${label.title}</div>
+        <div class='icon'><i class="fa fa-pencil" aria-hidden="true" onclick="editLabel('${label.id}'), showCreateLabelDialog()"></i>
+        <i class="fa fa-trash" aria-hidden="true" onclick="deleteLabel('${label.id}', this)"></i></div>`;
       labelDiv.addEventListener('click', () => showContactsForLabel(label.title));
       labelContainer.appendChild(labelDiv);
     });

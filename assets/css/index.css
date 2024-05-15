@@ -70,7 +70,7 @@ body {
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
   color: #3c4043;
-  background-color: #e9f1fa; }
+  background-color: #e8edf2; }
 
 a {
   text-decoration: none;
@@ -341,14 +341,28 @@ a {
         padding: 10px 40px;
         border-radius: 15px;
         align-items: center;
+        justify-content: space-between;
         cursor: pointer;
 
         &:hover{
           background-color: #e4e4e4;
+          .icon{
+            display: flex;
+          }
         }
-        span {
-          color: #6e6e6e;
+        div{
+          display: flex;
+          align-items: center;
+          gap: 20px;
+
+          span {
+            color: #6e6e6e;
+          }
+          &.icon{
+            display: none;
+          }
         }
+        
       }
       #contentContainer #sidebar #links .link {
         display: flex;
@@ -377,6 +391,7 @@ a {
           margin: 20px 40px;}
         #contentContainer #sidebar #links .labels .labelTitle {
           display: flex;
+          align-items: center;
           justify-content: space-between; }
           #contentContainer #sidebar #links .labels .labelTitle .addLabel {
             padding: 2px 4px;
@@ -459,10 +474,13 @@ a {
         #contentContainer #content .table .columnLogo {
           display: flex;
           position: absolute;
-          right: 10%;
+          right: 40px;
+          gap: 10px;
           
           span{
             cursor: pointer;
+            width: 20px;
+            height: 20px;
           }
         }
       #contentContainer #content .table .tableBody .tableRow {
@@ -498,7 +516,7 @@ a {
             }
             #contentContainer #content .table .tableBody .tableRow .column .buttons {
               position: absolute;
-              right: 10%;
+              right: 40px;
               gap: 10px;
               display: none;
 
