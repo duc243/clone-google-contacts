@@ -285,7 +285,7 @@ async function loadContacts() {
 function onCheckboxChange(e) {
   let selectedContactId = e.currentTarget.nextElementSibling.textContent.trim();
   let selectedContact = contacts.find(
-    (contact) => contact.id === selectedContactId
+    (contact) => contact.id == selectedContactId
   );
   if (e.currentTarget.checked) {
     e.currentTarget.closest(".tableRow").classList.add("selected");
@@ -305,7 +305,7 @@ function onCheckboxChange(e) {
   let selectedContacts = contacts.filter((contact) => contact.selected);
 
   showHideTableHead(selectedContacts);
-  updateNumberOfSelectedContacts(selectedContacts.length);
+  //updateNumberOfSelectedContacts(selectedContacts.length);
 }
 
 function updateNumberOfSelectedContacts(totalSelectedContacts) {
@@ -320,10 +320,20 @@ function initializeCheckboxes() {
   });
 }
 
-function updateNumberOfSelectedContacts(totalSelectedContacts) {
-  document.querySelector(".numberOfSelectedContacts").innerHTML =
-    totalSelectedContacts;
+function showHideTableHead(selectedContacts) {
+  if (selectedContacts.length > 0) {
+    document.querySelector(".tableHead").classList.add("hide");
+    document.querySelector(".actionsBar").classList.add("active");
+  } else {
+    document.querySelector(".tableHead").classList.remove("hide");
+    document.querySelector(".actionsBar").classList.remove("active");
+  }
 }
+
+// function updateNumberOfSelectedContacts(totalSelectedContacts) {
+//   document.querySelector(".numberOfSelectedContacts").innerHTML =
+//     totalSelectedContacts;
+// }
 
 function initializeCheckboxes() {
   const checkboxes = document.querySelectorAll('.tableBody .checkbox input[type="checkbox"]');
