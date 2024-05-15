@@ -209,7 +209,7 @@ async function showContactsForLabel(labelTitle) {
           </div>
           ${contact.firstName} ${contact.lastName}
         </div>
-        <div class="column">${contact.email}</div>
+        <div class="column email">${contact.email}</div>
         <div class="column">${contact.phone}</div>
         <div class="column">${contact.fonction} ${contact.entreprise}</div>
         <div class="column">${contact.labels.join(', ')}</div>
@@ -262,10 +262,10 @@ async function loadContacts() {
           </div>
           ${contact.firstName} ${contact.lastName}
         </div>
-        <div class="column">${contact.email}</div>
+        <div class="column email">${contact.email}</div>
         <div class="column">${contact.phone}</div>
         <div class="column">${contact.fonction} ${contact.entreprise}</div>
-        <div class="column">${contact.labels}</div>
+        <div class="column libelle">${contact.labels}</div>
         <div class="column">
           <div class="buttons">
             <span class="material-symbols--star-outline"></span>
