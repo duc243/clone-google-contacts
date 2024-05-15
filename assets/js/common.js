@@ -389,19 +389,38 @@ async function editContact(contactId) {
   const contactToEdit = contacts.find(contact => contact.id == contactId);
   if (contactToEdit) {
 
-    await loadContent('/pages/contact-editor.html')
+    await loadContent('/pages/edit-contact.html');
 
-    const form = document.querySelector('#contactEditorContent');
-    contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
-    contactToEdit.lastName = form.querySelector('input[name="lastName"]').value;
-    contactToEdit.email = form.querySelector('input[name="email"]').value;
-    contactToEdit.phone = form.querySelector('input[name="phone"]').value;
-    contactToEdit.fonction = form.querySelector('input[name="fonction"]').value;
-    contactToEdit.entreprise = form.querySelector('input[name="entreprise"]').value;
-    
+    const form = document.querySelector('#contactContent');
+    form.querySelector('input[name="firstName"]').value = contactToEdit.firstName;
+    form.querySelector('input[name="lastName"]').value = contactToEdit.lastName;
+    form.querySelector('input[name="email"]').value = contactToEdit.email;
+    form.querySelector('input[name="phone"]').value = contactToEdit.phone;
+    form.querySelector('input[name="fonction"]').value = contactToEdit.fonction;
+    form.querySelector('input[name="entreprise"]').value = contactToEdit.entreprise;
+
+    // Ajoutez des écouteurs d'événements pour les boutons de soumission et d'annulation
+    form.querySelector('#submitContactBtn').addEventListener('click', () => saveContact(contactId));
+    //form.querySelector('#cancelButton').addEventListener('click', () => loadContacts());    
   } else {
     console.error('Contact non trouvé:', contactId);
   }
+}
+
+// Cette fonction applique les modifications au contact
+async function saveContact(contactId) {
+  const form = document.querySelector('#contactContent');
+  const contactToEdit = contacts.find(contact => contact.id == contactId);
+  contactToEdit.firstName = form.querySelector('input[name="firstName"]').value;
+  contactToEdit.lastName = form.querySelector('input[name="lastName"]').value;
+  contactToEdit.email = form.querySelector('input[name="email"]').value;
+  contactToEdit.phone = form.querySelector('input[name="phone"]').value;
+  contactToEdit.fonction = form.querySelector('input[name="fonction"]').value;
+  contactToEdit.entreprise = form.querySelector('input[name="entreprise"]').value;
+  
+  // Rechargez la liste des contacts pour afficher les modifications
+  await loadContent('/pages/content.html');
+  loadContacts();
 }
 
 
@@ -452,18 +471,19 @@ function setupRedirectButtonListener() {
   }
 }
 
+// Fonction pour vérifier l'état des champs importants
+function checkInputs() {
+  // Vérifier si au moins un champ est rempli
+  const isAnyFilled = Array.from(inputs).some(input => input.value.trim() !== '');
+  submitButton.disabled = !isAnyFilled; // Désactiver le bouton si aucun champ n'est rempli
+  submitButton.style.backgroundColor = isAnyFilled ? '' : 'grey'; // Rendre le bouton gris si désactivé
+}
+
 function checkContactForm() {
   const submitButton = document.querySelector('#submitContactBtn');
   const inputs = document.querySelectorAll('#contactEditorPage #contactContent .important');
   console.log(submitButton, inputs);
-  // Fonction pour vérifier l'état des champs importants
-  function checkInputs() {
-    // Vérifier si au moins un champ est rempli
-    const isAnyFilled = Array.from(inputs).some(input => input.value.trim() !== '');
-    submitButton.disabled = !isAnyFilled; // Désactiver le bouton si aucun champ n'est rempli
-    submitButton.style.backgroundColor = isAnyFilled ? '' : 'grey'; // Rendre le bouton gris si désactivé
-  }
-
+  
   // Vérifier l'état initial des champs
   checkInputs();
 
@@ -471,6 +491,7 @@ function checkContactForm() {
   inputs.forEach(input => {
     input.addEventListener('input', checkInputs);
   });
+
   submitButton.addEventListener('click', addContactAndReloadContent);
 }
 
