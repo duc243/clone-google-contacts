@@ -134,24 +134,21 @@ async function loadHeader() {
 function showAndHideSidebar() {
   const burgerMenuButton = document.querySelector('.burger-menu');
   const sidebar = document.querySelector('#sidebar');
-  const content = document.querySelector('#content');
-  let isSidebarCollapsed = false;
+  let isSidebarVisible = false;
 
   burgerMenuButton.addEventListener('click', () => {
-    if (!isSidebarCollapsed) {
-      // Rétrécir la sidebar et augmenter la largeur du content
-      sidebar.style.minWidth = '0px';
-      sidebar.style.display = 'none';
-      // ou la largeur réduite souhaitée
-      content.style.minWidth = '90%'; // ajuster en fonction de la nouvelle largeur de la sidebar
+    if (window.innerWidth <= 1024) {
+      // Pour les écrans de moins de 1024px
+      if (!isSidebarVisible) {
+        sidebar.style.display = 'block'; // Afficher le sidebar fixe
+      } else {
+        sidebar.style.display = 'none'; // Cacher le sidebar fixe
+      }
     } else {
-      // Rétablir les tailles originales
-      sidebar.style.minWidth = ''; 
-      sidebar.style.display = '';
-      // supprimer le style inline pour revenir au CSS d'origine
-      content.style.minWidth = ''; // supprimer le style inline pour revenir au CSS d'origine
+      // Pour les écrans plus larges que 1024px
+      sidebar.style.display = isSidebarVisible ? 'none' : 'block';
     }
-    isSidebarCollapsed = !isSidebarCollapsed; // basculer l'état
+    isSidebarVisible = !isSidebarVisible;
   });
 }
 
