@@ -150,6 +150,14 @@ function showAndHideSidebar() {
     }
     isSidebarVisible = !isSidebarVisible;
   });
+
+  // Ajouter un écouteur d'événements sur le contenu pour fermer le sidebar
+  content.addEventListener('click', (event) => {
+    if (isSidebarVisible && window.innerWidth <= 1024) {
+      sidebar.style.display = 'none';
+      isSidebarVisible = false;
+    }
+  });
 }
 
 // Fonction pour charger la sidebar

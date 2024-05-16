@@ -2,15 +2,18 @@
 
       <form id="contactContent" action="javascript:void(0)">
         <div id="contactEditorHeader">
+          <div class="icons">
+            <span class="ic--sharp-arrow-back"></span>
+            <div class="actionSection">
+              <button id="submitContactBtn" type="submit" class="editButton primary-button button">Save</button>
+            </div>
+          </div>
+          
           <div class="avatar addIconButton">
             <i class="fa fa-user" aria-hidden="true"></i>
 
             <button>
-              <input
-                type="file"
-                id="avatarFilePickerInput"
-                onchange="onFileChange(this.files)"
-              />
+              <input type="file" id="avatarFilePickerInput" />
               <label for="avatarFilePickerInput">
                 <i class="fa fa-plus" aria-hidden="true"></i>
               </label>
@@ -33,9 +36,7 @@
           </div>
           
           
-          <div class="actionSection">
-            <button id="submitContactBtn" type="submit" class="editButton primary-button button">Save</button>
-          </div>
+          
         </div>
         <div
           id="contactEditorContent"
