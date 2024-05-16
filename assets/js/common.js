@@ -143,14 +143,12 @@ function showAndHideSidebar() {
       sidebar.style.minWidth = '0px';
       sidebar.style.display = 'none';
       // ou la largeur réduite souhaitée
-      content.style.marginLeft = '20px';
       content.style.minWidth = '90%'; // ajuster en fonction de la nouvelle largeur de la sidebar
     } else {
       // Rétablir les tailles originales
       sidebar.style.minWidth = ''; 
       sidebar.style.display = '';
       // supprimer le style inline pour revenir au CSS d'origine
-      content.style.marginLeft = '0%';
       content.style.minWidth = ''; // supprimer le style inline pour revenir au CSS d'origine
     }
     isSidebarCollapsed = !isSidebarCollapsed; // basculer l'état
@@ -263,8 +261,8 @@ async function loadContacts() {
           ${contact.firstName} ${contact.lastName}
         </div>
         <div class="column email">${contact.email}</div>
-        <div class="column">${contact.phone}</div>
-        <div class="column">${contact.fonction} ${contact.entreprise}</div>
+        <div class="column phone">${contact.phone}</div>
+        <div class="column company">${contact.fonction} ${contact.entreprise}</div>
         <div class="column libelle">${contact.labels}</div>
         <div class="column">
           <div class="buttons">

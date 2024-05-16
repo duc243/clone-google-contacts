@@ -421,7 +421,7 @@ a {
         display: block; }
   #contentContainer #content {
     flex-grow: 1;
-    margin-right: 20px;
+    margin: 0px 20px;
     padding: 0px 20px;
     background-color: #f4f4f4;
     height: 85vh;
@@ -440,6 +440,7 @@ a {
       
         #contentContainer #content .table .tableHead.hide {
           display: none; }
+          #contentContainer #content .table .tableHead,
       #contentContainer #content .table .actionsBar {
         justify-content: space-between;
         border-bottom: 1px solid #ccc;
@@ -652,6 +653,46 @@ a {
       color: #ccc; }
 
 
-@media screen  and (max-width: 1585px) {
-  
+@media (max-width: 1585px) {
+  .tableHead .libelle,
+  .tableRow .libelle {
+    display: none !important;
+  }
+  .tableHead .column, .tableRow .column{
+    min-width: 25% !important;
+  }
+
+  @media (max-width: 1335px) {
+    .tableHead .company,
+    .tableRow .company {
+      display: none !important;
+    }
+    .tableHead .column, .tableRow .column{
+      min-width: 33% !important;
+    }
+  }
+
+  @media (max-width: 1085px) {
+    .tableHead .phone,
+    .tableRow .phone {
+      display: none !important;
+    }
+    .tableHead .column, .tableRow .column{
+      min-width: 50% !important;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    #sidebar{
+      display: none;
+    }
+    .tableHead .phone,
+    .tableRow .phone {
+      display: flex !important;
+    }
+    .tableHead .column, .tableRow .column{
+      min-width: 33% !important;
+    }
+  }
 }
+
