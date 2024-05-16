@@ -15,7 +15,7 @@ let contacts = [
 let labels = [{ id: 2, title:'Famille'}, {id: 3, title:'Travail'}, {id:5, title:'Amis'}];
 
 
-let corbeille = [
+let corbeilles = [
     {
         id:4, firstName:'Beverly', lastName:'Malamba', email:'bevmalamba@gmail.com', phone:'+243820054610', fonction:'dev', entreprise:'kadea', labels:['Famille']
     }

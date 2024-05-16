@@ -285,6 +285,43 @@ async function loadContacts() {
   }
 }
 
+async function loadCorbeille() {
+  const tableBody = document.querySelector('.tableBody');
+  if (tableBody) {
+    tableBody.innerHTML = '';
+    corbeilles.forEach(corbeille => {
+      const contactRow = document.createElement('div');
+      contactRow.classList.add('tableRow');
+      
+      contactRow.innerHTML = `
+        <div class='column'>
+          <div class="avatar">A</div>
+          <div class="checkbox">
+              <input type="checkbox">
+              <span class="contactId">${corbeille.id}</span>
+          </div>
+          ${corbeille.firstName} ${corbeille.lastName}
+        </div>
+        <div class="column email">${corbeille.email}</div>
+        <div class="column phone">${corbeille.phone}</div>
+        <div class="column company">${corbeille.fonction} ${corbeille.entreprise}</div>
+        <div class="column libelle">${corbeille.labels}</div>
+        <div class="column">
+          <div class="buttons">
+            <span class="material-symbols--star-outline"></span>
+            <span class="mdi--pencil-outline" onclick="editContact('${corbeille.id}')"></span>
+            <span class="material-symbols--delete-outline" onclick="deleteContact('${corbeille.id}', this)"></span>
+          </div>
+        </div>
+      `;
+      
+      tableBody.appendChild(contactRow);
+    });
+  } else {
+    console.error('Le conteneur de contacts est introuvable dans le DOM.');
+  }
+}
+
 function onCheckboxChange(e) {
   let selectedContactId = e.currentTarget.nextElementSibling.textContent.trim();
   let selectedContact = contacts.find(
@@ -363,7 +400,7 @@ function deleteContact(contactId, element) {
   const contactIndex = contacts.findIndex(contact => contact.id == contactId);
   if (contactIndex !== -1) {
     // Ajouter le contact au tableau 'corbeille'
-    corbeille.push(contacts[contactIndex]);
+    corbeilles.push(contacts[contactIndex]);
     // Supprimer le contact du tableau 'contacts'
     contacts.splice(contactIndex, 1);
     // Supprimer la ligne du contact du DOM
