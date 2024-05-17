@@ -162,7 +162,7 @@ a {
       background-color: #e8e8e8;
       border-radius: 50%;
     }
-      
+      #sidebar #logo,
     #header #logoSection #logo {
       display: flex;
       align-items: center;
@@ -172,7 +172,7 @@ a {
   #header #searchSection {
     flex-grow: 1; }
     #header #searchSection #searchContainer {
-      width: 50%;
+      width: 5rem;
       height: 100%;
       position: relative; }
       #header #searchSection #searchContainer button {
@@ -318,6 +318,12 @@ a {
       width: 100%;
       border-top: 1px solid #ccc;
       margin: 5px 0px; }
+      
+      #contentContainer #sidebar #logo{
+          margin-left: 10px;
+          display: none;
+      }
+      
     #contentContainer #sidebar #createContactBtn {
       border-radius: 20px;
       background-color: #B8DCF9;
@@ -721,6 +727,7 @@ a {
       display: none;
       position: absolute;
       z-index: 1000;
+      min-width: 15em !important;
       top: 0px;
       height: 100%;
       padding-top: 20px;
@@ -728,7 +735,12 @@ a {
       box-shadow: 0px 0px 5px #9c9c9c;
       overflow-y: hidden;
     }
-    
+    #contentContainer #sidebar #logo{
+        display: flex;
+    }
+    #contentContainer #sidebar #createContactBtn{
+        display: none;
+    }
     .tableHead .column, .tableRow .column{
       min-width: 33% !important;
     }
@@ -752,6 +764,9 @@ a {
     }
     .tableHead .column, .tableRow .column{
       min-width: 80% !important;
+    }
+    #sidebar{
+        
     }
   }
 }
