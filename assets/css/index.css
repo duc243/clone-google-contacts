@@ -433,6 +433,7 @@ a {
       #contentContainer #content .table .tableTitle {
         font-size: 24px;
         color: #444746;
+        font-weight: normal;
 
         .updateNumberOfContacts{
           font-size: 14px;
@@ -727,17 +728,30 @@ a {
       box-shadow: 0px 0px 5px #9c9c9c;
       overflow-y: hidden;
     }
-    .tableHead .phone,
-    .tableRow .phone {
-      display: flex !important;
-    }
+    
     .tableHead .column, .tableRow .column{
       min-width: 33% !important;
     }
   }
+  
+  @media (max-width: 1024px) and (min-width: 750px) {
+        .tableHead .phone,
+        .tableRow .phone {
+          display: flex !important;
+        }
+    }
   @media (max-width: 840px) {
     #contactPage #contactHeader, #contactEditorPage #contactEditorHeader{
       justify-content: center;
+    }
+  }
+  @media (max-width: 450px) {
+    .tableHead .email,
+        .tableRow .email{
+      display: none !important;
+    }
+    .tableHead .column, .tableRow .column{
+      min-width: 80% !important;
     }
   }
 }
