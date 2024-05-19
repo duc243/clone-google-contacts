@@ -172,7 +172,7 @@ a {
   #header #searchSection {
     flex-grow: 1; }
     #header #searchSection #searchContainer {
-      width: 5rem;
+      width: 50em;
       height: 100%;
       position: relative; }
       #header #searchSection #searchContainer button {
@@ -268,6 +268,7 @@ a {
   align-items: center;
   display: none;
   position: fixed;
+  z-index: 100;
   top: 0px;
   left: 0px;
   width: 100vw;
@@ -283,7 +284,7 @@ a {
     min-width: 330px;
     min-height: 200px;
     background-color: #EEF3FB;
-    z-index: 1;
+    z-index: 10000;
     border-radius: 30px;
     padding: 2em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -323,19 +324,24 @@ a {
           margin-left: 10px;
           display: none;
       }
-      
-    #contentContainer #sidebar #createContactBtn {
-      border-radius: 20px;
+      #contentContainer #sidebar #createContactBtn, .addContact {
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
       background-color: #B8DCF9;
-      display: inline-flex;
+      cursor: pointer;
+      }
+    #contentContainer #sidebar #createContactBtn {
+      
+      
       height: 60px;
       width: 50%;
-      align-items: center;
+      
       gap: 10px;
-      cursor: pointer;
+      
       padding: 0 20px;
       margin-left: 10px; }
-      #contentContainer #sidebar #createContactBtn:hover{
+      #contentContainer #sidebar #createContactBtn:hover, .addContact{
 
         box-shadow: 0px 0px 5px #9c9c9c;
       }
@@ -692,6 +698,14 @@ a {
   }
 }
 
+.addContact{
+  padding: 10px 20px;
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  display: none;
+}
+
 
 @media (max-width: 1585px) {
   .tableHead .libelle,
@@ -723,10 +737,13 @@ a {
   }
 
   @media (max-width: 1024px) {
+    .addContact{
+      display: flex;
+    }
     #sidebar{
       display: none;
       position: absolute;
-      z-index: 1000;
+      z-index: 1;
       min-width: 15em !important;
       top: 0px;
       height: 100%;

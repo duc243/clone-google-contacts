@@ -290,10 +290,10 @@ async function loadCorbeille() {
   if (tableBody) {
     tableBody.innerHTML = '';
     corbeilles.forEach(corbeille => {
-      const contactRow = document.createElement('div');
-      contactRow.classList.add('tableRow');
+      const corbeilleRow = document.createElement('div');
+      corbeilleRow.classList.add('tableRow');
       
-      contactRow.innerHTML = `
+      corbeilleRow.innerHTML = `
         <div class='column'>
           <div class="avatar">A</div>
           <div class="checkbox">
@@ -308,14 +308,12 @@ async function loadCorbeille() {
         <div class="column libelle">${corbeille.labels}</div>
         <div class="column">
           <div class="buttons">
-            <span class="material-symbols--star-outline"></span>
-            <span class="mdi--pencil-outline" onclick="editContact('${corbeille.id}')"></span>
-            <span class="material-symbols--delete-outline" onclick="deleteContact('${corbeille.id}', this)"></span>
+            <span class="material-symbols--delete-outline" onclick="showDialog(document.querySelector('#labelEditorDialog'))"></span>
           </div>
         </div>
       `;
       
-      tableBody.appendChild(contactRow);
+      tableBody.appendChild(corbeilleRow);
     });
   } else {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');

@@ -33,3 +33,29 @@
   <p>Contacts</p>
   <div class="tableBody"></div>
 </div>
+
+
+<div id="labelEditorDialog" class="dialog">
+  <div class="dialogOverlay" onclick="hideCreateLabelDialog()"></div>
+  <form
+    action="javascript:void(0)"
+    onSubmit="onCreateLabelFormSubmit()"
+    class="dialogContentContainer"
+  >
+    <input type="hidden" name="id" />
+    <div class="dialogTitle">Créer un libellé</div>
+    <div class="inputColumn inputMoadal">
+      <input id="title" type="text" name="title" required/>
+      <label class="labelInput" for="title">Nouvelle libellé</label>
+    </div>
+    <div class="dialogFooter">
+      <button type="button" class="cancelBtn" onclick="hideCreateLabelDialog()">
+        Non, ne rien faire
+      </button>
+      <button type="submit">Enregistrer</button>
+    </div>
+  </form>
+</div>
+<div class="addConta createContactBtn">
+  <span class="clarity--plus-line"></span>
+</div>
