@@ -474,11 +474,14 @@ async function saveContact(contactId) {
 
 // Fonction pour configurer les écouteurs d'événements
 function setupNewContactButtonListener() {
-  const button = document.querySelector('#createContactBtn');
-  if (button) {
-    button.addEventListener('click', () => {
+  const buttons = document.querySelectorAll('#createContactBtn');
+  if (buttons) {
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
       loadContent('/pages/contact-editor.html');
-    });
+      });
+    })
+    
   } else {
     console.error('Le bouton pour créer un contact est introuvable dans le DOM.');
   }

@@ -1,20 +1,25 @@
 <div id="contactEditorPage">
 
-    <form id="contactContent" action="javascript:void(0)">
-      <div id="contactEditorHeader">
-        <div class="avatar addIconButton">
-          <i class="fa fa-user" aria-hidden="true"></i>
+      <form id="contactContent" action="javascript:void(0)">
+        <div id="contactEditorHeader">
+          <div class="icons">
+            <span class="ic--sharp-arrow-back" onclick="loadContent('/pages/content.html')"></span>
+            <div class="actionSection">
+              <button id="submitContactBtn" type="submit" class="editButton primary-button button">Save</button>
+            </div>
+          </div>
+          
+          <div class="avatar addIconButton">
+            <i class="fa fa-user" aria-hidden="true"></i>
 
-          <button>
-            <input
-              type="file"
-              id="avatarFilePickerInput"
-              onchange="onFileChange(this.files)"
-            />
-            <label for="avatarFilePickerInput">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </label>
-          </button>
+            <button>
+              <input type="file" id="avatarFilePickerInput" />
+              <label for="avatarFilePickerInput">
+                <span class="clarity--plus-line"></span>
+              </label>
+            </button>
+            
+          </div>
           <div class="nameSection">
             <div class="name"></div>
             <div class="labelsSection">
@@ -23,175 +28,167 @@
                 class="labelsPickerButton"
                 onclick="showDialog(document.querySelector('#labelPickerDialog'))"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 256 256">
-                        <path fill="currentColor" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8" />
-                    </svg>
-                Libellé
+                <span class="clarity--plus-line"></span>
+                <span>Libellé</span>
               </div>
             </div>
           </div>
+          
+          
         </div>
+        <div
+          id="contactEditorContent"
+          action="javascript:void(0)"
+          
+        >
+          <div class="column">
+            <div class="row">
+              <div class="iconColumn">
+                <span class="mdi--user"></span>
+              </div>
+              <div class="inputColumn">
+                <input class="important" name="firstName" type="text" placeholder="First Name" />
+              </div>
+              <div
+                onclick="this.closest('.row').querySelector('input').value = ''"
+                class="crossIconColumn"
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="iconColumn">
+                <span class="mdi--user"></span>
+              </div>
+              <div class="inputColumn">
+                <input class="important" name="lastName" type="text" placeholder="Last Name" />
+              </div>
+              <div
+                onclick="this.closest('.row').querySelector('input').value = ''"
+                class="crossIconColumn"
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          
+          <div class="column">
+            <div class="row">
+              <div class="iconColumn">
+                <span class="mdi--company"></span>
+              </div>
+              <div class="inputColumn">
+                <input name="entreprise" type="text" placeholder="Entreprise" />
+              </div>
+              <div
+                onclick="this.closest('.row').querySelector('input').value = ''"
+                class="crossIconColumn"
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="row">
+              <div class="iconColumn">
+                <span class="mdi--company"></span>
+              </div>
+              <div class="inputColumn">
+                <input name="fonction" type="text" placeholder="Fonction" />
+              </div>
+              <div
+                onclick="this.closest('.row').querySelector('input').value = ''"
+                class="crossIconColumn"
+              >
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="iconColumn">
+              <span class="ic--outline-email"></span>
+            </div>
+            <div class="inputColumn">
+              <input class="important" name="email" type="email" placeholder="Email" />
+            </div>
+            <div
+              onclick="this.closest('.row').querySelector('input').value = ''"
+              class="crossIconColumn"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+          
+          <div class="btnAdd">
+            <span class="clarity--plus-line"></span>
+            Ajouter une adresse email 
+          </div>
+
+          <div class="row">
+            <div class="iconColumn">
+              <span class="ic--baseline-phone"></span>
+            </div>
+            <div class="inputColumn">
+              <input class="important" name="phone" type="text" placeholder="Phone" />
+            </div>
+            <div
+              onclick="this.closest('.row').querySelector('input').value = ''"
+              class="crossIconColumn"
+            >
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+          </div>
+          
+          <div class="btnAdd">
+            <span class="clarity--plus-line"></span>
+            <span>Ajouter une adresse email </span>
+          </div>
         
-        
-        <div class="actionSection">
-          <button id="submitContactBtn" type="submit" class="editButton primary-button button">Save</button>
         </div>
-      </div>
+      </form>
+
+    <div class="dialog" id="labelPickerDialog">
       <div
-        id="contactEditorContent"
-        action="javascript:void(0)">
-        <div class="column">
-          <div class="row">
-            <div class="iconColumn">
-              <i class="fa fa-user" aria-hidden="true"></i>
+        class="dialogOverlay"
+        onclick="closeDialog(this.closest('.dialog'))"
+      ></div>
+      <dive class="dialogContentContainer">
+        <div class="dialogTitle">Pick a label</div>
+        <div class="dialogContent">
+          <div class="label" onclick="closeDialog(this.closest('.dialog'))">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
             </div>
-            <div class="inputColumn">
-              <input class="important" name="firstName" type="text" placeholder="First Name" />
-            </div>
-            <div
-              onclick="this.closest('.row').querySelector('input').value = ''"
-              class="crossIconColumn"
-            >
-              <i class="fa fa-times" aria-hidden="true"></i>
+            <div class="text">Label 1</div>
+            <div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
             </div>
           </div>
-          <div class="row">
-            <div class="iconColumn">
-              <i class="fa fa-user" aria-hidden="true"></i>
-            </div>
-            <div class="inputColumn">
-              <input class="important" name="lastName" type="text" placeholder="Last Name" />
-            </div>
-            <div
-              onclick="this.closest('.row').querySelector('input').value = ''"
-              class="crossIconColumn"
-            >
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
-        
-        <div class="column">
-          <div class="row">
-            <div class="iconColumn">
-              <i class="fa fa-building-o" aria-hidden="true"></i>
-            </div>
-            <div class="inputColumn">
-              <input name="entreprise" type="text" placeholder="Entreprise" />
-            </div>
-            <div
-              onclick="this.closest('.row').querySelector('input').value = ''"
-              class="crossIconColumn"
-            >
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="row">
-            <div class="iconColumn">
-              <i class="fa fa-building-o" aria-hidden="true"></i>
-            </div>
-            <div class="inputColumn">
-              <input name="fonction" type="text" placeholder="Fonction" />
-            </div>
-            <div
-              onclick="this.closest('.row').querySelector('input').value = ''"
-              class="crossIconColumn"
-            >
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="iconColumn">
-            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          <div class="label" onclick="closeDialog(this.closest('.dialog'))">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">Label 1</div>
+            <div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
           </div>
-          <div class="inputColumn">
-            <input class="important" name="email" type="email" placeholder="Email" />
-          </div>
-          <div
-            onclick="this.closest('.row').querySelector('input').value = ''"
-            class="crossIconColumn"
-          >
-            <i class="fa fa-times" aria-hidden="true"></i>
-          </div>
-        </div>
-        
-        <div class="row">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 256 256">
-                  <path fill="currentColor" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8" />
-              </svg>
-          Ajouter une adresse email 
-        </div>
 
-        <div class="row">
-          <div class="iconColumn">
-            <i class="fa fa-phone" aria-hidden="true"></i>
-          </div>
-          <div class="inputColumn">
-            <input class="important" name="phone" type="text" placeholder="Phone" />
-          </div>
-          <div
-            onclick="this.closest('.row').querySelector('input').value = ''"
-            class="crossIconColumn"
-          >
-            <i class="fa fa-times" aria-hidden="true"></i>
+          <div class="label" onclick="closeDialog(this.closest('.dialog'))">
+            <div class="iconSection">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+            </div>
+            <div class="text">Label 1</div>
+            <div class="selectionIcon primary-color">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
-        
-        <div class="row">
-          <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 256 256">
-                  <path fill="currentColor" d="M224 128a8 8 0 0 1-8 8h-80v80a8 8 0 0 1-16 0v-80H40a8 8 0 0 1 0-16h80V40a8 8 0 0 1 16 0v80h80a8 8 0 0 1 8 8" />
-              </svg>
-          Ajouter une adresse email 
+        <div class="dialogFooter">
+          <button>+ Create label</button>
+          <button>Apply</button>
         </div>
-      <a href="#">Plus</a>
-      </div>
-    </form>
-
-  <div class="dialog" id="labelPickerDialog">
-    <div
-      class="dialogOverlay"
-      onclick="closeDialog(this.closest('.dialog'))"
-    ></div>
-    <dive class="dialogContentContainer">
-      <div class="dialogTitle">Pick a label</div>
-      <div class="dialogContent">
-        <div class="label" onclick="closeDialog(this.closest('.dialog'))">
-          <div class="iconSection">
-            <i class="fa fa-tag" aria-hidden="true"></i>
-          </div>
-          <div class="text">Label 1</div>
-          <div class="selectionIcon primary-color">
-            <i class="fa fa-check" aria-hidden="true"></i>
-          </div>
-        </div>
-
-        <div class="label" onclick="closeDialog(this.closest('.dialog'))">
-          <div class="iconSection">
-            <i class="fa fa-tag" aria-hidden="true"></i>
-          </div>
-          <div class="text">Label 1</div>
-          <div class="selectionIcon primary-color">
-            <i class="fa fa-check" aria-hidden="true"></i>
-          </div>
-        </div>
-
-        <div class="label" onclick="closeDialog(this.closest('.dialog'))">
-          <div class="iconSection">
-            <i class="fa fa-tag" aria-hidden="true"></i>
-          </div>
-          <div class="text">Label 1</div>
-          <div class="selectionIcon primary-color">
-            <i class="fa fa-check" aria-hidden="true"></i>
-          </div>
-        </div>
-      </div>
-      <div class="dialogFooter">
-        <button>+ Create label</button>
-        <button>Apply</button>
-      </div>
-    </dive>
-  </div>
+      </dive>
+    </div>
 
 </div>
