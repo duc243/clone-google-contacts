@@ -172,21 +172,22 @@ a {
   #header #searchSection {
     flex-grow: 1; }
     #header #searchSection #searchContainer {
-      width: 50em;
+      width: 60%;
       height: 100%;
       position: relative; }
-      #header #searchSection #searchContainer button {
+      #header #searchSection #searchContainer button.searchButton, #header #searchSection #searchContainer button.clearSearchButton {
         position: absolute;
-        left: 0px;
         top: 20%;
         background-color: transparent;
         border: 0px;
         width: 40px;
         color: #585858;
         cursor: pointer; }
+        #header #searchSection #searchContainer button.searchButton {
+          left: 0px;
+        }
         #header #searchSection #searchContainer button.clearSearchButton {
           right: 0px;
-          top: 20%;
           display: none;}
         #header #searchSection #searchContainer button:hover div {
           background-color: #e8e8e8;
@@ -464,10 +465,13 @@ a {
         #contentContainer #content .table .actionsBar.active {
           display: flex; }
         #contentContainer #content .table .actionsBar .buttons {
+          height: 100%;
+          z-index: 100;
           display: flex;
           gap: 10px;
           padding-left: 5px; }
-          #contentContainer #content .table .actionsBar .buttons i {
+          #contentContainer #content .table .actionsBar .buttons span {
+            
             cursor: pointer;
             color: #1967d2; }
         #contentContainer #content .table .actionsBar .rightSection {
@@ -538,7 +542,7 @@ a {
                 height: 20px;
               }
             }
-            #contentContainer #content .table .tableBody .tableRow .column .buttons .fa:hover {
+            #contentContainer #content .table .tableBody .tableRow .column .buttons span:hover {
               background-color: #e6e6e6;
               border-radius: 50%;
             }
@@ -551,10 +555,9 @@ a {
 #contactEditorPage #contactEditorHeader {
   padding-top: 60px;
   padding-left: 40px;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  max-width: 50em;
+  max-width: 60%;
   gap: 20px;
   padding-bottom: 30px; }
   #contactPage #contactHeader .avatar,
@@ -645,7 +648,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 50em;
+  width: 60%;
   scroll-behavior: smooth;
   padding-bottom: 60px;
   padding-left: 50px;
@@ -770,8 +773,11 @@ a {
         }
     }
   @media (max-width: 840px) {
-    #contactPage #contactHeader, #contactEditorPage #contactEditorHeader{
-      justify-content: center;
+    /*#contactPage #contactHeader, #contactEditorPage #contactEditorHeader{
+      justify-content: start;
+    }*/
+    #contentContainer #content .table .tableBody .tableRow .column .buttons {
+      display: flex;
     }
   }
   @media (max-width: 450px) {

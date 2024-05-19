@@ -3,7 +3,7 @@
       <form id="contactContent" action="javascript:void(0)">
         <div id="contactEditorHeader">
           <div class="icons">
-            <span class="ic--sharp-arrow-back" onclick="loadContent('/pages/content.html')"></span>
+            <span class="ic--sharp-arrow-back" onclick="await loadContent('/pages/content.html'), await loadContacts()"></span>
             <div class="actionSection">
               <button id="submitContactBtn" type="submit" class="editButton primary-button button">Save</button>
             </div>

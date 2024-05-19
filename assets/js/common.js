@@ -234,17 +234,16 @@ async function loadContacts() {
 }
 
 // Fonction pour charger le contenu d'un contact spécifique
-/*async function loadContactContent(contact) {
+async function loadContactContent(contact) {
 
-  loadContent('/pages/contact.html');
+  await loadContent('/pages/contact.html');
 
   document.querySelector('#contactHeader .avatar').textContent = contact.firstName.charAt(0).toUpperCase()
-  document.querySelector('#contactHeader .name').textContent = contact.fullName;
+  document.querySelector('#contactHeader .name').textContent = contact.firstName
   document.querySelector('#contactContentContainer #email').textContent = contact.email;
   document.querySelector('#contactContentContainer #phoneNumber').textContent = contact.phone;
-  document.querySelector('#contactContentContainer #websiteUrl').textContent = contact.website;
-  // Assurez-vous que les sélecteurs correspondent à votre structure HTML
-}*/
+  
+}
 
 
 async function loadCorbeille() {
