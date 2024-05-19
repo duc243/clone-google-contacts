@@ -28,4 +28,30 @@
     <p>Corbeille</p>
     <div class="tableBody"></div>
   </div>
-  
+
+
+<div id="deleteConfimDialog" class="dialog">
+  <div class="dialogOverlay" onclick="hideCreateLabelDialog()"></div>
+  <form
+    action="javascript:void(0)"
+    onSubmit="onCreateLabelFormSubmit()"
+    class="dialogContentContainer"
+  >
+    <input type="hidden" name="id" />
+    <div class="dialogTitle">Supprimer le(s) contact(s)</div>
+    <div class="inputColumn inputMoadal">
+      Êtes-vous sûr de vouloir supprimer ce(s) contact(s) ?
+    </div>
+    <div class="dialogFooter">
+      <button type="button" class="cancel-button" onclick="hideCreateLabelDialog()">
+        Non
+      </button>
+      <button class="confirm-button" type="submit">Oui</button>
+    </div>
+  </form>
+</div>
+
+
+<div id="createContactBtn" class="addContact">
+  <span class="clarity--plus-line"></span>
+</div>  

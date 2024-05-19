@@ -1,109 +1,53 @@
-/**
- *
- * Header code starts
- */
-//let backendBaseUrl = `http://localhost:5500`;
-/*async function searchKeyUp(event) {
-  let keyword = event.currentTarget.value;
 
-  let response = await fetch(backendBaseUrl + "/contact/search/" + keyword);
-  let data = await response.json();
+function searchKeyUp(event) {
+  let keyword = event.currentTarget.value.toLowerCase();
+  let suggestions = '';
 
-  renderSuggestionsInSuggestionsBox(data);
+  // Filtrer les contacts en fonction de la saisie de l'utilisateur
+  const filteredContacts = contacts.filter(contact =>
+    contact.firstName.toLowerCase().includes(keyword) ||
+    contact.lastName.toLowerCase().includes(keyword) ||
+    contact.email.toLowerCase().includes(keyword) ||
+    contact.phone.toLowerCase().includes(keyword)
+  );
 
-  if (keyword.length > 0) {
+  // Construire les éléments HTML pour chaque suggestion
+  filteredContacts.forEach(contact => {
+    suggestions += `<div class="suggestion" onclick="loadContactContent(contact)">
+      <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
+      <div class="name">${contact.firstName} ${contact.lastName}</div>
+      <div>-</div>
+      <div class="email">${contact.email}</div>
+      <div>-</div>
+      <div class="phone">${contact.phone}</div>
+    </div>`;
+  });
+
+  // Afficher ou cacher la boîte de suggestions en fonction de la saisie
+  const suggestionsContainer = document.querySelector("#searchContainer .suggestions");
+  suggestionsContainer.innerHTML = suggestions;
+  if (keyword.length > 0 && filteredContacts.length > 0) {
     showSuggestionsBox();
   } else {
     hideSuggestionsBox();
   }
-}*/
+}
 
-/*function renderLabelsInSidebar(labels) {
-  let links = ``;
-
-  labels.forEach((label) => {
-    links += `<div class="link">
-            <div class="content">
-              <i class="fa fa-tag" aria-hidden="true"></i> ${label.title}
-            </div>
-            <div class="counter">500</div>
-
-            <div class="actions">
-              <div class="actionButton"  onClick="editLabel(${label.id}, '${label.title}')">
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-              </div>
-              <div class="actionButton" onClick="deleteLabel(${label.id})">
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>`;
-  });
-
-  document.querySelector(
-    `#sidebar .dropdownSection #linksContainer`
-  ).innerHTML = links;
-}*/
-
-/*async function getLabels() {
-  let response = await fetch(backendBaseUrl + "/label");
-  return await response.json();
-}*/
-
-/*async function loadLabelsInSidebar() {
-  let data = await getLabels();
-  renderLabelsInSidebar(data);
-}*/
-
-/*function renderSuggestionsInSuggestionsBox(data) {
-  let suggestions = ``;
-
-  data.forEach((contact) => {
-    suggestions += `<div class="suggestion" onClick="window.location='/pages/contact.html?id=${
-      contact.id
-    }'">
-          <div class="avatar">${contact.fullName.charAt(0).toUpperCase()}</div>
-          <div class="name">${contact.fullName}</div>
-          <div>-</div>
-          <div class="email">${contact.email}</div>
-        </div>`;
-  });
-
-  document.querySelector("#searchContainer .suggestions").innerHTML =
-    suggestions;
-}*/
-
-/*function clearSearchInput() {
+function clearSearchInput() {
   let input = document.querySelector("#searchContainer input");
-  input.value = "";
-
+  input.value = '';
   hideSuggestionsBox();
-}*/
+}
 
-/*function hideSuggestionsBox() {
+function hideSuggestionsBox() {
   let searchContainerEl = document.getElementById("searchContainer");
   searchContainerEl.classList.remove("suggestionsVisible");
-}*/
+}
 
-/*function showSuggestionsBox() {
+function showSuggestionsBox() {
   let searchContainerEl = document.getElementById("searchContainer");
   searchContainerEl.classList.add("suggestionsVisible");
-}*/
-
-/**
- * Header code ends
- */
-
-
-
-
- 
-
-
-
-
-
-
-
+}
 
 
 // Fonction initiale pour démarrer l'application
@@ -205,7 +149,7 @@ async function showContactsForLabel(labelTitle) {
       contactRow.classList.add('tableRow');
       contactRow.innerHTML = `
         <div class='column'>
-          <div class="avatar">A</div>
+          <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
           <div class="checkbox">
               <input type="checkbox">
               <span class="contactId">${contact.id}</span>
@@ -258,7 +202,7 @@ async function loadContacts() {
       
       contactRow.innerHTML = `
         <div class='column'>
-          <div class="avatar">A</div>
+          <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
           <div class="checkbox">
               <input type="checkbox">
               <span class="contactId">${contact.id}</span>
@@ -278,12 +222,30 @@ async function loadContacts() {
         </div>
       `;
       
+      contactRow.addEventListener('click', () => {
+        loadContactContent(contact);
+      });
+      
       tableBody.appendChild(contactRow);
     });
   } else {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');
   }
 }
+
+// Fonction pour charger le contenu d'un contact spécifique
+/*async function loadContactContent(contact) {
+
+  loadContent('/pages/contact.html');
+
+  document.querySelector('#contactHeader .avatar').textContent = contact.firstName.charAt(0).toUpperCase()
+  document.querySelector('#contactHeader .name').textContent = contact.fullName;
+  document.querySelector('#contactContentContainer #email').textContent = contact.email;
+  document.querySelector('#contactContentContainer #phoneNumber').textContent = contact.phone;
+  document.querySelector('#contactContentContainer #websiteUrl').textContent = contact.website;
+  // Assurez-vous que les sélecteurs correspondent à votre structure HTML
+}*/
+
 
 async function loadCorbeille() {
   const tableBody = document.querySelector('.tableBody');
@@ -295,7 +257,7 @@ async function loadCorbeille() {
       
       corbeilleRow.innerHTML = `
         <div class='column'>
-          <div class="avatar">A</div>
+          <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
           <div class="checkbox">
               <input type="checkbox">
               <span class="contactId">${corbeille.id}</span>
@@ -308,7 +270,7 @@ async function loadCorbeille() {
         <div class="column libelle">${corbeille.labels}</div>
         <div class="column">
           <div class="buttons">
-            <span class="material-symbols--delete-outline" onclick="showDialog(document.querySelector('#labelEditorDialog'))"></span>
+            <span class="material-symbols--delete-outline" onclick="deleteContact('${corbeille.id}', this)"></span>
           </div>
         </div>
       `;
@@ -316,7 +278,7 @@ async function loadCorbeille() {
       tableBody.appendChild(corbeilleRow);
     });
   } else {
-    console.error('Le conteneur de contacts est introuvable dans le DOM.');
+    console.error('Le conteneur de corbeilles est introuvable dans le DOM.');
   }
 }
 
@@ -903,7 +865,7 @@ async function onCreateLabelFormSubmit() {
 
 function showConfirmationModal(contactId, callback) {
   // Récupérer l'élément du modal
-  const modal = document.querySelector("#labelEditorDialog");
+  const modal = document.querySelector("#deleteConfimDialog");
 
   // Afficher le modal
   modal.classList.add("active");
