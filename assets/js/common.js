@@ -394,15 +394,17 @@ function deleteLabel(labelId, element) {
 }
 
 function deleteContact(contactId, element) {
-  // Trouver l'index du contact à supprimer
   const contactIndex = contacts.findIndex(contact => contact.id == contactId);
   if (contactIndex !== -1) {
-    // Ajouter le contact au tableau 'corbeille'
-    corbeilles.push(contacts[contactIndex]);
-    // Supprimer le contact du tableau 'contacts'
-    contacts.splice(contactIndex, 1);
-    // Supprimer la ligne du contact du DOM
-    element.closest('.tableRow').remove();
+    // Afficher le modal de confirmation
+    showConfirmationModal(contactId, () => {
+      // Ajouter le(s) contact(s) au tableau 'corbeille'
+      corbeilles.push(contacts[contactIndex]);
+      // Supprimer le(s) contact(s) du tableau 'contacts'
+      contacts.splice(contactIndex, 1);
+      // Supprimer la ligne du(s) contact(s) du DOM
+      element.closest('.tableRow').remove();
+    });
   } else {
     console.error('Contact non trouvé:', contactId);
   }
@@ -899,6 +901,29 @@ async function onCreateLabelFormSubmit() {
   loadLabels();
 }
 
+function showConfirmationModal(contactId, callback) {
+  // Récupérer l'élément du modal
+  const modal = document.querySelector("#labelEditorDialog");
+
+  // Afficher le modal
+  modal.classList.add("active");
+
+  // Gérer le clic sur le bouton "Oui"
+  const confirmButton = modal.querySelector(".confirm-button");
+  confirmButton.addEventListener("click", () => {
+    // Appeler la fonction de rappel
+    callback();
+    // Cacher le modal
+    modal.classList.remove("active");
+  });
+
+  // Gérer le clic sur le bouton "Non" ou la fermeture du modal
+  const cancelButton = modal.querySelector(".cancel-button");
+  cancelButton.addEventListener("click", () => {
+    // Cacher le modal
+    modal.classList.remove("active");
+  });
+}
 
 
 
