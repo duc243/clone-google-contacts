@@ -3,7 +3,7 @@
       <form id="contactContent" action="javascript:void(0)">
         <div id="contactEditorHeader">
           <div class="icons">
-            <span class="ic--sharp-arrow-back" onclick="await loadContent('/pages/content.html'), await loadContacts()"></span>
+            <span class="ic--sharp-arrow-back"></span>
             <div class="actionSection">
               <button id="submitContactBtn" type="submit" class="editButton primary-button button">Save</button>
             </div>
@@ -33,8 +33,6 @@
               </div>
             </div>
           </div>
-          
-          
         </div>
         <div
           id="contactEditorContent"
@@ -108,7 +106,7 @@
               <span class="ic--outline-email"></span>
             </div>
             <div class="inputColumn">
-              <input class="important" name="email" type="email" placeholder="Email" />
+              <input class="important" name="email" type="email"/>
             </div>
             <div
               onclick="this.closest('.row').querySelector('input').value = ''"
