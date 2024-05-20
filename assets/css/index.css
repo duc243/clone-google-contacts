@@ -471,7 +471,7 @@ a {
           align-items: center;
           gap: 10px;
           padding-left: 5px; }
-          #contentContainer #content .table .actionsBar .buttons span {
+          #contentContainer #content .table .actionsBar .buttons .bg-btn span {
             
             cursor: pointer;
             color: #1967d2; }
@@ -527,13 +527,14 @@ a {
         #contentContainer #content .table .tableBody .tableRow:hover, #contentContainer #content .table .tableBody .tableRow.selected {
           background-color: #EDF2FC; }
           #contentContainer #content .table .tableBody .tableRow:hover .checkbox, #contentContainer #content .table .tableBody .tableRow.selected .checkbox,
-          #contentContainer #content .table .tableBody .tableRow:hover .column .buttons {
+          #contentContainer #content .table .tableBody .tableRow:hover .columnLogo.buttons {
             display: flex; }
             .checkbox span {
               display: none;
             }
-            #contentContainer #content .table .tableBody .tableRow .column .buttons {
+            #contentContainer #content .table .tableBody .tableRow .columnLogo.buttons {
               position: absolute;
+              align-items: center;
               right: 40px;
               gap: 10px;
               display: none;
@@ -713,6 +714,9 @@ a {
 .bg-btn{
   padding: 5px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  margin-top: 1em;
   
   &:hover{
     background-color: #dad9d9;

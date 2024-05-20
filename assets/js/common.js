@@ -162,17 +162,15 @@ async function showContactsForLabel(labelTitle) {
       <div class="column phone">${contact.phone}</div>
       <div class="column company">${contact.fonction} ${contact.entreprise}</div>
       <div class="column libelle">${contact.labels}</div>
-      <div class="column">
-        <div class="buttons">
-          <div class="bg-btn">
-            <span class="material-symbols--star-outline"></span>
-          </div>
-          <div class="bg-btn">
-            <span class="mdi--pencil-outline"></span>
-          </div>
-          <div class="bg-btn">
-            <span class="material-symbols--delete-outline"></span>
-          </div>
+      <div class="buttons">
+        <div class="bg-btn">
+          <span class="material-symbols--star-outline"></span>
+        </div>
+        <div class="bg-btn">
+          <span class="mdi--pencil-outline"></span>
+        </div>
+        <div class="bg-btn">
+          <span class="material-symbols--delete-outline"></span>
         </div>
       </div>
     `;
@@ -244,19 +242,17 @@ async function loadContacts() {
         <div class="column phone">${contact.phone}</div>
         <div class="column company">${contact.fonction} ${contact.entreprise}</div>
         <div class="column libelle">${contact.labels}</div>
-        <div class="column">
-          <div class="buttons">
-            <div class="bg-btn">
-              <span class="material-symbols--star-outline"></span>
-            </div>
-            <div class="bg-btn">
-              <span class="mdi--pencil-outline"></span>
-            </div>
-            <div class="bg-btn">
-              <span class="material-symbols--delete-outline"></span>
-            </div>
-          </div>
+        <div class="columnLogo buttons">
+        <div class="bg-btn">
+          <span class="material-symbols--star-outline"></span>
         </div>
+        <div class="bg-btn">
+          <span class="mdi--pencil-outline"></span>
+        </div>
+        <div class="bg-btn">
+          <span class="material-symbols--delete-outline"></span>
+        </div>
+      </div>
       `;
 
       contactRow.querySelector('.bg-btn').addEventListener('click', (event) => {
