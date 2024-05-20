@@ -36,10 +36,9 @@
 
 
 <div id="deleteConfimDialog" class="dialog">
-  <div class="dialogOverlay" onclick="hideCreateLabelDialog()"></div>
+  <div class="dialogOverlay cancel-button"></div>
   <form
     action="javascript:void(0)"
-    onSubmit="onCreateLabelFormSubmit()"
     class="dialogContentContainer"
   >
     <input type="hidden" name="id" />
@@ -48,7 +47,7 @@
       Êtes-vous sûr de vouloir déplacer le(s) contact(s) dans le corbeille ?
     </div>
     <div class="dialogFooter">
-      <button type="button" class="cancel-button" onclick="hideCreateLabelDialog()">
+      <button type="button" class="cancel-button">
         Non
       </button>
       <button class="confirm-button" type="submit">Oui</button>

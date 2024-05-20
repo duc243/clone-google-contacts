@@ -28,7 +28,7 @@
     &:focus{
       border: 2px solid #1b73e8;
       
-      label {
+      & + label {
         bottom: 90%;
         font-size: 12px;
         background-color: #EEF3FB;
@@ -707,6 +707,19 @@ a {
   bottom: 40px;
   right: 40px;
   display: none;
+}
+
+.bg-btn{
+  padding: 5px;
+  border-radius: 50%;
+  
+  &:hover{
+    background-color: #dad9d9;
+
+    .tableRow{
+      background: none;
+    }
+  }
 }
 
 

@@ -148,28 +148,54 @@ async function showContactsForLabel(labelTitle) {
       const contactRow = document.createElement('div');
       contactRow.classList.add('tableRow');
       contactRow.innerHTML = `
-        <div class='column'>
-          <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
-          <div class="checkbox">
-              <input type="checkbox">
-              <span class="contactId">${contact.id}</span>
-          </div>
-          ${contact.firstName} ${contact.lastName}
-        </div>
-        <div class="column email">${contact.email}</div>
-        <div class="column">${contact.phone}</div>
-        <div class="column">${contact.fonction} ${contact.entreprise}</div>
-        <div class="column">${contact.labels.join(', ')}</div>
-        <div class="column">
-          <div class="buttons">
-            <i class="fa fa-star-o" aria-hidden="true"></i>
-            <i class="fa fa-pencil" aria-hidden="true" onclick="editContact('${contact.id}')"></i>
-            <i class="fa fa-trash" aria-hidden="true" onclick="deleteContact('${contact.id}', this)"></i>
+      <div class='column'>
+        <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
+        <div class="checkbox">
+          <div class="bg-btn">
+            <input type="checkbox">
+            <span class="contactId">${contact.id}</span>
           </div>
         </div>
-      `;
+        ${contact.firstName} ${contact.lastName}
+      </div>
+      <div class="column email">${contact.email}</div>
+      <div class="column phone">${contact.phone}</div>
+      <div class="column company">${contact.fonction} ${contact.entreprise}</div>
+      <div class="column libelle">${contact.labels}</div>
+      <div class="column">
+        <div class="buttons">
+          <div class="bg-btn">
+            <span class="material-symbols--star-outline"></span>
+          </div>
+          <div class="bg-btn">
+            <span class="mdi--pencil-outline"></span>
+          </div>
+          <div class="bg-btn">
+            <span class="material-symbols--delete-outline"></span>
+          </div>
+        </div>
+      </div>
+    `;
 
-      tableBody.appendChild(contactRow);
+    contactRow.querySelector('.bg-btn').addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+
+    contactRow.querySelector('.mdi--pencil-outline').addEventListener('click', (event) => {
+      event.stopPropagation();
+      editContact(contact.id);
+    });
+
+    contactRow.querySelector('.material-symbols--delete-outline').addEventListener('click', (event) => {
+      event.stopPropagation();
+      deleteContact(contact.id, event.currentTarget);
+    });
+    
+    contactRow.addEventListener('click', () => {
+      loadContactContent(contact);
+    });
+    
+    tableBody.appendChild(contactRow);
     });
   } else {
     console.error('Le conteneur de contacts est introuvable dans le DOM.');
@@ -204,8 +230,10 @@ async function loadContacts() {
         <div class='column'>
           <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
           <div class="checkbox">
+            <div class="bg-btn">
               <input type="checkbox">
               <span class="contactId">${contact.id}</span>
+            </div>
           </div>
           ${contact.firstName} ${contact.lastName}
         </div>
@@ -215,12 +243,32 @@ async function loadContacts() {
         <div class="column libelle">${contact.labels}</div>
         <div class="column">
           <div class="buttons">
-            <span class="material-symbols--star-outline"></span>
-            <span class="mdi--pencil-outline" onclick="editContact('${contact.id}')"></span>
-            <span class="material-symbols--delete-outline" onclick="deleteContact('${contact.id}', this)"></span>
+            <div class="bg-btn">
+              <span class="material-symbols--star-outline"></span>
+            </div>
+            <div class="bg-btn">
+              <span class="mdi--pencil-outline"></span>
+            </div>
+            <div class="bg-btn">
+              <span class="material-symbols--delete-outline"></span>
+            </div>
           </div>
         </div>
       `;
+
+      contactRow.querySelector('.bg-btn').addEventListener('click', (event) => {
+        event.stopPropagation();
+      });
+
+      contactRow.querySelector('.mdi--pencil-outline').addEventListener('click', (event) => {
+        event.stopPropagation();
+        editContact(contact.id);
+      });
+  
+      contactRow.querySelector('.material-symbols--delete-outline').addEventListener('click', (event) => {
+        event.stopPropagation();
+        deleteContact(contact.id, event.currentTarget);
+      });
       
       contactRow.addEventListener('click', () => {
         loadContactContent(contact);
@@ -256,7 +304,7 @@ async function loadCorbeille() {
       
       corbeilleRow.innerHTML = `
         <div class='column'>
-          <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
+          <div class="avatar">${corbeille.firstName.charAt(0).toUpperCase()}</div>
           <div class="checkbox">
               <input type="checkbox">
               <span class="contactId">${corbeille.id}</span>
@@ -345,10 +393,14 @@ function deleteLabel(labelId, element) {
   // Trouver l'index du contact à supprimer
   const labelIndex = labels.findIndex(label => label.id == labelId);
   if (labelIndex !== -1) {
+
+    showConfirmationModal(labelId, () => {
     // Supprimer le contact du tableau 'contacts'
     labels.splice(labelIndex, 1);
     // Supprimer la ligne du contact du DOM
     element.closest('.label').remove();
+
+    });
   } else {
     console.error('Contact non trouvé:', labelId);
   }
