@@ -78,6 +78,7 @@ async function loadHeader() {
 function showAndHideSidebar() {
   const burgerMenuButton = document.querySelector('.burger-menu');
   const sidebar = document.querySelector('#sidebar');
+  const sidebarOverlay = document.querySelector('.sidebarOverlay');
   let isSidebarVisible = false;
 
   burgerMenuButton.addEventListener('click', () => {
@@ -96,7 +97,7 @@ function showAndHideSidebar() {
   });
 
   // Ajouter un écouteur d'événements sur le contenu pour fermer le sidebar
-  content.addEventListener('click', (event) => {
+  sidebarOverlay.addEventListener('click', (event) => {
     if (isSidebarVisible && window.innerWidth <= 1024) {
       sidebar.style.display = 'none';
       isSidebarVisible = false;
@@ -148,21 +149,21 @@ async function showContactsForLabel(labelTitle) {
       const contactRow = document.createElement('div');
       contactRow.classList.add('tableRow');
       contactRow.innerHTML = `
-      <div class='column'>
-        <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
-        <div class="checkbox">
-          <div class="bg-btn">
-            <input type="checkbox">
-            <span class="contactId">${contact.id}</span>
+        <div class='column'>
+          <div class="avatar">${contact.firstName.charAt(0).toUpperCase()}</div>
+          <div class="checkbox">
+            <div class="bg-btn">
+              <input type="checkbox">
+              <span class="contactId">${contact.id}</span>
+            </div>
           </div>
+          ${contact.firstName} ${contact.lastName}
         </div>
-        ${contact.firstName} ${contact.lastName}
-      </div>
-      <div class="column email">${contact.email}</div>
-      <div class="column phone">${contact.phone}</div>
-      <div class="column company">${contact.fonction} ${contact.entreprise}</div>
-      <div class="column libelle">${contact.labels}</div>
-      <div class="buttons">
+        <div class="column email">${contact.email}</div>
+        <div class="column phone">${contact.phone}</div>
+        <div class="column company">${contact.fonction} ${contact.entreprise}</div>
+        <div class="column libelle">${contact.labels}</div>
+        <div class="columnLogo buttons">
         <div class="bg-btn">
           <span class="material-symbols--star-outline"></span>
         </div>
@@ -173,7 +174,7 @@ async function showContactsForLabel(labelTitle) {
           <span class="material-symbols--delete-outline"></span>
         </div>
       </div>
-    `;
+      `;
 
     contactRow.querySelector('.bg-btn').addEventListener('click', (event) => {
       event.stopPropagation();
@@ -305,8 +306,10 @@ async function loadCorbeille() {
         <div class='column'>
           <div class="avatar">${corbeille.firstName.charAt(0).toUpperCase()}</div>
           <div class="checkbox">
+            <div class="bg-btn">
               <input type="checkbox">
               <span class="contactId">${corbeille.id}</span>
+            </div>
           </div>
           ${corbeille.firstName} ${corbeille.lastName}
         </div>
@@ -314,9 +317,9 @@ async function loadCorbeille() {
         <div class="column phone">${corbeille.phone}</div>
         <div class="column company">${corbeille.fonction} ${corbeille.entreprise}</div>
         <div class="column libelle">${corbeille.labels}</div>
-        <div class="column">
-          <div class="buttons">
-            <span class="material-symbols--delete-outline" onclick="deleteContact('${corbeille.id}', this)"></span>
+        <div class="columnLogo buttons">
+          <div class="bg-btn">
+            <span class="material-symbols--delete-outline"></span>
           </div>
         </div>
       `;
