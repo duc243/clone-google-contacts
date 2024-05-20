@@ -209,8 +209,11 @@ async function loadContent(url) {
     const htmlText = await response.text();
     const contentPlaceholder = document.querySelector('#content');
     contentPlaceholder.innerHTML = htmlText;
+    updateNumberOfContacts(contacts.length)
     if (url === '/pages/contact-editor.html') {
       checkContactForm();
+    } else if (url === '/pages/corbeille.html') {
+      updateNumberOfContacts(corbeilles.length)
     }
   } catch (error) {
     console.error('Erreur lors du chargement du contenu:', error);
@@ -329,7 +332,7 @@ async function loadCorbeille() {
   }
 }
 
-function onCheckboxChange(e) {
+async function onCheckboxChange(e) {
   let selectedContactId = e.currentTarget.nextElementSibling.textContent.trim();
   let selectedContact = contacts.find(
     (contact) => contact.id == selectedContactId
@@ -352,11 +355,10 @@ function onCheckboxChange(e) {
   let selectedContacts = contacts.filter((contact) => contact.selected);
 
   showHideTableHead(selectedContacts);
-  //updateNumberOfSelectedContacts(selectedContacts.length);
 }
 
 function updateNumberOfSelectedContacts(totalSelectedContacts) {
-  document.querySelector(".numberOfSelectedContacts").innerHTML =
+  document.querySelector(".updateSeletedNumberOfContacts").innerHTML =
     totalSelectedContacts;
 }
 
@@ -377,10 +379,10 @@ function showHideTableHead(selectedContacts) {
   }
 }
 
-// function updateNumberOfSelectedContacts(totalSelectedContacts) {
-//   document.querySelector(".numberOfSelectedContacts").innerHTML =
-//     totalSelectedContacts;
-// }
+function updateNumberOfContacts(totalContacts) {
+  document.querySelector(".numberOfContacts").innerHTML =
+    totalContacts;
+}
 
 function initializeCheckboxes() {
   const checkboxes = document.querySelectorAll('.tableBody .checkbox input[type="checkbox"]');

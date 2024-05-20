@@ -468,6 +468,7 @@ a {
           height: 100%;
           z-index: 100;
           display: flex;
+          align-items: center;
           gap: 10px;
           padding-left: 5px; }
           #contentContainer #content .table .actionsBar .buttons span {
