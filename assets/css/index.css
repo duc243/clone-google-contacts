@@ -887,7 +887,6 @@ dialog .dialogContentContainer .dialogFooter button:hover {
   border-radius: 50%;
   display: flex;
   align-items: center;
-  margin-top: 1em;
 
   &:hover {
     background-color: #dad9d9;

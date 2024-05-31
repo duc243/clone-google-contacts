@@ -684,3 +684,108 @@ function showConfirmationModal(contactId, callback) {
     modal.classList.remove("active");
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // Fonction pour créer un élément HTML avec une classe
+// function createHtmlElement(tag, className, textContent = "") {
+//   const element = document.createElement(tag);
+//   element.classList.add(className);
+//   element.textContent = textContent;
+//   return element;
+// }
+
+// // Fonction pour créer l'avatar (première lettre du prénom en majuscule)
+// function createAvatar(firstName) {
+//   const avatarDiv = createHtmlElement("div", "avatar", firstName.charAt(0).toUpperCase());
+//   return avatarDiv;
+// }
+
+// // Fonction pour créer la case à cocher
+// function createCheckbox(contactId) {
+//   const checkboxDiv = createHtmlElement("div", "checkbox");
+//   const bgBtnDiv = createHtmlElement("div", "bg-btn");
+//   const inputCheckbox = document.createElement("input");
+//   inputCheckbox.type = "checkbox";
+//   const contactIdSpan = createHtmlElement("span", "contactId", contactId);
+//   bgBtnDiv.appendChild(inputCheckbox);
+//   bgBtnDiv.appendChild(contactIdSpan);
+//   checkboxDiv.appendChild(bgBtnDiv);
+//   return checkboxDiv;
+// }
+
+// // Fonction pour créer une colonne de texte
+// function createColumn(className, text) {
+//   const columnDiv = createHtmlElement("div", className, text);
+//   return columnDiv;
+// }
+
+// // Fonction pour créer les icônes d'action
+// function createActionIcons() {
+//   const actionIcons = ["star-outline", "pencil-outline", "delete-outline"];
+//   const logoDiv = createHtmlElement("div", "columnLogo", "buttons");
+//   actionIcons.forEach((icon) => {
+//     const iconSpan = createHtmlElement("span", `material-symbols--${icon}`);
+//     const iconContainer = createHtmlElement("div", "bg-btn");
+//     iconContainer.appendChild(iconSpan);
+//     logoDiv.appendChild(iconContainer);
+//   });
+//   return logoDiv;
+// }
+
+// // Fonction pour charger les contacts ou la corbeille
+// function loadContactsOrCorbeille(data) {
+//   const tableBody = document.querySelector(".tableBody");
+//   if (tableBody) {
+//     tableBody.innerHTML = "";
+//     data.forEach((item) => {
+//       const contactRow = document.createElement("div");
+//       contactRow.classList.add("tableRow");
+
+//       contactRow.appendChild(createAvatar(item.firstName));
+//       contactRow.appendChild(createCheckbox(item.id));
+//       contactRow.appendChild(createColumn("column", `${item.firstName} ${item.lastName}`));
+//       contactRow.appendChild(createColumn("email", item.email));
+//       contactRow.appendChild(createColumn("phone", item.phone));
+//       contactRow.appendChild(createColumn("company", `${item.fonction} ${item.entreprise}`));
+//       contactRow.appendChild(createColumn("libelle", item.labels));
+//       contactRow.appendChild(createActionIcons());
+
+//       // Gérer les événements pour les icônes d'action
+//       contactRow.querySelectorAll(".bg-btn").forEach((btn) => {
+//         btn.addEventListener("click", (event) => {
+//           event.stopPropagation();
+//         });
+//       });
+//       contactRow.querySelector(".mdi--pencil-outline").addEventListener("click", (event) => {
+//         event.stopPropagation();
+//         editContact(item.id);
+//       });
+//       contactRow.querySelector(".material-symbols--delete-outline").addEventListener("click", (event) => {
+//         event.stopPropagation();
+//         deleteContact(item.id, event.currentTarget);
+//       });
+
+//       // Afficher le contenu du contact lors du clic sur la ligne
+//       contactRow.addEventListener("click", () => loadContactContent(item));
+
+//       tableBody.appendChild(contactRow);
+//     });
+//   } else {
+//     console.error("Le conteneur de contacts est introuvable dans le DOM.");
+//   }
+// }
+
+// // Utilisation de la fonction pour charger les contacts
+// loadContactsOrCorbeille(contacts);
