@@ -3,35 +3,36 @@
   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .primary-color {
-  color: #1b73e8; }
-
-.inputMoadal{
-  position: relative;
-  background-color: #EEF3FB;
+  color: #1b73e8;
 }
-  
-.inputColumn{
+
+.inputMoadal {
+  position: relative;
+  background-color: #eef3fb;
+}
+
+.inputColumn {
   display: flex;
   width: 100%;
   height: 3rem;
   margin: 0px auto;
   align-items: center;
-  
-  input{
+
+  input {
     width: 100%;
     height: 100%;
     border: 2px solid #585858;
     outline: none;
     border-radius: 5px;
-    background-color: #F4F4F4;
-    
-    &:focus{
+    background-color: #f4f4f4;
+
+    &:focus {
       border: 2px solid #1b73e8;
-      
+
       & + label {
         bottom: 90%;
         font-size: 12px;
-        background-color: #EEF3FB;
+        background-color: #eef3fb;
         color: #1b73e8;
       }
     }
@@ -46,7 +47,8 @@
 
 #labelPickerDialog .dialogContent {
   padding-left: 0px;
-  padding-right: 0px; }
+  padding-right: 0px;
+}
 
 #labelPickerDialog .label {
   display: flex;
@@ -54,16 +56,18 @@
   width: 100%;
   padding: 10px 15px;
   box-sizing: border-box;
-  cursor: pointer; }
-  #labelPickerDialog .label .iconSection {
-    color: #9e9e9e; }
-  #labelPickerDialog .label .text {
-    font-size: 14px;
-    flex-grow: 1; }
-  #labelPickerDialog .label:hover {
-    background-color: rgba(0, 0, 0, 0.05); }
-
-
+  cursor: pointer;
+}
+#labelPickerDialog .label .iconSection {
+  color: #9e9e9e;
+}
+#labelPickerDialog .label .text {
+  font-size: 14px;
+  flex-grow: 1;
+}
+#labelPickerDialog .label:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
 
 body {
   margin: 0px;
@@ -74,13 +78,16 @@ body {
   flex-direction: column;
   font-family: Arial, Helvetica, sans-serif;
   color: #3c4043;
-  background-color: #e8edf2; }
+  background-color: #e8edf2;
+}
 
 a {
   text-decoration: none;
-  color: #1b73e8; }
-  a:hover {
-    color: #155ebd; }
+  color: #1b73e8;
+}
+a:hover {
+  color: #155ebd;
+}
 
 .button {
   padding: 8px 22px;
@@ -91,17 +98,21 @@ a {
   color: #333;
   cursor: pointer;
   font-size: 12px;
-  background-color: transparent; }
-  .button:hover {
-    background-color: rgba(0, 0, 0, 0.01); }
+  background-color: transparent;
+}
+.button:hover {
+  background-color: rgba(0, 0, 0, 0.01);
+}
 
 .primary-button {
   background-color: #1b73e8;
   color: #fff;
-  border-color: #1b73e8; }
-  .primary-button:hover {
-    background-color: transparent;
-    color: #1b73e8; }
+  border-color: #1b73e8;
+}
+.primary-button:hover {
+  background-color: transparent;
+  color: #1b73e8;
+}
 
 .avatar {
   width: 30px;
@@ -115,33 +126,40 @@ a {
   display: grid;
   /*position: relative;*/
   background-size: cover;
-  background-position: center; }
-  .avatar.addIconButton {
-    background-color: #e0e0e0; }
-    .avatar.addIconButton .fa.fa-user {
-      font-size: 120px; }
-    .avatar.addIconButton.imagePicked .fa.fa-user {
-      display: none; }
-    .avatar.addIconButton button {
-      position: absolute;
-      margin-top: 90px;
-      margin-left: 120px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 5px solid #F4F4F4;
-      background-color: rgba(0, 0, 255, 0.9);
-      color: #fff;
-      font-size: 12px; }
-      .avatar.addIconButton button input {
-        display: none; }
-      .avatar.addIconButton button label {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        cursor: pointer;
-        justify-content: center; }
+  background-position: center;
+}
+.avatar.addIconButton {
+  background-color: #e0e0e0;
+}
+.avatar.addIconButton .fa.fa-user {
+  font-size: 120px;
+}
+.avatar.addIconButton.imagePicked .fa.fa-user {
+  display: none;
+}
+.avatar.addIconButton button {
+  position: absolute;
+  margin-top: 90px;
+  margin-left: 120px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 5px solid #f4f4f4;
+  background-color: rgba(0, 0, 255, 0.9);
+  color: #fff;
+  font-size: 12px;
+}
+.avatar.addIconButton button input {
+  display: none;
+}
+.avatar.addIconButton button label {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+}
 
 #header {
   height: 50px;
@@ -151,118 +169,144 @@ a {
   padding-right: 20px;
   color: #616161;
   margin-bottom: 30px;
-  box-sizing: border-box; }
-  #header #logoSection {
-    flex-basis: 290px;
-    display: flex;
-    align-items: center;
-    gap: 15px; }
-    #header #logoSection .burger-menu:hover {
-      cursor: pointer;
-      background-color: #e8e8e8;
-      border-radius: 50%;
-    }
-      #sidebar #logo,
-    #header #logoSection #logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 22px;
-      cursor: pointer; }
-  #header #searchSection {
-    flex-grow: 1; }
-    #header #searchSection #searchContainer {
-      width: 50em;
-      height: 100%;
-      position: relative; }
-      #header #searchSection #searchContainer button.searchButton, #header #searchSection #searchContainer button.clearSearchButton {
-        position: absolute;
-        top: 20%;
-        background-color: transparent;
-        border: 0px;
-        width: 40px;
-        color: #585858;
-        cursor: pointer; }
-        #header #searchSection #searchContainer button.searchButton {
-          left: 0px;
-        }
-        #header #searchSection #searchContainer button.clearSearchButton {
-          right: 0px;
-          display: none;}
-        #header #searchSection #searchContainer button:hover div {
-          background-color: #e8e8e8;
-          border-radius: 50%; }
-      #header #searchSection #searchContainer input {
-        width: 100%;
-        height: 100%;
-        border: 0px;
-        background: #e5e8e9;
-        padding-left: 40px;
-        color: #5a5a5a;
-        outline: none;
-        box-sizing: border-box;
-        border-top-right-radius: 10px;
-      border-top-left-radius: 10px; }
-        #header #searchSection #searchContainer input:focus {
-          background: #fff;
-          box-shadow: 0px 0px 5px #ccc; }
-      #header #searchSection #searchContainer .suggestions {
-        border: 1px solid #ccc;
-        width: 100%;
-        min-height: 90px;
-        box-shadow: 2px 2px 5px #ccc;
-        box-sizing: border-box;
-        position: absolute;
-        display: none;
-        z-index: 1;
-        background-color: #fff; }
-        #header #searchSection #searchContainer .suggestions .suggestion {
-          display: flex;
-          gap: 10px;
-          padding: 0 13px;
-          font-size: 12px;
-          height: 30px;
-          align-items: center;
-          color: #333;
-          cursor: pointer; }
-          #header #searchSection #searchContainer .suggestions .suggestion .email {
-            color: #999999;
-            font-size: 11px; }
-          #header #searchSection #searchContainer .suggestions .suggestion:hover {
-            background-color: #f0f0f0; }
-          #header #searchSection #searchContainer .suggestions .suggestion .avatar {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: darkorange;
-            border-radius: 50%;
-            color: #fff; }
-      #header #searchSection #searchContainer.suggestionsVisible input {
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px; }
-      #header #searchSection #searchContainer.suggestionsVisible button.clearSearchButton {
-        display: block; }
-      #header #searchSection #searchContainer.suggestionsVisible .suggestions {
-        display: block; }
-  #header #actionSection {
-    flex-basis: 100px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 20px; }
-    #header #actionSection img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 4px solid transparent;
-      cursor: pointer; }
-      #header #actionSection img:hover {
-        border-color: #f0f0f0; }
-    #header #actionSection #logoutButton {
-      cursor: pointer;
-      font-size: 23px; }
+  box-sizing: border-box;
+}
+#header #logoSection {
+  flex-basis: 290px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#header #logoSection .burger-menu:hover {
+  cursor: pointer;
+  background-color: #e8e8e8;
+  border-radius: 50%;
+}
+#sidebar #logo,
+#header #logoSection #logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+#header #searchSection {
+  flex-grow: 1;
+}
+#header #searchSection #searchContainer {
+  width: 50em;
+  height: 100%;
+  position: relative;
+}
+#header #searchSection #searchContainer button.searchButton,
+#header #searchSection #searchContainer button.clearSearchButton {
+  position: absolute;
+  top: 20%;
+  background-color: transparent;
+  border: 0px;
+  width: 40px;
+  color: #585858;
+  cursor: pointer;
+}
+#header #searchSection #searchContainer button.searchButton {
+  left: 0px;
+}
+#header #searchSection #searchContainer button.clearSearchButton {
+  right: 0px;
+  display: none;
+}
+#header #searchSection #searchContainer button:hover div {
+  background-color: #e8e8e8;
+  border-radius: 50%;
+}
+#header #searchSection #searchContainer input {
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  background: #e5e8e9;
+  padding-left: 40px;
+  color: #5a5a5a;
+  outline: none;
+  box-sizing: border-box;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+#header #searchSection #searchContainer input:focus {
+  background: #fff;
+  box-shadow: 0px 0px 5px #ccc;
+}
+#header #searchSection #searchContainer .suggestions {
+  border: 1px solid #ccc;
+  width: 100%;
+  min-height: 90px;
+  box-shadow: 2px 2px 5px #ccc;
+  box-sizing: border-box;
+  position: absolute;
+  display: none;
+  z-index: 1;
+  background-color: #fff;
+}
+#header #searchSection #searchContainer .suggestions .suggestion {
+  display: flex;
+  gap: 10px;
+  padding: 0 13px;
+  font-size: 12px;
+  height: 30px;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+}
+#header #searchSection #searchContainer .suggestions .suggestion .email {
+  color: #999999;
+  font-size: 11px;
+}
+#header #searchSection #searchContainer .suggestions .suggestion:hover {
+  background-color: #f0f0f0;
+}
+#header #searchSection #searchContainer .suggestions .suggestion .avatar {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: darkorange;
+  border-radius: 50%;
+  color: #fff;
+}
+#header #searchSection #searchContainer.suggestionsVisible input {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+#header
+  #searchSection
+  #searchContainer.suggestionsVisible
+  button.clearSearchButton {
+  display: block;
+}
+#header #searchSection #searchContainer.suggestionsVisible .suggestions {
+  display: block;
+}
+#header #actionSection {
+  flex-basis: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+#header #actionSection img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  cursor: pointer;
+}
+#header #actionSection img:hover {
+  border-color: #f0f0f0;
+}
+#header #actionSection #logoutButton {
+  cursor: pointer;
+  font-size: 23px;
+}
 
 .dialog {
   justify-content: center;
@@ -273,285 +317,372 @@ a {
   top: 0px;
   left: 0px;
   width: 100vw;
-  height: 100vh; }
-  .dialog.active {
-    display: flex; }
-  .dialog .dialogOverlay {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.4); }
-  .dialog .dialogContentContainer {
-    min-width: 330px;
-    min-height: 200px;
-    background-color: #EEF3FB;
-    z-index: 10000;
-    border-radius: 30px;
-    padding: 2em;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column; }
-    .dialog .dialogContentContainer .dialogTitle {
-      font-size: 24px; }
-    
-    .dialog .dialogContentContainer .dialogFooter {
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      gap: 10px; }
-      .dialog .dialogContentContainer .dialogFooter button {
-        background-color: transparent;
-        color: #1b73e8;
-        border: 0px;
-        cursor: pointer; }
-        dialog .dialogContentContainer .dialogFooter button:hover {
-          background-color: #040b15; }
+  height: 100vh;
+}
+.dialog.active {
+  display: flex;
+}
+.dialog .dialogOverlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.dialog .dialogContentContainer {
+  min-width: 330px;
+  min-height: 200px;
+  background-color: #eef3fb;
+  z-index: 10000;
+  border-radius: 30px;
+  padding: 2em;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.dialog .dialogContentContainer .dialogTitle {
+  font-size: 24px;
+}
+
+.dialog .dialogContentContainer .dialogFooter {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+.dialog .dialogContentContainer .dialogFooter button {
+  background-color: transparent;
+  color: #1b73e8;
+  border: 0px;
+  cursor: pointer;
+}
+dialog .dialogContentContainer .dialogFooter button:hover {
+  background-color: #040b15;
+}
 
 #contentContainer {
   display: flex;
-  flex-grow: 1; }
-  #contentContainer #sidebar {
-    min-width: 290px;
+  flex-grow: 1;
+}
+#contentContainer #sidebar {
+  min-width: 290px;
+  font-size: 14px;
+  color: black;
+  height: 100%;
+}
+#contentContainer #sidebar .divider {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  margin: 5px 0px;
+}
+
+#contentContainer #sidebar #logo {
+  margin-left: 10px;
+  display: none;
+}
+#contentContainer #sidebar #createContactBtn,
+.addContact {
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  background-color: #b8dcf9;
+  cursor: pointer;
+}
+#contentContainer #sidebar #createContactBtn {
+  height: 60px;
+  width: 50%;
+
+  gap: 10px;
+
+  padding: 0 20px;
+  margin-left: 10px;
+}
+#contentContainer #sidebar #createContactBtn:hover,
+.addContact {
+  box-shadow: 0px 0px 5px #9c9c9c;
+}
+#contentContainer #sidebar #links {
+  margin-top: 20px;
+}
+#contentContainer #sidebar #links .label {
+  display: flex;
+  margin: 0px 10px;
+  gap: 20px;
+  padding: 10px 40px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e4e4e4;
+    .icon {
+      display: flex;
+    }
+  }
+  div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    span {
+      color: #6e6e6e;
+    }
+    &.icon {
+      display: none;
+    }
+  }
+}
+#contentContainer #sidebar #links .link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px;
+  padding: 15px 25px;
+  border-radius: 20px;
+  justify-content: space-between;
+}
+#contentContainer #sidebar #links .link .content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#contentContainer #sidebar #links .link .content .fa-chevron-up {
+  display: none;
+}
+#contentContainer #sidebar #links .link span {
+  color: #6e6e6e;
+}
+#contentContainer #sidebar #links .link:hover,
+#contentContainer #sidebar #links .labels .labelContainer:hover {
+  background-color: #e4e4e4;
+}
+#contentContainer #sidebar #links .link.active {
+  background-color: #b4dcfb;
+}
+#contentContainer #sidebar #links .link.active,
+#contentContainer #sidebar #links .link.active span {
+  color: #1967d2;
+}
+#contentContainer #sidebar #links .labels {
+  margin: 20px 40px;
+}
+#contentContainer #sidebar #links .labels .labelTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#contentContainer #sidebar #links .labels .labelTitle .addLabel {
+  padding: 2px 4px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e6e6e6;
+  }
+}
+#contentContainer #sidebar #links .dropdownSection .dropdownContent {
+  display: none;
+}
+#contentContainer #sidebar #links .dropdownSection .dropdownContent .actions {
+  display: none;
+  gap: 5px;
+}
+#contentContainer
+  #sidebar
+  #links
+  .dropdownSection
+  .dropdownContent
+  .link:hover
+  .actions {
+  display: flex;
+}
+#contentContainer
+  #sidebar
+  #links
+  .dropdownSection
+  .dropdownContent
+  .link:hover
+  .actions
+  .actionButton:hover
+  .fa {
+  color: #3a3a3a;
+}
+#contentContainer #sidebar #links .dropdownSection.active > .link:first-child {
+  background-color: #f1f3f4;
+}
+#contentContainer
+  #sidebar
+  #links
+  .dropdownSection.active
+  > .link:first-child
+  .fa-chevron-up {
+  display: block;
+}
+#contentContainer
+  #sidebar
+  #links
+  .dropdownSection.active
+  > .link:first-child
+  .fa-chevron-down {
+  display: none;
+}
+#contentContainer #sidebar #links .dropdownSection.active .dropdownContent {
+  display: block;
+}
+#contentContainer #content {
+  flex-grow: 1;
+  margin: 0px 20px;
+  padding: 0px 20px;
+  background-color: #f4f4f4;
+  height: 80vh;
+  border-radius: 20px;
+  box-sizing: border-box;
+}
+#contentContainer #content .table {
+  width: 100%;
+}
+#contentContainer #content .table .tableTitle {
+  font-size: 24px;
+  color: #444746;
+  font-weight: normal;
+
+  .updateNumberOfContacts {
     font-size: 14px;
-    color: black;
-    height: 100%; }
-    #contentContainer #sidebar .divider {
-      width: 100%;
-      border-top: 1px solid #ccc;
-      margin: 5px 0px; }
-      
-      #contentContainer #sidebar #logo{
-          margin-left: 10px;
-          display: none;
-      }
-      #contentContainer #sidebar #createContactBtn, .addContact {
-        border-radius: 20px;
-        display: inline-flex;
-        align-items: center;
-      background-color: #B8DCF9;
-      cursor: pointer;
-      }
-    #contentContainer #sidebar #createContactBtn {
-      
-      
-      height: 60px;
-      width: 50%;
-      
-      gap: 10px;
-      
-      padding: 0 20px;
-      margin-left: 10px; }
-      #contentContainer #sidebar #createContactBtn:hover, .addContact{
+  }
+}
 
-        box-shadow: 0px 0px 5px #9c9c9c;
-      }
-    #contentContainer #sidebar #links {
-      margin-top: 20px; }
-      #contentContainer #sidebar #links .label {
-        display: flex;
-        margin: 0px 10px;
-        gap: 20px;
-        padding: 10px 40px;
-        border-radius: 15px;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
+#contentContainer #content .table .tableHead.hide {
+  display: none;
+}
+#contentContainer #content .table .tableHead,
+#contentContainer #content .table .actionsBar {
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  height: 50px;
+  align-items: center;
+  display: none;
+}
+#contentContainer #content .table .actionsBar.active {
+  display: flex;
+}
+#contentContainer #content .table .actionsBar .buttons {
+  height: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 5px;
+}
+#contentContainer #content .table .actionsBar .buttons .bg-btn span {
+  cursor: pointer;
+  color: #1967d2;
+}
+#contentContainer #content .table .actionsBar .rightSection {
+  display: flex;
+  gap: 5px;
+  color: #1967d2;
+}
+#contentContainer #content .table .tableBody .tableRow,
+#contentContainer #content .table .tableHead {
+  display: flex;
+  width: 100%;
+}
 
-        &:hover{
-          background-color: #e4e4e4;
-          .icon{
-            display: flex;
-          }
-        }
-        div{
-          display: flex;
-          align-items: center;
-          gap: 20px;
+#contentContainer #content .table .column {
+  width: 20%;
+}
+#contentContainer #content .table .column span {
+  font-size: 15px;
+}
 
-          span {
-            color: #6e6e6e;
-          }
-          &.icon{
-            display: none;
-          }
-        }
-        
-      }
-      #contentContainer #sidebar #links .link {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        margin: 10px;
-        padding: 15px 25px;
-        border-radius: 20px;
-        justify-content: space-between; }
-        #contentContainer #sidebar #links .link .content {
-          display: flex;
-          align-items: center;
-          gap: 20px; }
-          #contentContainer #sidebar #links .link .content .fa-chevron-up {
-            display: none; }
-        #contentContainer #sidebar #links .link span {
-          color: #6e6e6e; }
-        #contentContainer #sidebar #links .link:hover, #contentContainer #sidebar #links .labels .labelContainer:hover {
-          background-color: #e4e4e4; }
-        #contentContainer #sidebar #links .link.active {
-          background-color: #B4DCFB; }
-          #contentContainer #sidebar #links .link.active,
-          #contentContainer #sidebar #links .link.active span {
-            color: #1967d2; }
-        #contentContainer #sidebar #links .labels {
-          margin: 20px 40px;}
-        #contentContainer #sidebar #links .labels .labelTitle {
-          display: flex;
-          align-items: center;
-          justify-content: space-between; }
-          #contentContainer #sidebar #links .labels .labelTitle .addLabel {
-            padding: 2px 4px;
-            border-radius: 50%;
-            cursor: pointer;
+#contentContainer #content .table .columnLogo {
+  display: flex;
+  position: absolute;
+  right: 40px;
+  gap: 10px;
 
-            &:hover{
-              background-color: #E6E6E6;
-            }
-          }
-      #contentContainer #sidebar #links .dropdownSection .dropdownContent {
-        display: none; }
-        #contentContainer #sidebar #links .dropdownSection .dropdownContent .actions {
-          display: none;
-          gap: 5px; }
-        #contentContainer #sidebar #links .dropdownSection .dropdownContent .link:hover .actions {
-          display: flex; }
-          #contentContainer #sidebar #links .dropdownSection .dropdownContent .link:hover .actions .actionButton:hover .fa {
-            color: #3a3a3a; }
-      #contentContainer #sidebar #links .dropdownSection.active > .link:first-child {
-        background-color: #f1f3f4; }
-        #contentContainer #sidebar #links .dropdownSection.active > .link:first-child .fa-chevron-up {
-          display: block; }
-        #contentContainer #sidebar #links .dropdownSection.active > .link:first-child .fa-chevron-down {
-          display: none; }
-      #contentContainer #sidebar #links .dropdownSection.active .dropdownContent {
-        display: block; }
-  #contentContainer #content {
-    flex-grow: 1;
-    margin: 0px 20px;
-    padding: 0px 20px;
-    background-color: #f4f4f4;
-    height: 90%;
-    border-radius: 20px;
-    box-sizing: border-box; }
-    #contentContainer #content .table {
-      width: 100%; }
-      #contentContainer #content .table .tableTitle {
-        font-size: 24px;
-        color: #444746;
-        font-weight: normal;
+  span {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+}
+#contentContainer #content .table .tableBody .tableRow {
+  display: flex;
+  width: 100%;
+  min-height: 60px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#contentContainer #content .table .tableBody .tableRow .column {
+  flex-grow: 1;
+  font-size: 12px;
+  min-width: 20%;
+  padding: 8px 0px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#contentContainer #content .table .tableBody .tableRow .column .checkbox {
+  display: none;
+  width: 30px;
+  justify-content: center;
+  align-items: center;
+}
+#contentContainer #content .table .tableBody .tableRow .column .checkbox input {
+  cursor: pointer;
+}
+#contentContainer #content .table .tableBody .tableRow .actionButtons {
+  display: none;
+}
+#contentContainer #content .table .tableBody .tableRow:hover,
+#contentContainer #content .table .tableBody .tableRow.selected {
+  background-color: #edf2fc;
+}
+#contentContainer #content .table .tableBody .tableRow:hover .checkbox,
+#contentContainer #content .table .tableBody .tableRow.selected .checkbox,
+#contentContainer
+  #content
+  .table
+  .tableBody
+  .tableRow:hover
+  .columnLogo.buttons {
+  display: flex;
+}
+.checkbox span {
+  display: none;
+}
+#contentContainer #content .table .tableBody .tableRow .columnLogo.buttons {
+  position: absolute;
+  align-items: center;
+  right: 40px;
+  gap: 10px;
+  display: none;
 
-        .updateNumberOfContacts{
-          font-size: 14px;
-        }
-      }
-      
-        #contentContainer #content .table .tableHead.hide {
-          display: none; }
-          #contentContainer #content .table .tableHead,
-      #contentContainer #content .table .actionsBar {
-        justify-content: space-between;
-        border-bottom: 1px solid #ccc;
-        height: 50px;
-        align-items: center;
-        display: none; }
-        #contentContainer #content .table .actionsBar.active {
-          display: flex; }
-        #contentContainer #content .table .actionsBar .buttons {
-          height: 100%;
-          z-index: 100;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding-left: 5px; }
-          #contentContainer #content .table .actionsBar .buttons .bg-btn span {
-            
-            cursor: pointer;
-            color: #1967d2; }
-        #contentContainer #content .table .actionsBar .rightSection {
-          display: flex;
-          gap: 5px;
-          color: #1967d2; }
-      #contentContainer #content .table .tableBody .tableRow,
-      #contentContainer #content .table .tableHead {
-        display: flex;
-        width: 100%; }
-        
-      #contentContainer #content .table .column {
-        width: 20%; }
-        #contentContainer #content .table .column span {
-          font-size: 15px; }
-      
-        #contentContainer #content .table .columnLogo {
-          display: flex;
-          position: absolute;
-          right: 40px;
-          gap: 10px;
-          
-          span{
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-          }
-        }
-      #contentContainer #content .table .tableBody .tableRow {
-        display: flex;
-        width: 100%;
-        min-height: 60px;
-        border-radius: 5px;
-        cursor: pointer; }
-        #contentContainer #content .table .tableBody .tableRow .column {
-          flex-grow: 1;
-          font-size: 12px;
-          min-width: 20%;
-          padding: 8px 0px;
-          display: flex;
-          align-items: center;
-          gap: 10px; }
-          #contentContainer #content .table .tableBody .tableRow .column .checkbox {
-            display: none;
-            width: 30px;
-            justify-content: center;
-            align-items: center; }
-            #contentContainer #content .table .tableBody .tableRow .column .checkbox input {
-              cursor: pointer; }
-        #contentContainer #content .table .tableBody .tableRow .actionButtons {
-          display: none; }
-        #contentContainer #content .table .tableBody .tableRow:hover, #contentContainer #content .table .tableBody .tableRow.selected {
-          background-color: #EDF2FC; }
-          #contentContainer #content .table .tableBody .tableRow:hover .checkbox, #contentContainer #content .table .tableBody .tableRow.selected .checkbox,
-          #contentContainer #content .table .tableBody .tableRow:hover .columnLogo.buttons {
-            display: flex; }
-            .checkbox span {
-              display: none;
-            }
-            #contentContainer #content .table .tableBody .tableRow .columnLogo.buttons {
-              position: absolute;
-              align-items: center;
-              right: 40px;
-              gap: 10px;
-              display: none;
-
-              span {
-                width: 20px;
-                height: 20px;
-              }
-            }
-            #contentContainer #content .table .tableBody .tableRow .column .buttons span:hover {
-              background-color: #e6e6e6;
-              border-radius: 50%;
-            }
-          #contentContainer #content .table .tableBody .tableRow:hover .avatar, #contentContainer #content .table .tableBody .tableRow.selected .avatar {
-            display: none; }
-        #contentContainer #content .table .tableBody .tableRow:hover .actionButtons {
-          display: block; }
+  span {
+    width: 20px;
+    height: 20px;
+  }
+}
+#contentContainer
+  #content
+  .table
+  .tableBody
+  .tableRow
+  .column
+  .buttons
+  span:hover {
+  background-color: #e6e6e6;
+  border-radius: 50%;
+}
+#contentContainer #content .table .tableBody .tableRow:hover .avatar,
+#contentContainer #content .table .tableBody .tableRow.selected .avatar {
+  display: none;
+}
+#contentContainer #content .table .tableBody .tableRow:hover .actionButtons {
+  display: block;
+}
 
 #contactPage #contactHeader,
 #contactEditorPage #contactEditorHeader {
@@ -560,67 +691,98 @@ a {
   flex-direction: column;
   justify-content: space-between;
   max-width: 50em;
-  gap: 2em;}
-  #contactPage #contactHeader .avatar,
-  #contactEditorPage #contactEditorHeader .avatar {
-    margin-left: 20px;
-    width: 150px;
-    height: 150px;
-    font-size: 64px; }
-  #contactPage #contactHeader .favoriteSection,
-  #contactEditorPage #contactEditorHeader .favoriteSection {
-    display: flex;
-    justify-content: flex-start;
-    align-content: flex-end;
-    right: 0px;
-    min-width: 30vw; }
-    #contactPage #contactHeader .nameSection .name,
-    #contactEditorPage #contactEditorHeader .nameSection .name {
-      font-size: 10px; }
-    #contactPage #contactHeader .nameSection .labelsSection,
-    #contactEditorPage #contactEditorHeader .nameSection .labelsSection {
-      display: flex;
-      align-items: center;
-      gap: 10px; }
-      #contactPage #contactHeader .nameSection .labelsSection .label,
-      #contactEditorPage #contactEditorHeader .nameSection .labelsSection .label {
-        display: flex;
-        gap: 7px; }
-        #contactPage #contactHeader .nameSection .labelsSection .labels .label,
-        #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labels .label {
-          font-size: 12px;
-          border: 1px solid #ccc;
-          padding: 5px 10px;
-          border-radius: 20px;
-          cursor: pointer; }
-          #contactPage #contactHeader .nameSection .labelsSection .labels .label:hover,
-          #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labels .label:hover {
-            background-color: rgba(235, 235, 235, 0.2); }
-      #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton,
-      #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton {
-        
-        border: 1px solid #ccc;
-        padding: 5px 15px;
-        display: flex;
-        gap: 5px;
-        font-size: 12px;
-        align-items: center;
-        color: #1b73e8;
-        cursor: pointer; 
-        
-        svg {
-          width: 13px;
-        }
-      }
-        #contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton:hover,
-        #contactEditorPage #contactEditorHeader .nameSection .labelsSection .labelsPickerButton:hover {
-          background-color: rgba(235, 235, 235, 0.2); }
-  #contactPage #contactHeader .actionSection,
-  #contactEditorPage #contactEditorHeader .actionSection {
-    display: flex;
-    align-items: flex-start;
-    justify-content: end;
-    gap: 10px; }
+  gap: 2em;
+}
+#contactPage #contactHeader .avatar,
+#contactEditorPage #contactEditorHeader .avatar {
+  margin-left: 20px;
+  width: 150px;
+  height: 150px;
+  font-size: 64px;
+}
+#contactPage #contactHeader .favoriteSection,
+#contactEditorPage #contactEditorHeader .favoriteSection {
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-end;
+  right: 0px;
+  min-width: 30vw;
+}
+#contactPage #contactHeader .nameSection .name,
+#contactEditorPage #contactEditorHeader .nameSection .name {
+  font-size: 10px;
+}
+#contactPage #contactHeader .nameSection .labelsSection,
+#contactEditorPage #contactEditorHeader .nameSection .labelsSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#contactPage #contactHeader .nameSection .labelsSection .label,
+#contactEditorPage #contactEditorHeader .nameSection .labelsSection .label {
+  display: flex;
+  gap: 7px;
+}
+#contactPage #contactHeader .nameSection .labelsSection .labels .label,
+#contactEditorPage
+  #contactEditorHeader
+  .nameSection
+  .labelsSection
+  .labels
+  .label {
+  font-size: 12px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+#contactPage #contactHeader .nameSection .labelsSection .labels .label:hover,
+#contactEditorPage
+  #contactEditorHeader
+  .nameSection
+  .labelsSection
+  .labels
+  .label:hover {
+  background-color: rgba(235, 235, 235, 0.2);
+}
+#contactPage #contactHeader .nameSection .labelsSection .labelsPickerButton,
+#contactEditorPage
+  #contactEditorHeader
+  .nameSection
+  .labelsSection
+  .labelsPickerButton {
+  border: 1px solid #ccc;
+  padding: 5px 15px;
+  display: flex;
+  gap: 5px;
+  font-size: 12px;
+  align-items: center;
+  color: #1b73e8;
+  cursor: pointer;
+
+  svg {
+    width: 13px;
+  }
+}
+#contactPage
+  #contactHeader
+  .nameSection
+  .labelsSection
+  .labelsPickerButton:hover,
+#contactEditorPage
+  #contactEditorHeader
+  .nameSection
+  .labelsSection
+  .labelsPickerButton:hover {
+  background-color: rgba(235, 235, 235, 0.2);
+}
+#contactPage #contactHeader .actionSection,
+#contactEditorPage #contactEditorHeader .actionSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: end;
+  gap: 10px;
+}
 
 /**
 *
@@ -628,22 +790,26 @@ a {
 *
 **/
 #contactPage #contactContentContainer {
-  padding-top: 30px; }
-  #contactPage #contactContentContainer .contactContent {
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    display: inline-block; }
-    #contactPage #contactContentContainer .contactContent h6 {
-      margin-top: 0px;
-      margin-bottom: 10px;
-      font-size: 15px;
-      font-weight: 600; }
-    #contactPage #contactContentContainer .contactContent .field {
-      display: flex;
-      gap: 10px;
-      padding-bottom: 4px;
-      font-size: 13px; }
+  padding-top: 30px;
+}
+#contactPage #contactContentContainer .contactContent {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+}
+#contactPage #contactContentContainer .contactContent h6 {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+}
+#contactPage #contactContentContainer .contactContent .field {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 4px;
+  font-size: 13px;
+}
 
 #contactEditorPage #contactEditorContent {
   display: flex;
@@ -651,40 +817,48 @@ a {
   gap: 30px;
   width: 50em;
   height: 100%;
-  padding-bottom: 5em; }
-  #contactEditorPage #contactEditorContent .column{
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  #contactEditorPage #contactEditorContent .row {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    width: 100%; }
-    #contactEditorPage #contactEditorContent .row .crossIconColumn {
-      width: 20px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      margin-left: -10px; }
-      #contactEditorPage #contactEditorContent .row .crossIconColumn .fa {
-        display: none; }
-    #contactEditorPage #contactEditorContent .row:hover .crossIconColumn .fa {
-      display: block; }
-    #contactEditorPage #contactEditorContent .row .inputColumn {
-      flex-grow: 1;
-      flex-direction: column;}
-    #contactEditorPage #contactEditorContent .row input {
-      width: 100%; }
-    #contactEditorPage #contactEditorContent .row .fa {
-      color: #ccc; }
-#contactEditorHeader .icons{
-  display: flex;
-  justify-content: space-between ;
+  padding-bottom: 5em;
 }
-.btnAdd{
+#contactEditorPage #contactEditorContent .column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+#contactEditorPage #contactEditorContent .row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+}
+#contactEditorPage #contactEditorContent .row .crossIconColumn {
+  width: 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: -10px;
+}
+#contactEditorPage #contactEditorContent .row .crossIconColumn .fa {
+  display: none;
+}
+#contactEditorPage #contactEditorContent .row:hover .crossIconColumn .fa {
+  display: block;
+}
+#contactEditorPage #contactEditorContent .row .inputColumn {
+  flex-grow: 1;
+  flex-direction: column;
+}
+#contactEditorPage #contactEditorContent .row input {
+  width: 100%;
+}
+#contactEditorPage #contactEditorContent .row .fa {
+  color: #ccc;
+}
+#contactEditorHeader .icons {
+  display: flex;
+  justify-content: space-between;
+}
+.btnAdd {
   max-width: 80%;
   padding: 10px;
   margin: 0px 50px;
@@ -695,12 +869,12 @@ a {
   align-items: center;
   justify-content: center;
 
-  &:hover{
-    box-shadow: 0px 0px 5px #9c9c9c
+  &:hover {
+    box-shadow: 0px 0px 5px #9c9c9c;
   }
 }
 
-.addContact{
+.addContact {
   padding: 10px 20px;
   position: absolute;
   bottom: 40px;
@@ -708,29 +882,29 @@ a {
   display: none;
 }
 
-.bg-btn{
+.bg-btn {
   padding: 5px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   margin-top: 1em;
-  
-  &:hover{
+
+  &:hover {
     background-color: #dad9d9;
 
-    .tableRow{
+    .tableRow {
       background: none;
     }
   }
 }
-
 
 @media (max-width: 1585px) {
   .tableHead .libelle,
   .tableRow .libelle {
     display: none !important;
   }
-  .tableHead .column, .tableRow .column{
+  .tableHead .column,
+  .tableRow .column {
     min-width: 25% !important;
   }
 
@@ -739,7 +913,8 @@ a {
     .tableRow .company {
       display: none !important;
     }
-    .tableHead .column, .tableRow .column{
+    .tableHead .column,
+    .tableRow .column {
       min-width: 33% !important;
     }
   }
@@ -749,13 +924,14 @@ a {
     .tableRow .phone {
       display: none !important;
     }
-    .tableHead .column, .tableRow .column{
+    .tableHead .column,
+    .tableRow .column {
       min-width: 50% !important;
     }
   }
 
   @media (max-width: 1024px) {
-    .addContact{
+    .addContact {
       display: flex;
     }
     #header #searchSection #searchContainer {
@@ -767,7 +943,7 @@ a {
     #contactContent #contactEditorContent {
       width: 100%;
     }
-    #sidebar{
+    #sidebar {
       display: none;
       position: fixed;
       z-index: 1;
@@ -779,28 +955,29 @@ a {
       box-shadow: 0px 0px 5px #9c9c9c;
       overflow-y: hidden;
     }
-    .sidebarOverlay{
+    .sidebarOverlay {
       width: 100%;
       height: 100%;
       position: fixed;
     }
-    #contentContainer #sidebar #logo{
-        display: flex;
+    #contentContainer #sidebar #logo {
+      display: flex;
     }
-    #contentContainer #sidebar #createContactBtn{
-        display: none;
+    #contentContainer #sidebar #createContactBtn {
+      display: none;
     }
   }
-  
+
   @media (max-width: 1024px) and (min-width: 750px) {
-      .tableHead .phone,
-      .tableRow .phone {
-        display: flex !important;
-      }
-      .tableHead .column, .tableRow .column{
-        min-width: 33% !important;
-      }
+    .tableHead .phone,
+    .tableRow .phone {
+      display: flex !important;
     }
+    .tableHead .column,
+    .tableRow .column {
+      min-width: 33% !important;
+    }
+  }
   @media (max-width: 840px) {
     #header #logoSection #logo {
       display: none;
@@ -811,21 +988,20 @@ a {
   }
   @media (max-width: 540px) {
     .tableHead .email,
-        .tableRow .email{
+    .tableRow .email {
       display: none !important;
     }
-    .tableHead .column, .tableRow .column{
+    .tableHead .column,
+    .tableRow .column {
       min-width: 80% !important;
     }
-    #header #logoSection{
+    #header #logoSection {
       flex-basis: 20%;
     }
     #header #searchSection #searchContainer {
       width: 100%;
     }
-    #sidebar{
-        
+    #sidebar {
     }
   }
 }
-
